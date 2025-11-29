@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Al Karam Revenue Land & Property Record</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Load Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
+
+    <script>
+        // Configure Tailwind to use a CSS variable for dynamic accent color
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        // The dynamic color is controlled by the JS variable --accent-color
+                        'dynamic-accent': 'var(--accent-color)',
+                        'wa-green': '#25D366',
+                        'dark-bg': '#111827',
+                        'dark-card': '#1f2937',
+                    },
+                    boxShadow: {
+                        '3xl': '0 35px 60px -15px rgba(0, 0, 0, 0.5)',
+                        'glass': '0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08)'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Define the initial CSS variable for the accent color */
+        :root {
+            --accent-color: #3b82f6; /* Initial blue color */
+        }
+        
+        body {
+            /* Fallback font */
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+            transition: background-color 1.5s ease;
+        }
+
+        /* Gradient for the header section */
+        .header-section {
+            min-height: 100vh; 
+            /* Fallback background if Tailwind's gradient utilities are not sufficient */
+            background-image: linear-gradient(135deg, #0f172a, #1e293b);
+            padding-top: 5rem; /* Space below fixed navbar */
+        }
+
+        /* Navbar gradient adapted for a cleaner look */
+        .navbar {
+            background: linear-gradient(90deg, #10b981, #1e40af, #3b82f6);
+        }
+
+        /* Apply dynamic color transition to elements that use --accent-color */
+        .ring-dynamic-accent,
+        .text-dynamic-accent,
+        .hover\:bg-dynamic-accent {
+            transition: all 1.5s ease-in-out;
+        }
+
+        /* Custom style for the WhatsApp button to ensure fixed color */
+        .talk-button {
+            background-color: var(--wa-green);
+        }
+
+        /* Custom shadow for the profile image */
+        .profile {
+            box-shadow: 0 0 0 6px var(--accent-color), 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-dark-bg text-gray-100 antialiased">
+
+    <!-- Navbar: Fixed Header -->
+    <nav class="navbar fixed top-0 w-full shadow-lg z-50 p-3 flex justify-center">
+        <div class="flex items-center space-x-3 w-full max-w-4xl px-4">
+            <!-- Logo Placeholder -->
+            <img class="w-10 h-10 rounded-full border-2 border-white object-cover" 
+                 src="https://placehold.co/100x100/3b82f6/ffffff?text=AKLR" 
+                 alt="Al Karam Land Revenue Logo" />
+            <!-- Brand Name -->
+            <span class="text-xl font-extrabold text-white tracking-wide uppercase truncate md:text-2xl">
+                Al Karam Revenue Land & Property Record
+            </span> 
+        </div>
+    </nav>
+
+    <!-- Main Content Section -->
+    <main class="header-section flex flex-col items-center justify-center p-4">
+        
+        <!-- Profile Container -->
+        <div class="my-6">
+            <!-- Profile Image (Uses dynamic-accent for ring effect) -->
+            <img class="profile w-40 h-40 rounded-full object-cover ring-4 ring-offset-4 ring-offset-dark-bg transition-shadow duration-1500" 
+                 src="https://placehold.co/160x160/10b981/ffffff?text=Director" 
+                 alt="Shahid Ikram Malik Profile Picture" />
+        </div>
+        
+        <!-- Title -->
+        <h1 class="text-3xl font-bold text-white mb-2 md:text-4xl">
+            Shahid Ikram Malik
+        </h1> 
+        <p class="text-dynamic-accent font-semibold mb-6 text-lg">
+            Director, Land & Revenue Management
+        </p>
+
+        <!-- Info Card -->
+        <div class="w-full max-w-lg p-6 bg-dark-card rounded-xl shadow-3xl text-left border border-gray-700/50">
+            <p class="text-gray-300 text-sm mb-4 leading-relaxed">
+                Overseeing the official records and strategic management of Al Karam's extensive **land holdings** and **property portfolio** across Sindh, Pakistan. Dedicated to transparent documentation, revenue optimization, and long-term asset value enhancement.
+            </p>
+            
+            <div class="space-y-3 text-sm">
+                <!-- Contact Details -->
+                <div class="flex items-center space-x-3 text-gray-300">
+                    <i class="fas fa-phone-alt w-5 text-dynamic-accent"></i>
+                    <p><span class="font-medium">Direct:</span> 0300 8377120</p>
+                </div>
+                <div class="flex items-center space-x-3 text-gray-300">
+                    <i class="fas fa-building w-5 text-dynamic-accent"></i>
+                    <p><span class="font-medium">Office:</span> 0242-460146</p>
+                </div>
+                <div class="flex items-center space-x-3 text-gray-300">
+                    <i class="fas fa-map-marker-alt w-5 text-dynamic-accent"></i>
+                    <p>
+                        <span class="font-medium">Location:</span> Behlani, Sindh, Pakistan 
+                        (<a href="https://maps.app.goo.gl/1hiP85sBbqrDP6bz5" target="_blank" class="text-dynamic-accent hover:underline">View Map</a>)
+                    </p>
+                </div>
+                
+                <!-- Links -->
+                <div class="pt-4 space-y-3 border-t border-gray-700/50">
+                    <div class="flex items-center space-x-3">
+                        <i class="fas fa-envelope w-5 text-dynamic-accent"></i>
+                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=alkarampoultry505@gmail.com" target="_blank" class="text-dynamic-accent hover:text-white transition duration-300 font-medium">
+                            alkarampoultry505@gmail.com
+                        </a>
+                    </div>
+
+                    <div class="flex items-center space-x-3">
+                        <i class="fas fa-file-contract w-5 text-dynamic-accent"></i>
+                        <a href="https://drive.google.com/drive/folders/1cYBKNNTNAgj7WHfbSbBoir9vZCUWQld8?usp=drive_link" target="_blank" class="text-dynamic-accent hover:text-white transition duration-300 font-medium">
+                            Official Land Deeds & Documents 📄
+                        </a>
+                    </div>
+                    
+                    <div class="flex items-center space-x-3">
+                        <i class="fas fa-chart-line w-5 text-dynamic-accent"></i>
+                        <a href="https://drive.google.com/drive/folders/1orezy0DFRBFQ7xBkDiJXvRKkkgBB7DKI?usp=drive_link" target="_blank" class="text-dynamic-accent hover:text-white transition duration-300 font-medium">
+                            Revenue and Financial Records 📊
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- WhatsApp Button -->
+            <div class="text-center mt-6">
+                <a class="talk-button inline-flex items-center justify-center space-x-2 py-3 px-8 text-white font-bold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 text-lg" 
+                   href="https://wa.me/3008377120" target="_blank" aria-label="Contact Shahid Ikram Malik on WhatsApp">
+                    <i class="fab fa-whatsapp text-xl"></i> 
+                    <span>Let's Discuss on WhatsApp</span>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Define beautiful, high-contrast color pairs (only the ACCENT color is needed here)
+        const accentColors = [
+            "#3b82f6", // Blue
+            "#10b981", // Emerald Green
+            "#f59e0b", // Amber
+            "#ef4444", // Red
+            "#8b5cf6", // Violet
+            "#06b6d4", // Cyan
+        ];
+        let colorIndex = 0;
+
+        // Function to apply colors
+        function applyColors() {
+            const currentAccent = accentColors[colorIndex];
+            const root = document.documentElement.style;
+
+            // Update the CSS Variable which Tailwind classes are configured to use
+            root.setProperty('--accent-color', currentAccent);
+
+            // Cycle index
+            colorIndex = (colorIndex + 1) % accentColors.length;
+        }
+
+        // Apply colors immediately on load
+        applyColors();
+
+        // Change colors automatically every 4 seconds (4000 milliseconds)
+        // This gives a modern, dynamic effect to the accent elements
+        setInterval(applyColors, 4000);
+    </script>
+</body>
+</html>
