@@ -1,444 +1,408 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Al Karam Digital Revenue & Land Records Portal</title>
-        <script src="https://cdn.tailwindcss.com"></script>
-        <script src="https://unpkg.com/lucide@latest"></script>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PORTFOLIO PROJECT: Digital Revenue & Land Records Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
 
-    <style>
-        /* Define the initial CSS variable for the accent color */
-        :root {
-            --accent-color: #10b981; /* Emerald Green - professional and vibrant */
-            --dark-bg-color: #0f172a; /* Slate 900 */
-            --dark-card-color: #1e293b; /* Slate 800 */
-        }
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            scroll-behavior: smooth;
-            background-color: var(--dark-bg-color);
-            color: #e2e8f0; /* Light text on dark background */
-        }
+    <style>
+        /* Define the initial CSS variable for the accent color */
+        :root {
+            --accent-color: #10b981; /* Emerald Green - professional and vibrant */
+            --dark-bg-color: #0c152a; /* Darker Slate Blue */
+            --dark-card-color: #1a233b; /* Slightly lighter card for contrast */
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+            background-color: var(--dark-bg-color);
+            color: #e2e8f0; /* Light text on dark background */
+        }
 
-        /* Set header background to a subtle gradient using the accent color */
-        .header-bg {
-            background-image: linear-gradient(to right, #0f172a, var(--dark-card-color));
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
-        }
+        .header-bg {
+            background-color: var(--dark-card-color);
+            border-bottom: 1px solid #2d3748;
+        }
 
-        /* Style for the main container */
-        .portal-container {
-            min-height: calc(100vh - 80px); /* Account for header height */
-        }
+        .custom-scroll::-webkit-scrollbar {
+            width: 8px;
+        }
+        .custom-scroll::-webkit-scrollbar-track {
+            background: var(--dark-card-color);
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: #475569; /* Slate 600 */
+            border-radius: 4px;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-color);
+        }
 
-        /* Custom scrollbar for better visual integration with dark mode */
-        .custom-scroll::-webkit-scrollbar {
-            width: 8px;
-        }
-        .custom-scroll::-webkit-scrollbar-track {
-            background: var(--dark-card-color);
-        }
-        .custom-scroll::-webkit-scrollbar-thumb {
-            background: #475569; /* Slate 600 */
-            border-radius: 4px;
-        }
-        .custom-scroll::-webkit-scrollbar-thumb:hover {
-            background: var(--accent-color);
-        }
+        .focus-accent:focus {
+            outline: 2px solid var(--accent-color);
+            outline-offset: 2px;
+            border-color: var(--accent-color);
+        }
+    </style>
 
-        /* Focus ring using the dynamic accent color */
-        .focus-accent:focus {
-            outline: 2px solid var(--accent-color);
-            outline-offset: 2px;
-            border-color: var(--accent-color);
-        }
-    </style>
-
-    <script>
-        // Configure Tailwind to use the CSS variables
-        tailwind.config = {
-            darkMode: 'class', // Enable dark mode via class if needed, though default is dark
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        'dynamic-accent': 'var(--accent-color)',
-                        'dark-bg': 'var(--dark-bg-color)',
-                        'dark-card': 'var(--dark-card-color)',
-                    },
-                    boxShadow: {
-                        '3xl': '0 35px 60px -15px rgba(0, 0, 0, 0.5)',
-                        'glass': '0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08)'
-                    }
-                }
-            }
-        }
-    </script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'dynamic-accent': 'var(--accent-color)',
+                        'dark-bg': 'var(--dark-bg-color)',
+                        'dark-card': 'var(--dark-card-color)',
+                    },
+                    boxShadow: {
+                        'glass': '0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08)'
+                    }
+                }
+            }
+        }
+    </script>
 </head>
 <body class="custom-scroll">
 
-        <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        // Global variables for Firebase access
-        let app;
-        let db;
-        let auth;
-        let userId = null;
-        let isAuthReady = false;
+        let app;
+        let db;
+        let auth;
+        let userId = null;
+        let isAuthReady = false;
 
-        // Constants from global scope
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-        const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
-        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+        const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
+        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
 
-        /**
-         * Initializes Firebase and sets up authentication.
-         */
-        async function initFirebase() {
-            try {
-                // 1. Initialize App and Services
-                app = initializeApp(firebaseConfig);
-                db = getFirestore(app);
-                auth = getAuth(app);
+        async function initFirebase() {
+            try {
+                app = initializeApp(firebaseConfig);
+                db = getFirestore(app);
+                auth = getAuth(app);
 
-                // 2. Handle Authentication
-                // Use the provided custom token or sign in anonymously
-                if (initialAuthToken) {
-                    await signInWithCustomToken(auth, initialAuthToken);
-                } else {
-                    await signInAnonymously(auth);
-                }
+                if (initialAuthToken) {
+                    await signInWithCustomToken(auth, initialAuthToken);
+                } else {
+                    await signInAnonymously(auth);
+                }
 
-                // 3. Auth State Listener
-                onAuthStateChanged(auth, (user) => {
-                    if (user) {
-                        userId = user.uid;
-                        isAuthReady = true;
-                        document.getElementById('user-id-display').textContent = userId;
-                        // Seed mock data after successful sign-in
-                        seedMockData();
-                    } else {
-                        // Fallback user ID if anonymous sign-in failed (shouldn't happen)
-                        userId = crypto.randomUUID();
-                        isAuthReady = true;
-                    }
-                    console.log("Firebase Auth State Ready. User ID:", userId);
-                    document.getElementById('auth-status').classList.add('bg-dynamic-accent');
-                });
-            } catch (error) {
-                console.error("Firebase initialization failed:", error);
-                // Display error to the user in the UI
-                document.getElementById('record-result').innerHTML = `<p class="text-red-500 font-bold">Error initializing Portal services. Please check console.</p>`;
-            }
-        }
+                onAuthStateChanged(auth, (user) => {
+                    if (user) {
+                        userId = user.uid;
+                        isAuthReady = true;
+                        document.getElementById('user-id-display').textContent = userId;
+                        seedMockData();
+                    } else {
+                        userId = crypto.randomUUID();
+                        isAuthReady = true;
+                    }
+                    console.log("Firebase Auth State Ready. User ID:", userId);
+                    document.getElementById('auth-status').classList.add('bg-dynamic-accent');
+                });
+            } catch (error) {
+                console.error("Firebase initialization failed:", error);
+                document.getElementById('record-result').innerHTML = `<p class="text-red-500 font-bold">Error initializing Portal services. Please check console.</p>`;
+            }
+        }
 
-        /**
-         * Seeds mock land record data into the public collection if it doesn't exist.
-         */
-        async function seedMockData() {
-            if (!isAuthReady) return;
+        async function seedMockData() {
+            if (!isAuthReady) return;
 
-            const mockRecords = [
-                { khasra: "1025", ownerName: "Muhammad Ali Khan", area: "4 Kanals, 15 Marlas", status: "Active / Non-Encumbered", mutationDate: "2023-01-15" },
-                { khasra: "2078", ownerName: "Faisalabad Industrial Group", area: "120 Kanals", status: "Active / Industrial", mutationDate: "2020-05-20" },
-                { khasra: "3500", ownerName: "Aisha Bibi Trust", area: "5 Kanals, 0 Marla", status: "Litigation Hold / Dispute", mutationDate: "2018-11-01" },
-            ];
+            const mockRecords = [
+                { khasra: "1025", ownerName: "Muhammad Ali Khan", area: "4 Kanals, 15 Marlas", status: "Active / Non-Encumbered", mutationDate: "2023-01-15" },
+                { khasra: "2078", ownerName: "Faisalabad Industrial Group", area: "120 Kanals", status: "Active / Industrial", mutationDate: "2020-05-20" },
+                { khasra: "3500", ownerName: "Aisha Bibi Trust", area: "5 Kanals, 0 Marla", status: "Litigation Hold / Dispute", mutationDate: "2018-11-01" },
+            ];
 
-            console.log("Attempting to seed mock data...");
+            console.log("Attempting to seed mock data...");
 
-            for (const record of mockRecords) {
-                // Document path: /artifacts/{appId}/public/data/land_records/{khasraId}
-                const docRef = doc(db, `artifacts/${appId}/public/data/land_records`, record.khasra);
-                
-                // Check if document exists before setting
-                const docSnap = await getDoc(docRef);
-                
-                if (!docSnap.exists()) {
-                    await setDoc(docRef, record)
-                        .then(() => console.log(`Seeded record for Khasra ${record.khasra}`))
-                        .catch(err => console.error(`Failed to seed ${record.khasra}:`, err));
-                }
-            }
-        }
+            for (const record of mockRecords) {
+                const docRef = doc(db, `artifacts/${appId}/public/data/land_records`, record.khasra);
+                const docSnap = await getDoc(docRef);
+                
+                if (!docSnap.exists()) {
+                    await setDoc(docRef, record)
+                        .then(() => console.log(`Seeded record for Khasra ${record.khasra}`))
+                        .catch(err => console.error(`Failed to seed ${record.khasra}:`, err));
+                }
+            }
+        }
 
-        /**
-         * Fetches a land record by Khasra ID from Firestore.
-         * @param {string} khasraId The Khasra number to search for.
-         */
-        async function getLandRecord(khasraId) {
-            if (!isAuthReady || !db) return null;
-            // Path: /artifacts/{appId}/public/data/land_records/{khasraId}
-            const docRef = doc(db, `artifacts/${appId}/public/data/land_records`, khasraId);
-            const docSnap = await getDoc(docRef);
-            return docSnap.exists() ? docSnap.data() : null;
-        }
+        async function getLandRecord(khasraId) {
+            if (!isAuthReady || !db) return null;
+            const docRef = doc(db, `artifacts/${appId}/public/data/land_records`, khasraId);
+            const docSnap = await getDoc(docRef);
+            return docSnap.exists() ? docSnap.data() : null;
+        }
 
-        /**
-         * Handles the search button click event.
-         */
-        window.searchRecord = async function() {
-            const inputElement = document.getElementById('khasra-input');
-            const resultElement = document.getElementById('record-result');
-            const khasraId = inputElement.value.trim();
+        window.searchRecord = async function() {
+            const inputElement = document.getElementById('khasra-input');
+            const resultElement = document.getElementById('record-result');
+            const khasraId = inputElement.value.trim();
 
-            if (!khasraId) {
-                resultElement.innerHTML = `<div class="p-4 bg-yellow-900/50 rounded-lg text-yellow-300">Please enter a Khasra/Plot ID to search.</div>`;
-                return;
-            }
+            if (!khasraId) {
+                resultElement.innerHTML = `<div class="p-4 bg-yellow-900/50 rounded-lg text-yellow-300">Please enter a Khasra/Plot ID to search.</div>`;
+                return;
+            }
 
-            if (!isAuthReady) {
-                resultElement.innerHTML = `<div class="p-4 bg-red-900/50 rounded-lg text-red-300">System services are not yet fully loaded. Please wait.</div>`;
-                return;
-            }
+            if (!isAuthReady) {
+                resultElement.innerHTML = `<div class="p-4 bg-red-900/50 rounded-lg text-red-300">System services are not yet fully loaded. Please wait.</div>`;
+                return;
+            }
 
-            // Show loading state
-            resultElement.innerHTML = `
-                <div class="flex justify-center items-center py-8">
-                    <svg class="animate-spin -ml-1 mr-3 h-8 w-8 text-dynamic-accent" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                    </svg>
-                    <span class="text-xl">Searching for Khasra ${khasraId}...</span>
-                </div>
-            `;
+            // Show loading state
+            resultElement.innerHTML = `
+                <div class="flex justify-center items-center py-8">
+                    <svg class="animate-spin -ml-1 mr-3 h-8 w-8 text-dynamic-accent" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    <span class="text-xl">Searching for Khasra ${khasraId}...</span>
+                </div>
+            `;
 
-            try {
-                const record = await getLandRecord(khasraId);
+            try {
+                const record = await getLandRecord(khasraId);
 
-                if (record) {
-                    displayRecord(record);
-                } else {
-                    resultElement.innerHTML = `
-                        <div class="p-6 text-center border-2 border-dashed border-gray-600 rounded-xl bg-dark-card/50">
-                            <i data-lucide="info" class="w-10 h-10 mx-auto text-red-400 mb-3"></i>
-                            <h3 class="text-xl font-semibold text-red-300">Record Not Found</h3>
-                            <p class="text-gray-400">The Khasra/Plot ID <strong>${khasraId}</strong> could not be located in the digital registry.</p>
-                            <p class="text-sm mt-2">Please ensure the ID is correct or contact the Revenue Department for manual verification.</p>
-                        </div>
-                    `;
-                    lucide.createIcons(); // Re-render icons after DOM update
-                }
-            } catch (error) {
-                console.error("Search failed:", error);
-                resultElement.innerHTML = `
-                    <div class="p-4 bg-red-900/50 rounded-lg text-red-300">
-                        An error occurred while communicating with the database. (${error.message})
-                    </div>
-                `;
-            }
-        }
+                if (record) {
+                    displayRecord(record);
+                } else {
+                    resultElement.innerHTML = `
+                        <div class="p-6 text-center border-2 border-dashed border-gray-600 rounded-xl bg-dark-card/50">
+                            <i data-lucide="info" class="w-10 h-10 mx-auto text-red-400 mb-3"></i>
+                            <h3 class="text-xl font-semibold text-red-300">Record Not Found</h3>
+                            <p class="text-gray-400">The Khasra/Plot ID <strong>${khasraId}</strong> could not be located in the digital registry.</p>
+                            <p class="text-sm mt-2">Please ensure the ID is correct or contact the Revenue Department for manual verification.</p>
+                        </div>
+                    `;
+                    lucide.createIcons();
+                }
+            } catch (error) {
+                console.error("Search failed:", error);
+                resultElement.innerHTML = `
+                    <div class="p-4 bg-red-900/50 rounded-lg text-red-300">
+                        An error occurred while communicating with the database. (${error.message})
+                    </div>
+                `;
+            }
+        }
 
-        /**
-         * Renders the found land record details.
-         * @param {object} record The land record data.
-         */
-        function displayRecord(record) {
-            const resultElement = document.getElementById('record-result');
-            const statusColor = record.status.includes('Active') ? 'bg-green-600' : 
-                                record.status.includes('Dispute') ? 'bg-red-600' : 'bg-yellow-600';
-            
-            resultElement.innerHTML = `
-                <div class="bg-dark-card p-6 rounded-xl shadow-xl border-t-4 border-dynamic-accent space-y-4">
-                    <div class="flex justify-between items-center pb-2 border-b border-gray-700">
-                        <h2 class="text-2xl font-bold text-dynamic-accent flex items-center">
-                            <i data-lucide="file-text" class="w-6 h-6 mr-2"></i>
-                            Official Land Record (Girdawari)
-                        </h2>
-                        <span class="text-xs font-medium text-gray-400">Last Verified: ${new Date().toLocaleDateString()}</span>
-                    </div>
+        function displayRecord(record) {
+            const resultElement = document.getElementById('record-result');
+            const statusColor = record.status.includes('Active') ? 'bg-green-600' : 
+                                 record.status.includes('Dispute') ? 'bg-red-600' : 'bg-yellow-600';
+            
+            resultElement.innerHTML = `
+                <div class="bg-dark-card p-6 rounded-xl shadow-2xl border-t-4 border-dynamic-accent space-y-4">
+                    <div class="flex justify-between items-center pb-2 border-b border-gray-700">
+                        <h2 class="text-2xl font-bold text-dynamic-accent flex items-center">
+                            <i data-lucide="file-text" class="w-6 h-6 mr-2"></i>
+                            Official Land Record (Girdawari)
+                        </h2>
+                        <span class="text-xs font-medium text-gray-400">Last Verified: ${new Date().toLocaleDateString()}</span>
+                    </div>
 
-                                        <div class="flex items-center">
-                        <span class="text-sm font-semibold mr-3">Status:</span>
-                        <span class="text-sm font-bold text-white px-3 py-1 rounded-full ${statusColor} shadow-md">${record.status}</span>
-                    </div>
+                    <div class="flex items-center">
+                        <span class="text-sm font-semibold mr-3">Status:</span>
+                        <span class="text-sm font-bold text-white px-3 py-1 rounded-full ${statusColor} shadow-md">${record.status}</span>
+                    </div>
 
-                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 text-gray-300">
-                        ${detailItem("Khasra/Plot ID", record.khasra, "map-pin")}
-                        ${detailItem("Current Owner Name", record.ownerName, "user")}
-                        ${detailItem("Total Area (Metric)", record.area, "square-kanban")}
-                        ${detailItem("Last Mutation Date", record.mutationDate, "calendar")}
-                    </div>
-                    
-                                        <div class="pt-4 border-t border-gray-700 mt-6">
-                        <h3 class="text-lg font-semibold mb-3 text-dynamic-accent/80">Available Actions </h3>
-                        <div class="flex flex-wrap gap-3">
-                            <button class="flex items-center px-4 py-2 bg-gray-700 hover:bg-dynamic-accent transition-colors duration-200 rounded-lg text-sm font-medium">
-                                <i data-lucide="download" class="w-4 h-4 mr-2"></i> Download Record (PDF)
-                            </button>
-                            <button class="flex items-center px-4 py-2 bg-gray-700 hover:bg-dynamic-accent transition-colors duration-200 rounded-lg text-sm font-medium">
-                                <i data-lucide="printer" class="w-4 h-4 mr-2"></i> Print Verified Copy
-                            </button>
-                            <button class="flex items-center px-4 py-2 bg-gray-700 hover:bg-yellow-600 transition-colors duration-200 rounded-lg text-sm font-medium">
-                                <i data-lucide="banknote" class="w-4 h-4 mr-2"></i> View Tax History
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            `;
-            lucide.createIcons(); // Re-render icons after DOM update
-        }
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 text-gray-300">
+                        ${detailItem("Khasra/Plot ID", record.khasra, "map-pin")}
+                        ${detailItem("Current Owner Name", record.ownerName, "user")}
+                        ${detailItem("Total Area (Metric)", record.area, "square-kanban")}
+                        ${detailItem("Last Mutation Date", record.mutationDate, "calendar")}
+                    </div>
+                    
+                    <div class="pt-4 border-t border-gray-700 mt-6">
+                        <h3 class="text-lg font-semibold mb-3 text-dynamic-accent/80">Available Actions </h3>
+                        <div class="flex flex-wrap gap-3">
+                            <button class="flex items-center px-4 py-2 bg-gray-700 hover:bg-dynamic-accent transition-colors duration-200 rounded-lg text-sm font-medium">
+                                <i data-lucide="download" class="w-4 h-4 mr-2"></i> Download Record (PDF)
+                            </button>
+                            <button class="flex items-center px-4 py-2 bg-gray-700 hover:bg-dynamic-accent transition-colors duration-200 rounded-lg text-sm font-medium">
+                                <i data-lucide="printer" class="w-4 h-4 mr-2"></i> Print Verified Copy
+                            </button>
+                            <button class="flex items-center px-4 py-2 bg-gray-700 hover:bg-yellow-600 transition-colors duration-200 rounded-lg text-sm font-medium">
+                                <i data-lucide="banknote" class="w-4 h-4 mr-2"></i> View Tax History
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            lucide.createIcons();
+        }
 
-        /**
-         * Helper function to generate an HTML detail item for the grid.
-         */
-        function detailItem(label, value, iconName) {
-            return `
-                <div>
-                    <p class="text-xs font-medium uppercase text-gray-500 flex items-center mb-1">
-                        <i data-lucide="${iconName}" class="w-4 h-4 mr-1 text-dynamic-accent"></i> ${label}
-                    </p>
-                    <p class="text-lg font-semibold text-white">${value}</p>
-                </div>
-            `;
-        }
+        function detailItem(label, value, iconName) {
+            return `
+                <div>
+                    <p class="text-xs font-medium uppercase text-gray-500 flex items-center mb-1">
+                        <i data-lucide="${iconName}" class="w-4 h-4 mr-1 text-dynamic-accent"></i> ${label}
+                    </p>
+                    <p class="text-lg font-semibold text-white">${value}</p>
+                </div>
+            `;
+        }
 
-        // Initialize Firebase when the window loads
-        window.onload = function() {
-            initFirebase();
-            lucide.createIcons();
-        };
-    </script>
-    
-        <header class="header-bg fixed top-0 left-0 w-full z-10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-                        <div class="flex items-center space-x-3">
-                <i data-lucide="landmark" class="w-8 h-8 text-dynamic-accent"></i>
-                <h1 class="text-xl sm:text-2xl font-black tracking-wider text-white">
-                    DIGITAL REVENUE <span class="text-dynamic-accent font-extrabold">PORTAL</span>
-                </h1>
-            </div>
+        window.onload = function() {
+            initFirebase();
+            lucide.createIcons();
+        };
+    </script>
+    
+    <header class="header-bg fixed top-0 left-0 w-full z-10 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <i data-lucide="briefcase" class="w-6 h-6 text-dynamic-accent"></i>
+                <h1 class="text-xl font-bold tracking-wider text-white">
+                    PROJECT SHOWCASE
+                </h1>
+            </div>
+            <div class="flex items-center space-x-4 text-sm">
+                <div class="flex items-center text-gray-400">
+                    <div id="auth-status" class="w-3 h-3 rounded-full bg-gray-500 mr-2" title="Auth Status"></div>
+                    <span class="hidden sm:block">Status: <span class="text-dynamic-accent">Live Demo</span></span>
+                </div>
+            </div>
+        </div>
+    </header>
 
-                        <div class="flex items-center space-x-3 text-sm">
-                <div id="auth-status" class="w-3 h-3 rounded-full bg-gray-500 transition-all duration-500" title="Authentication Status"></div>
-                <div class="hidden sm:block text-gray-400">
-                    User ID: <span id="user-id-display" class="font-mono text-xs text-dynamic-accent">Loading...</span>
-                </div>
-                <button class="bg-dynamic-accent/20 text-dynamic-accent px-3 py-1 rounded-lg font-medium hover:bg-dynamic-accent/30 transition">
-                    <i data-lucide="log-out" class="w-4 h-4 inline-block mr-1"></i> My Profile
-                </button>
-            </div>
-        </div>
-    </header>
+    <main class="pt-20 pb-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="bg-dark-card p-8 rounded-xl shadow-3xl mb-10 border-t-4 border-dynamic-accent">
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between mb-6">
+                <div class="space-y-2">
+                    <h1 class="text-4xl font-extrabold text-white">Digital Revenue & Land Records Portal</h1>
+                    <p class="text-lg text-dynamic-accent font-medium">Al Karam E-Governance Solution</p>
+                </div>
+                <div class="mt-4 md:mt-0">
+                    <img src="https://i.ibb.co/YTyLHmky/Whats-App-Image-2025-11-19-at-11-06-27-AM.jpg" alt="Developer Profile" 
+                        class="w-24 h-24 object-cover rounded-full border-4 border-dynamic-accent shadow-xl">
+                </div>
+            </div>
 
-        <main class="portal-container pt-24 pb-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            
-                        <div class="lg:col-span-1 space-y-6">
-                
-                                <div class="bg-dark-card p-6 rounded-xl shadow-2xl border border-gray-700">
-                    <h2 class="text-xl font-bold mb-4 text-dynamic-accent flex items-center">
-                        <i data-lucide="search-check" class="w-5 h-5 mr-2"></i>
-                        Record Verification
-                        
-                    </h2>
-                    <p class="text-gray-400 mb-4 text-sm">
-                        Enter the official Khasra or Plot ID to retrieve the latest registered record.
-                    </p>
-                    
-                    <div class="space-y-4">
-                        <label for="khasra-input" class="block text-sm font-medium text-gray-300">Khasra / Plot ID (e.g., 1025)</label>
-                        <input type="text" id="khasra-input" 
-                               class="w-full p-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-500 focus-accent"
-                               placeholder="Enter Khasra ID" onkeydown="if(event.key === 'Enter') searchRecord()">
-                        
-                        <button onclick="searchRecord()" 
-                                class="w-full flex items-center justify-center p-3 bg-dynamic-accent text-white font-semibold rounded-lg shadow-lg hover:bg-dynamic-accent/80 transition-colors duration-300">
-                            <i data-lucide="scroll-text" class="w-5 h-5 mr-2"></i>
-                            Search Record
-                        </button>
-                    </div>
-                </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4 border-t border-gray-700">
+                <div>
+                    <h3 class="text-base font-semibold text-gray-400 mb-2">Project Goal</h3>
+                    <p class="text-sm text-gray-300">To modernize and digitize public land ownership and revenue records, providing secure, instant, and transparent verification services for citizens.</p>
+                </div>
+                <div>
+                    <h3 class="text-base font-semibold text-gray-400 mb-2">My Role / Focus</h3>
+                    <ul class="list-disc list-inside text-sm text-gray-300 space-y-1">
+                        <li>Frontend Design & Development (Tailwind CSS, HTML, JS)</li>
+                        <li>Firebase Integration (Authentication, Firestore CRUD)</li>
+                        <li>Responsive, Dark Mode UI/UX</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-base font-semibold text-gray-400 mb-2">Technologies Used</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-dynamic-accent/20 text-dynamic-accent text-xs rounded-full font-medium">HTML5 / CSS3</span>
+                        <span class="px-3 py-1 bg-dynamic-accent/20 text-dynamic-accent text-xs rounded-full font-medium">JavaScript (ES6+)</span>
+                        <span class="px-3 py-1 bg-dynamic-accent/20 text-dynamic-accent text-xs rounded-full font-medium">Tailwind CSS</span>
+                        <span class="px-3 py-1 bg-dynamic-accent/20 text-dynamic-accent text-xs rounded-full font-medium">Firebase (Auth, Firestore)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <div class="lg:col-span-1 space-y-8">
+                
+                <div class="bg-dark-card p-6 rounded-xl shadow-2xl border border-gray-700">
+                    <h2 class="text-xl font-bold mb-4 text-dynamic-accent flex items-center">
+                        <i data-lucide="search-check" class="w-5 h-5 mr-2"></i>
+                        Record Verification Demo
+                    </h2>
+                    <p class="text-gray-400 mb-4 text-sm">
+                        Use a sample ID to demonstrate real-time data retrieval from the secure registry.
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <label for="khasra-input" class="block text-sm font-medium text-gray-300">Khasra / Plot ID (e.g., 1025, 2078, 3500)</label>
+                        <input type="text" id="khasra-input" 
+                               class="w-full p-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-500 focus-accent"
+                               placeholder="Enter Khasra ID" onkeydown="if(event.key === 'Enter') searchRecord()">
+                        
+                        <button onclick="searchRecord()" 
+                                class="w-full flex items-center justify-center p-3 bg-dynamic-accent text-white font-semibold rounded-lg shadow-lg hover:bg-dynamic-accent/80 transition-colors duration-300">
+                            <i data-lucide="scroll-text" class="w-5 h-5 mr-2"></i>
+                            Search Record
+                        </button>
+                    </div>
+                </div>
 
-                                <div class="space-y-4">
-                    <h3 class="text-lg font-semibold text-gray-300 flex items-center">
-                        <i data-lucide="bolt" class="w-5 h-5 mr-2 text-yellow-500"></i>
-                        Quick Services
-                    </h3>
-                    
+                <div class="space-y-4">
+                    <h3 class="text-lg font-semibold text-gray-300 flex items-center">
+                        <i data-lucide="bolt" class="w-5 h-5 mr-2 text-yellow-500"></i>
+                        Quick Links & Simulated Services
+                    </h3>
+                    
                     <a href="https://drive.google.com/drive/folders/1orezy0DFRBFQ7xBkDiJXvRKkkgBB7DKI" target="_blank" class="block bg-dark-card p-4 rounded-xl hover:bg-dark-card/70 transition-colors duration-200 border border-gray-700 group">
                         <div class="flex items-center justify-between">
                             <span class="font-medium text-white group-hover:text-dynamic-accent transition">Access Revenue Record Folder</span>
                             <i data-lucide="folder-open" class="w-5 h-5 text-dynamic-accent group-hover:scale-110 transition"></i>
                         </div>
-                        <p class="text-xs text-gray-500 mt-1">Direct link to the main digital records repository.</p>
+                        <p class="text-xs text-gray-500 mt-1">Direct link to the main digital records repository (Simulated).</p>
                     </a>
                     
-                    <a href="https://drive.google.com/drive/folders/1cYBKNNTNAgj7WHfbSbBoir9vZCUWQld8" target="_blank" class="block bg-dark-card p-4 rounded-xl hover:bg-dark-card/70 transition-colors duration-200 border border-gray-700 group">
+                    <a href="#" class="block bg-dark-card p-4 rounded-xl hover:bg-dark-card/70 transition-colors duration-200 border border-gray-700 group">
                         <div class="flex items-center justify-between">
-                            <span class="font-medium text-white group-hover:text-dynamic-accent transition">Personal Gallary Folder</span>
-                            <i data-lucide="camera" class="w-5 h-5 text-dynamic-accent group-hover:scale-110 transition"></i>
+                            <span class="font-medium text-white group-hover:text-dynamic-accent transition">Online Fee Payment</span>
+                            <i data-lucide="credit-card" class="w-5 h-5 text-dynamic-accent group-hover:scale-110 transition"></i>
                         </div>
-                        <p class="text-xs text-gray-500 mt-1">Direct link to the user's personal photo and document gallery.</p>
+                        <p class="text-xs text-gray-500 mt-1">Simulated feature: Pay property taxes and registry fees instantly.</p>
                     </a>
-                    
-                    <a href="https://drive.google.com/drive/folders/1L3EpqCTI2dJd-bOvzU1NwQt7nOYi1iTz" target="_blank" class="block bg-dark-card p-4 rounded-xl hover:bg-dark-card/70 transition-colors duration-200 border border-gray-700 group">
+
+                    <a href="#" class="block bg-dark-card p-4 rounded-xl hover:bg-dark-card/70 transition-colors duration-200 border border-gray-700 group">
                         <div class="flex items-center justify-between">
-                            <span class="font-medium text-white group-hover:text-dynamic-accent transition">Agreements Folder</span>
-                            <i data-lucide="file-check-2" class="w-5 h-5 text-dynamic-accent group-hover:scale-110 transition"></i>
+                            <span class="font-medium text-white group-hover:text-dynamic-accent transition">Apply for Mutation</span>
+                            <i data-lucide="pencil-line" class="w-5 h-5 text-dynamic-accent group-hover:scale-110 transition"></i>
                         </div>
-                        <p class="text-xs text-gray-500 mt-1">Direct link to the folder containing all contractual agreements.</p>
+                        <p class="text-xs text-gray-500 mt-1">Simulated feature: Start the process for ownership transfer.</p>
                     </a>
-                    
-                    <a href="#" class="block bg-dark-card p-4 rounded-xl hover:bg-dark-card/70 transition-colors duration-200 border border-gray-700 group">
-                        <div class="flex items-center justify-between">
-                            <span class="font-medium text-white group-hover:text-dynamic-accent transition">Online Fee Payment</span>
-                            <i data-lucide="credit-card" class="w-5 h-5 text-dynamic-accent group-hover:scale-110 transition"></i>
-                        </div>
-                        <p class="text-xs text-gray-500 mt-1">Pay property taxes and registry fees instantly.</p>
-                    </a>
+                </div>
+            </div>
 
-                    <a href="#" class="block bg-dark-card p-4 rounded-xl hover:bg-dark-card/70 transition-colors duration-200 border border-gray-700 group">
-                        <div class="flex items-center justify-between">
-                            <span class="font-medium text-white group-hover:text-dynamic-accent transition">Apply for Mutation</span>
-                            <i data-lucide="pencil-line" class="w-5 h-5 text-dynamic-accent group-hover:scale-110 transition"></i>
-                        </div>
-                        <p class="text-xs text-gray-500 mt-1">Start the process for ownership transfer.</p>
-                    </a>
-                    
-                    <a href="#" class="block bg-dark-card p-4 rounded-xl hover:bg-dark-card/70 transition-colors duration-200 border border-gray-700 group">
-                        <div class="flex items-center justify-between">
-                            <span class="font-medium text-white group-hover:text-dynamic-accent transition">Contact Support</span>
-                            <i data-lucide="phone" class="w-5 h-5 text-dynamic-accent group-hover:scale-110 transition"></i>
-                        </div>
-                        <p class="text-xs text-gray-500 mt-1">Get immediate help from the Revenue Department.</p>
-                    </a>
-                </div>
-            </div>
+            <div class="lg:col-span-2">
+                <h2 class="text-2xl font-bold mb-4 text-white border-b border-gray-700 pb-2">
+                    <i data-lucide="database-zap" class="w-6 h-6 mr-2 text-dynamic-accent inline-block"></i>
+                    Live Data Results
+                </h2>
+                <div id="record-result" class="min-h-[250px] flex items-center justify-center p-4">
+                    <div class="text-center p-6 border-2 border-dashed border-gray-700 rounded-xl">
+                        <i data-lucide="file-search" class="w-12 h-12 mx-auto text-gray-500 mb-3"></i>
+                        <p class="text-gray-400 font-medium">Search a Khasra ID to view official records.</p>
+                        <p class="text-sm text-gray-600 mt-1">
+                            Try searching for one of the sample IDs: 
+                            <strong class="text-dynamic-accent">1025</strong>, 
+                            <strong class="text-dynamic-accent">2078</strong>, 
+                            <strong class="text-dynamic-accent">3500</strong>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </main>
 
-                        <div class="lg:col-span-2">
-                <h2 class="text-2xl font-bold mb-4 text-white border-b border-gray-700 pb-2">
-                    Record Details
-                    
-                </h2>
-                                <div id="record-result" class="min-h-[250px] flex items-center justify-center p-4">
-                    <div class="text-center p-6 border-2 border-dashed border-gray-700 rounded-xl">
-                        <i data-lucide="file-search" class="w-12 h-12 mx-auto text-gray-500 mb-3"></i>
-                        <p class="text-gray-400 font-medium">Search a Khasra ID to view official records.</p>
-                        <p class="text-sm text-gray-600 mt-1">
-                            Try searching for one of the sample IDs: 
-                            <strong class="text-dynamic-accent">1025</strong>, 
-                            <strong class="text-dynamic-accent">2078</strong>, 
-                            <strong class="text-dynamic-accent">3500</strong>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
-
-        <footer class="bg-dark-card border-t border-gray-800 mt-12 py-6">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm text-gray-500">
-            &copy; 2025 Digital Revenue Portal. All Rights Reserved. | Powered by Secure Digital Registry
-        </div>
-    </footer>
+    <footer class="bg-dark-card border-t border-gray-800 mt-12 py-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm text-gray-500">
+            Digital Revenue Portal - Portfolio Project | Demonstrated Functionality & Technical Skills
+        </div>
+    </footer>
 
 </body>
 </html>
