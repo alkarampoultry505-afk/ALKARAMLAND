@@ -1,209 +1,443 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Al Karam Revenue Land & Property Record</title>
-    <!-- Load Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Load Font Awesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- Load Inter Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Al Karam Digital Revenue & Land Records Portal</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://unpkg.com/lucide@latest"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
 
-    <script>
-        // Configure Tailwind to use a CSS variable for dynamic accent color
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        // The dynamic color is controlled by the JS variable --accent-color
-                        'dynamic-accent': 'var(--accent-color)',
-                        'wa-green': '#25D366',
-                        'dark-bg': '#111827',
-                        'dark-card': '#1f2937',
-                    },
-                    boxShadow: {
-                        '3xl': '0 35px 60px -15px rgba(0, 0, 0, 0.5)',
-                        'glass': '0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08)'
-                    }
-                }
-            }
-        }
-    </script>
+    <style>
+        /* Define the initial CSS variable for the accent color */
+        :root {
+            --accent-color: #10b981; /* Emerald Green - professional and vibrant */
+            --dark-bg-color: #0f172a; /* Slate 900 */
+            --dark-card-color: #1e293b; /* Slate 800 */
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+            background-color: var(--dark-bg-color);
+            color: #e2e8f0; /* Light text on dark background */
+        }
 
-    <style>
-        /* Define the initial CSS variable for the accent color */
-        :root {
-            --accent-color: #3b82f6; /* Initial blue color */
-        }
-        
-        body {
-            /* Fallback font */
-            font-family: 'Inter', sans-serif;
-            scroll-behavior: smooth;
-            transition: background-color 1.5s ease;
-        }
+        /* Set header background to a subtle gradient using the accent color */
+        .header-bg {
+            background-image: linear-gradient(to right, #0f172a, var(--dark-card-color));
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+        }
 
-        /* Gradient for the header section */
-        .header-section {
-            min-height: 100vh; 
-            /* Fallback background if Tailwind's gradient utilities are not sufficient */
-            background-image: linear-gradient(135deg, #0f172a, #1e293b);
-            padding-top: 5rem; /* Space below fixed navbar */
-        }
+        /* Style for the main container */
+        .portal-container {
+            min-height: calc(100vh - 80px); /* Account for header height */
+        }
 
-        /* Navbar gradient adapted for a cleaner look */
-        .navbar {
-            background: linear-gradient(90deg, #10b981, #1e40af, #3b82f6);
-        }
+        /* Custom scrollbar for better visual integration with dark mode */
+        .custom-scroll::-webkit-scrollbar {
+            width: 8px;
+        }
+        .custom-scroll::-webkit-scrollbar-track {
+            background: var(--dark-card-color);
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: #475569; /* Slate 600 */
+            border-radius: 4px;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-color);
+        }
 
-        /* Apply dynamic color transition to elements that use --accent-color */
-        .ring-dynamic-accent,
-        .text-dynamic-accent,
-        .hover\:bg-dynamic-accent {
-            transition: all 1.5s ease-in-out;
-        }
+        /* Focus ring using the dynamic accent color */
+        .focus-accent:focus {
+            outline: 2px solid var(--accent-color);
+            outline-offset: 2px;
+            border-color: var(--accent-color);
+        }
+    </style>
 
-        /* Custom style for the WhatsApp button to ensure fixed color */
-        .talk-button {
-            background-color: var(--wa-green);
-        }
-
-        /* Custom shadow for the profile image */
-        .profile {
-            box-shadow: 0 0 0 6px var(--accent-color), 0 0 20px rgba(0, 0, 0, 0.5);
-        }
-    </style>
+    <script>
+        // Configure Tailwind to use the CSS variables
+        tailwind.config = {
+            darkMode: 'class', // Enable dark mode via class if needed, though default is dark
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'dynamic-accent': 'var(--accent-color)',
+                        'dark-bg': 'var(--dark-bg-color)',
+                        'dark-card': 'var(--dark-card-color)',
+                    },
+                    boxShadow: {
+                        '3xl': '0 35px 60px -15px rgba(0, 0, 0, 0.5)',
+                        'glass': '0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08)'
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body class="bg-dark-bg text-gray-100 antialiased">
+<body class="custom-scroll">
 
-    <!-- Navbar: Fixed Header -->
-    <nav class="navbar fixed top-0 w-full shadow-lg z-50 p-3 flex justify-center">
-        <div class="flex items-center space-x-3 w-full max-w-4xl px-4">
-            <!-- Logo Placeholder -->
-            <img class="w-10 h-10 rounded-full border-2 border-white object-cover" 
-                 src="https://placehold.co/100x100/3b82f6/ffffff?text=AKLR" 
-                 alt="Al Karam Land Revenue Logo" />
-            <!-- Brand Name -->
-            <span class="text-xl font-extrabold text-white tracking-wide uppercase truncate md:text-2xl">
-                Al Karam Revenue Land & Property Record
-            </span> 
-        </div>
-    </nav>
+        <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-    <!-- Main Content Section -->
-    <main class="header-section flex flex-col items-center justify-center p-4">
-        
-        <!-- Profile Container -->
-        <div class="my-6">
-            <!-- Profile Image (Uses dynamic-accent for ring effect) -->
-            <img class="profile w-40 h-40 rounded-full object-cover ring-4 ring-offset-4 ring-offset-dark-bg transition-shadow duration-1500" 
-                 src="https://placehold.co/160x160/10b981/ffffff?text=Director" 
-                 alt="Shahid Ikram Malik Profile Picture" />
-        </div>
-        
-        <!-- Title -->
-        <h1 class="text-3xl font-bold text-white mb-2 md:text-4xl">
-            Shahid Ikram Malik
-        </h1> 
-        <p class="text-dynamic-accent font-semibold mb-6 text-lg">
-            Director, Land & Revenue Management
-        </p>
+        // Global variables for Firebase access
+        let app;
+        let db;
+        let auth;
+        let userId = null;
+        let isAuthReady = false;
 
-        <!-- Info Card -->
-        <div class="w-full max-w-lg p-6 bg-dark-card rounded-xl shadow-3xl text-left border border-gray-700/50">
-            <p class="text-gray-300 text-sm mb-4 leading-relaxed">
-                Overseeing the official records and strategic management of Al Karam's extensive **land holdings** and **property portfolio** across Sindh, Pakistan. Dedicated to transparent documentation, revenue optimization, and long-term asset value enhancement.
-            </p>
-            
-            <div class="space-y-3 text-sm">
-                <!-- Contact Details -->
-                <div class="flex items-center space-x-3 text-gray-300">
-                    <i class="fas fa-phone-alt w-5 text-dynamic-accent"></i>
-                    <p><span class="font-medium">Direct:</span> 0300 8377120</p>
-                </div>
-                <div class="flex items-center space-x-3 text-gray-300">
-                    <i class="fas fa-building w-5 text-dynamic-accent"></i>
-                    <p><span class="font-medium">Office:</span> 0242-460146</p>
-                </div>
-                <div class="flex items-center space-x-3 text-gray-300">
-                    <i class="fas fa-map-marker-alt w-5 text-dynamic-accent"></i>
-                    <p>
-                        <span class="font-medium">Location:</span> Behlani, Sindh, Pakistan 
-                        (<a href="https://maps.app.goo.gl/1hiP85sBbqrDP6bz5" target="_blank" class="text-dynamic-accent hover:underline">View Map</a>)
-                    </p>
-                </div>
-                
-                <!-- Links -->
-                <div class="pt-4 space-y-3 border-t border-gray-700/50">
-                    <div class="flex items-center space-x-3">
-                        <i class="fas fa-envelope w-5 text-dynamic-accent"></i>
-                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=alkarampoultry505@gmail.com" target="_blank" class="text-dynamic-accent hover:text-white transition duration-300 font-medium">
-                            alkarampoultry505@gmail.com
-                        </a>
-                    </div>
+        // Constants from global scope
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+        const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
+        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
 
-                    <div class="flex items-center space-x-3">
-                        <i class="fas fa-file-contract w-5 text-dynamic-accent"></i>
-                        <a href="https://drive.google.com/drive/folders/1cYBKNNTNAgj7WHfbSbBoir9vZCUWQld8?usp=drive_link" target="_blank" class="text-dynamic-accent hover:text-white transition duration-300 font-medium">
-                            Official Land Deeds & Documents 📄
-                        </a>
-                    </div>
+        /**
+         * Initializes Firebase and sets up authentication.
+         */
+        async function initFirebase() {
+            try {
+                // 1. Initialize App and Services
+                app = initializeApp(firebaseConfig);
+                db = getFirestore(app);
+                auth = getAuth(app);
+
+                // 2. Handle Authentication
+                // Use the provided custom token or sign in anonymously
+                if (initialAuthToken) {
+                    await signInWithCustomToken(auth, initialAuthToken);
+                } else {
+                    await signInAnonymously(auth);
+                }
+
+                // 3. Auth State Listener
+                onAuthStateChanged(auth, (user) => {
+                    if (user) {
+                        userId = user.uid;
+                        isAuthReady = true;
+                        document.getElementById('user-id-display').textContent = userId;
+                        // Seed mock data after successful sign-in
+                        seedMockData();
+                    } else {
+                        // Fallback user ID if anonymous sign-in failed (shouldn't happen)
+                        userId = crypto.randomUUID();
+                        isAuthReady = true;
+                    }
+                    console.log("Firebase Auth State Ready. User ID:", userId);
+                    document.getElementById('auth-status').classList.add('bg-dynamic-accent');
+                });
+            } catch (error) {
+                console.error("Firebase initialization failed:", error);
+                // Display error to the user in the UI
+                document.getElementById('record-result').innerHTML = `<p class="text-red-500 font-bold">Error initializing Portal services. Please check console.</p>`;
+            }
+        }
+
+        /**
+         * Seeds mock land record data into the public collection if it doesn't exist.
+         */
+        async function seedMockData() {
+            if (!isAuthReady) return;
+
+            const mockRecords = [
+                { khasra: "1025", ownerName: "Muhammad Ali Khan", area: "4 Kanals, 15 Marlas", status: "Active / Non-Encumbered", mutationDate: "2023-01-15" },
+                { khasra: "2078", ownerName: "Faisalabad Industrial Group", area: "120 Kanals", status: "Active / Industrial", mutationDate: "2020-05-20" },
+                { khasra: "3500", ownerName: "Aisha Bibi Trust", area: "5 Kanals, 0 Marla", status: "Litigation Hold / Dispute", mutationDate: "2018-11-01" },
+            ];
+
+            console.log("Attempting to seed mock data...");
+
+            for (const record of mockRecords) {
+                // Document path: /artifacts/{appId}/public/data/land_records/{khasraId}
+                const docRef = doc(db, `artifacts/${appId}/public/data/land_records`, record.khasra);
+                
+                // Check if document exists before setting
+                const docSnap = await getDoc(docRef);
+                
+                if (!docSnap.exists()) {
+                    await setDoc(docRef, record)
+                        .then(() => console.log(`Seeded record for Khasra ${record.khasra}`))
+                        .catch(err => console.error(`Failed to seed ${record.khasra}:`, err));
+                }
+            }
+        }
+
+        /**
+         * Fetches a land record by Khasra ID from Firestore.
+         * @param {string} khasraId The Khasra number to search for.
+         */
+        async function getLandRecord(khasraId) {
+            if (!isAuthReady || !db) return null;
+            // Path: /artifacts/{appId}/public/data/land_records/{khasraId}
+            const docRef = doc(db, `artifacts/${appId}/public/data/land_records`, khasraId);
+            const docSnap = await getDoc(docRef);
+            return docSnap.exists() ? docSnap.data() : null;
+        }
+
+        /**
+         * Handles the search button click event.
+         */
+        window.searchRecord = async function() {
+            const inputElement = document.getElementById('khasra-input');
+            const resultElement = document.getElementById('record-result');
+            const khasraId = inputElement.value.trim();
+
+            if (!khasraId) {
+                resultElement.innerHTML = `<div class="p-4 bg-yellow-900/50 rounded-lg text-yellow-300">Please enter a Khasra/Plot ID to search.</div>`;
+                return;
+            }
+
+            if (!isAuthReady) {
+                resultElement.innerHTML = `<div class="p-4 bg-red-900/50 rounded-lg text-red-300">System services are not yet fully loaded. Please wait.</div>`;
+                return;
+            }
+
+            // Show loading state
+            resultElement.innerHTML = `
+                <div class="flex justify-center items-center py-8">
+                    <svg class="animate-spin -ml-1 mr-3 h-8 w-8 text-dynamic-accent" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    <span class="text-xl">Searching for Khasra ${khasraId}...</span>
+                </div>
+            `;
+
+            try {
+                const record = await getLandRecord(khasraId);
+
+                if (record) {
+                    displayRecord(record);
+                } else {
+                    resultElement.innerHTML = `
+                        <div class="p-6 text-center border-2 border-dashed border-gray-600 rounded-xl bg-dark-card/50">
+                            <i data-lucide="info" class="w-10 h-10 mx-auto text-red-400 mb-3"></i>
+                            <h3 class="text-xl font-semibold text-red-300">Record Not Found</h3>
+                            <p class="text-gray-400">The Khasra/Plot ID <strong>${khasraId}</strong> could not be located in the digital registry.</p>
+                            <p class="text-sm mt-2">Please ensure the ID is correct or contact the Revenue Department for manual verification.</p>
+                        </div>
+                    `;
+                    lucide.createIcons(); // Re-render icons after DOM update
+                }
+            } catch (error) {
+                console.error("Search failed:", error);
+                resultElement.innerHTML = `
+                    <div class="p-4 bg-red-900/50 rounded-lg text-red-300">
+                        An error occurred while communicating with the database. (${error.message})
+                    </div>
+                `;
+            }
+        }
+
+        /**
+         * Renders the found land record details.
+         * @param {object} record The land record data.
+         */
+        function displayRecord(record) {
+            const resultElement = document.getElementById('record-result');
+            const statusColor = record.status.includes('Active') ? 'bg-green-600' : 
+                                record.status.includes('Dispute') ? 'bg-red-600' : 'bg-yellow-600';
+            
+            resultElement.innerHTML = `
+                <div class="bg-dark-card p-6 rounded-xl shadow-xl border-t-4 border-dynamic-accent space-y-4">
+                    <div class="flex justify-between items-center pb-2 border-b border-gray-700">
+                        <h2 class="text-2xl font-bold text-dynamic-accent flex items-center">
+                            <i data-lucide="file-text" class="w-6 h-6 mr-2"></i>
+                            Official Land Record (Girdawari)
+                        </h2>
+                        <span class="text-xs font-medium text-gray-400">Last Verified: ${new Date().toLocaleDateString()}</span>
+                    </div>
+
+                                        <div class="flex items-center">
+                        <span class="text-sm font-semibold mr-3">Status:</span>
+                        <span class="text-sm font-bold text-white px-3 py-1 rounded-full ${statusColor} shadow-md">${record.status}</span>
+                    </div>
+
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 text-gray-300">
+                        ${detailItem("Khasra/Plot ID", record.khasra, "map-pin")}
+                        ${detailItem("Current Owner Name", record.ownerName, "user")}
+                        ${detailItem("Total Area (Metric)", record.area, "square-kanban")}
+                        ${detailItem("Last Mutation Date", record.mutationDate, "calendar")}
+                    </div>
+                    
+                                        <div class="pt-4 border-t border-gray-700 mt-6">
+                        <h3 class="text-lg font-semibold mb-3 text-dynamic-accent/80">Available Actions </h3>
+                        <div class="flex flex-wrap gap-3">
+                            <button class="flex items-center px-4 py-2 bg-gray-700 hover:bg-dynamic-accent transition-colors duration-200 rounded-lg text-sm font-medium">
+                                <i data-lucide="download" class="w-4 h-4 mr-2"></i> Download Record (PDF)
+                            </button>
+                            <button class="flex items-center px-4 py-2 bg-gray-700 hover:bg-dynamic-accent transition-colors duration-200 rounded-lg text-sm font-medium">
+                                <i data-lucide="printer" class="w-4 h-4 mr-2"></i> Print Verified Copy
+                            </button>
+                            <button class="flex items-center px-4 py-2 bg-gray-700 hover:bg-yellow-600 transition-colors duration-200 rounded-lg text-sm font-medium">
+                                <i data-lucide="banknote" class="w-4 h-4 mr-2"></i> View Tax History
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            lucide.createIcons(); // Re-render icons after DOM update
+        }
+
+        /**
+         * Helper function to generate an HTML detail item for the grid.
+         */
+        function detailItem(label, value, iconName) {
+            return `
+                <div>
+                    <p class="text-xs font-medium uppercase text-gray-500 flex items-center mb-1">
+                        <i data-lucide="${iconName}" class="w-4 h-4 mr-1 text-dynamic-accent"></i> ${label}
+                    </p>
+                    <p class="text-lg font-semibold text-white">${value}</p>
+                </div>
+            `;
+        }
+
+        // Initialize Firebase when the window loads
+        window.onload = function() {
+            initFirebase();
+            lucide.createIcons();
+        };
+    </script>
+    
+        <header class="header-bg fixed top-0 left-0 w-full z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+                        <div class="flex items-center space-x-3">
+                <i data-lucide="landmark" class="w-8 h-8 text-dynamic-accent"></i>
+                <h1 class="text-xl sm:text-2xl font-black tracking-wider text-white">
+                    DIGITAL REVENUE <span class="text-dynamic-accent font-extrabold">PORTAL</span>
+                </h1>
+            </div>
+
+                        <div class="flex items-center space-x-3 text-sm">
+                <div id="auth-status" class="w-3 h-3 rounded-full bg-gray-500 transition-all duration-500" title="Authentication Status"></div>
+                <div class="hidden sm:block text-gray-400">
+                    User ID: <span id="user-id-display" class="font-mono text-xs text-dynamic-accent">Loading...</span>
+                </div>
+                <button class="bg-dynamic-accent/20 text-dynamic-accent px-3 py-1 rounded-lg font-medium hover:bg-dynamic-accent/30 transition">
+                    <i data-lucide="log-out" class="w-4 h-4 inline-block mr-1"></i> My Profile
+                </button>
+            </div>
+        </div>
+    </header>
+
+        <main class="portal-container pt-24 pb-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+                        <div class="lg:col-span-1 space-y-6">
+                
+                                <div class="bg-dark-card p-6 rounded-xl shadow-2xl border border-gray-700">
+                    <h2 class="text-xl font-bold mb-4 text-dynamic-accent flex items-center">
+                        <i data-lucide="search-check" class="w-5 h-5 mr-2"></i>
+                        Record Verification
+                        
+                    </h2>
+                    <p class="text-gray-400 mb-4 text-sm">
+                        Enter the official Khasra or Plot ID to retrieve the latest registered record.
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <label for="khasra-input" class="block text-sm font-medium text-gray-300">Khasra / Plot ID (e.g., 1025)</label>
+                        <input type="text" id="khasra-input" 
+                               class="w-full p-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-500 focus-accent"
+                               placeholder="Enter Khasra ID" onkeydown="if(event.key === 'Enter') searchRecord()">
+                        
+                        <button onclick="searchRecord()" 
+                                class="w-full flex items-center justify-center p-3 bg-dynamic-accent text-white font-semibold rounded-lg shadow-lg hover:bg-dynamic-accent/80 transition-colors duration-300">
+                            <i data-lucide="scroll-text" class="w-5 h-5 mr-2"></i>
+                            Search Record
+                        </button>
+                    </div>
+                </div>
+
+                                <div class="space-y-4">
+                    <h3 class="text-lg font-semibold text-gray-300 flex items-center">
+                        <i data-lucide="bolt" class="w-5 h-5 mr-2 text-yellow-500"></i>
+                        Quick Services
+                    </h3>
+                    
+                    <a href="https://drive.google.com/drive/folders/1orezy0DFRBFQ7xBkDiJXvRKkkgBB7DKI" target="_blank" class="block bg-dark-card p-4 rounded-xl hover:bg-dark-card/70 transition-colors duration-200 border border-gray-700 group">
+                        <div class="flex items-center justify-between">
+                            <span class="font-medium text-white group-hover:text-dynamic-accent transition">Access Revenue Record Folder</span>
+                            <i data-lucide="folder-open" class="w-5 h-5 text-dynamic-accent group-hover:scale-110 transition"></i>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-1">Direct link to the main digital records repository.</p>
+                    </a>
                     
-                    <div class="flex items-center space-x-3">
-                        <i class="fas fa-chart-line w-5 text-dynamic-accent"></i>
-                        <a href="https://drive.google.com/drive/folders/1orezy0DFRBFQ7xBkDiJXvRKkkgBB7DKI?usp=drive_link" target="_blank" class="text-dynamic-accent hover:text-white transition duration-300 font-medium">
-                            Revenue and Financial Records 📊
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- WhatsApp Button -->
-            <div class="text-center mt-6">
-                <a class="talk-button inline-flex items-center justify-center space-x-2 py-3 px-8 text-white font-bold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 text-lg" 
-                   href="https://wa.me/3008377120" target="_blank" aria-label="Contact Shahid Ikram Malik on WhatsApp">
-                    <i class="fab fa-whatsapp text-xl"></i> 
-                    <span>Let's Discuss on WhatsApp</span>
-                </a>
-            </div>
-        </div>
-    </main>
+                    <a href="https://drive.google.com/drive/folders/1cYBKNNTNAgj7WHfbSbBoir9vZCUWQld8" target="_blank" class="block bg-dark-card p-4 rounded-xl hover:bg-dark-card/70 transition-colors duration-200 border border-gray-700 group">
+                        <div class="flex items-center justify-between">
+                            <span class="font-medium text-white group-hover:text-dynamic-accent transition">Personal Gallary Folder</span>
+                            <i data-lucide="camera" class="w-5 h-5 text-dynamic-accent group-hover:scale-110 transition"></i>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-1">Direct link to the user's personal photo and document gallery.</p>
+                    </a>
+                    
+                    <a href="https://drive.google.com/drive/folders/1L3EpqCTI2dJd-bOvzU1NwQt7nOYi1iTz" target="_blank" class="block bg-dark-card p-4 rounded-xl hover:bg-dark-card/70 transition-colors duration-200 border border-gray-700 group">
+                        <div class="flex items-center justify-between">
+                            <span class="font-medium text-white group-hover:text-dynamic-accent transition">Agreements Folder</span>
+                            <i data-lucide="file-check-2" class="w-5 h-5 text-dynamic-accent group-hover:scale-110 transition"></i>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-1">Direct link to the folder containing all contractual agreements.</p>
+                    </a>
+                                        <a href="#" class="block bg-dark-card p-4 rounded-xl hover:bg-dark-card/70 transition-colors duration-200 border border-gray-700 group">
+                        <div class="flex items-center justify-between">
+                            <span class="font-medium text-white group-hover:text-dynamic-accent transition">Online Fee Payment</span>
+                            <i data-lucide="credit-card" class="w-5 h-5 text-dynamic-accent group-hover:scale-110 transition"></i>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-1">Pay property taxes and registry fees instantly.</p>
+                    </a>
 
-    <script>
-        // Define beautiful, high-contrast color pairs (only the ACCENT color is needed here)
-        const accentColors = [
-            "#3b82f6", // Blue
-            "#10b981", // Emerald Green
-            "#f59e0b", // Amber
-            "#ef4444", // Red
-            "#8b5cf6", // Violet
-            "#06b6d4", // Cyan
-        ];
-        let colorIndex = 0;
+                    <a href="#" class="block bg-dark-card p-4 rounded-xl hover:bg-dark-card/70 transition-colors duration-200 border border-gray-700 group">
+                        <div class="flex items-center justify-between">
+                            <span class="font-medium text-white group-hover:text-dynamic-accent transition">Apply for Mutation</span>
+                            <i data-lucide="pencil-line" class="w-5 h-5 text-dynamic-accent group-hover:scale-110 transition"></i>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-1">Start the process for ownership transfer.</p>
+                    </a>
+                    
+                    <a href="#" class="block bg-dark-card p-4 rounded-xl hover:bg-dark-card/70 transition-colors duration-200 border border-gray-700 group">
+                        <div class="flex items-center justify-between">
+                            <span class="font-medium text-white group-hover:text-dynamic-accent transition">Contact Support</span>
+                            <i data-lucide="phone" class="w-5 h-5 text-dynamic-accent group-hover:scale-110 transition"></i>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-1">Get immediate help from the Revenue Department.</p>
+                    </a>
+                </div>
+            </div>
 
-        // Function to apply colors
-        function applyColors() {
-            const currentAccent = accentColors[colorIndex];
-            const root = document.documentElement.style;
+                        <div class="lg:col-span-2">
+                <h2 class="text-2xl font-bold mb-4 text-white border-b border-gray-700 pb-2">
+                    Record Details
+                    
+                </h2>
+                                <div id="record-result" class="min-h-[250px] flex items-center justify-center p-4">
+                    <div class="text-center p-6 border-2 border-dashed border-gray-700 rounded-xl">
+                        <i data-lucide="file-search" class="w-12 h-12 mx-auto text-gray-500 mb-3"></i>
+                        <p class="text-gray-400 font-medium">Search a Khasra ID to view official records.</p>
+                        <p class="text-sm text-gray-600 mt-1">
+                            Try searching for one of the sample IDs: 
+                            <strong class="text-dynamic-accent">1025</strong>, 
+                            <strong class="text-dynamic-accent">2078</strong>, 
+                            <strong class="text-dynamic-accent">3500</strong>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
 
-            // Update the CSS Variable which Tailwind classes are configured to use
-            root.setProperty('--accent-color', currentAccent);
+        <footer class="bg-dark-card border-t border-gray-800 mt-12 py-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm text-gray-500">
+            &copy; 2025 Digital Revenue Portal. All Rights Reserved. | Powered by Secure Digital Registry
+        </div>
+    </footer>
 
-            // Cycle index
-            colorIndex = (colorIndex + 1) % accentColors.length;
-        }
-
-        // Apply colors immediately on load
-        applyColors();
-
-        // Change colors automatically every 4 seconds (4000 milliseconds)
-        // This gives a modern, dynamic effect to the accent elements
-        setInterval(applyColors, 4000);
-    </script>
 </body>
 </html>
