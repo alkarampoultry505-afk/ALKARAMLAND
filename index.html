@@ -47,6 +47,35 @@
             outline-offset: 2px;
             border-color: var(--accent-color);
         }
+        
+        /* New button-link style for quick links */
+        .quick-link-btn {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem; /* p-4 */
+            background-color: #2c3957; /* Slightly lighter than dark-card for contrast */
+            border-radius: 0.75rem; /* rounded-xl */
+            border: 1px solid #374151; /* border-gray-700 */
+            transition: background-color 0.2s, transform 0.1s;
+        }
+
+        .quick-link-btn:hover {
+            background-color: var(--dark-card-color); /* Darker on hover */
+            border-color: var(--accent-color);
+            transform: translateY(-1px);
+        }
+
+        .quick-link-btn .icon-bg {
+            background-color: var(--accent-color);
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: background-color 0.2s;
+        }
+
+        .quick-link-btn:hover .icon-bg {
+            background-color: #108f65; /* Darker accent on hover */
+        }
     </style>
 
     <script>
@@ -346,48 +375,59 @@
                 </div>
 
                 <div class="space-y-4">
-                    <h3 class="text-lg font-semibold text-gray-300 flex items-center">
+                    <h3 class="text-lg font-semibold text-gray-300 flex items-center mb-3">
                         <i data-lucide="bolt" class="w-5 h-5 mr-2 text-yellow-500"></i>
                         Quick Links & Simulated Services
                     </h3>
                     
-                    <a href="https://drive.google.com/drive/folders/1orezy0DFRBFQ7xBkDiJXvRKkkgBB7DKI" target="_blank" class="block bg-dark-card p-4 rounded-xl hover:bg-dark-card/70 transition-colors duration-200 border border-gray-700 group">
-                        <div class="flex items-center justify-between">
-                            <span class="font-medium text-white group-hover:text-dynamic-accent transition">Access Revenue Record Folder</span>
-                            <i data-lucide="folder-open" class="w-5 h-5 text-dynamic-accent group-hover:scale-110 transition"></i>
+                    <a href="https://drive.google.com/drive/folders/1orezy0DFRBFQ7xBkDiJXvRKkkgBB7DKI" target="_blank" class="quick-link-btn">
+                        <div class="flex items-center space-x-3">
+                            <div class="icon-bg">
+                                <i data-lucide="folder-open" class="w-5 h-5 text-white"></i>
+                            </div>
+                            <span class="font-medium text-white">Revenue Record Folder</span>
                         </div>
-                        <p class="text-xs text-gray-500 mt-1">Direct link to the main digital records repository (Simulated).</p>
+                        <i data-lucide="external-link" class="w-4 h-4 text-gray-400"></i>
                     </a>
 
-                    <a href="https://drive.google.com/drive/folders/1L3EpqCTI2dJd-bOvzU1NwQt7nOYi1iTz" target="_blank" class="block bg-dark-card p-4 rounded-xl hover:bg-dark-card/70 transition-colors duration-200 border border-gray-700 group">
-                        <div class="flex items-center justify-between">
-                            <span class="font-medium text-white group-hover:text-dynamic-accent transition">Agreements Folder</span>
-                            <i data-lucide="file-check-2" class="w-5 h-5 text-dynamic-accent group-hover:scale-110 transition"></i>
+                    <a href="https://drive.google.com/drive/folders/1L3EpqCTI2dJd-bOvzU1NwQt7nOYi1iTz" target="_blank" class="quick-link-btn">
+                        <div class="flex items-center space-x-3">
+                            <div class="icon-bg">
+                                <i data-lucide="file-check-2" class="w-5 h-5 text-white"></i>
+                            </div>
+                            <span class="font-medium text-white">Agreements Folder</span>
                         </div>
-                        <p class="text-xs text-gray-500 mt-1">Direct link to the folder containing all contractual agreements (Simulated).</p>
+                        <i data-lucide="external-link" class="w-4 h-4 text-gray-400"></i>
                     </a>
                     
-                    <a href="https://drive.google.com/drive/folders/1cYBKNNTNAgj7WHfbSbBoir9vZCUWQld8" target="_blank" class="block bg-dark-card p-4 rounded-xl hover:bg-dark-card/70 transition-colors duration-200 border border-gray-700 group">
-                        <div class="flex items-center justify-between">
-                            <span class="font-medium text-white group-hover:text-dynamic-accent transition">Image Gallery Folder</span>
-                            <i data-lucide="image" class="w-5 h-5 text-dynamic-accent group-hover:scale-110 transition"></i>
+                    <a href="https://drive.google.com/drive/folders/1cYBKNNTNAgj7WHfbSbBoir9vZCUWQld8" target="_blank" class="quick-link-btn">
+                        <div class="flex items-center space-x-3">
+                            <div class="icon-bg">
+                                <i data-lucide="image" class="w-5 h-5 text-white"></i>
+                            </div>
+                            <span class="font-medium text-white">Image Gallery Folder</span>
                         </div>
-                        <p class="text-xs text-gray-500 mt-1">Direct link to the project's visual assets and screenshots (Simulated).</p>
+                        <i data-lucide="external-link" class="w-4 h-4 text-gray-400"></i>
                     </a>
-                    <a href="#" class="block bg-dark-card p-4 rounded-xl hover:bg-dark-card/70 transition-colors duration-200 border border-gray-700 group">
-                        <div class="flex items-center justify-between">
-                            <span class="font-medium text-white group-hover:text-dynamic-accent transition">Online Fee Payment</span>
-                            <i data-lucide="credit-card" class="w-5 h-5 text-dynamic-accent group-hover:scale-110 transition"></i>
+                    
+                    <a href="#" class="quick-link-btn">
+                        <div class="flex items-center space-x-3">
+                            <div class="icon-bg bg-gray-700/80">
+                                <i data-lucide="credit-card" class="w-5 h-5 text-white"></i>
+                            </div>
+                            <span class="font-medium text-gray-400">Online Fee Payment (Simulated)</span>
                         </div>
-                        <p class="text-xs text-gray-500 mt-1">Simulated feature: Pay property taxes and registry fees instantly.</p>
+                        <i data-lucide="lock" class="w-4 h-4 text-gray-500"></i>
                     </a>
 
-                    <a href="#" class="block bg-dark-card p-4 rounded-xl hover:bg-dark-card/70 transition-colors duration-200 border border-gray-700 group">
-                        <div class="flex items-center justify-between">
-                            <span class="font-medium text-white group-hover:text-dynamic-accent transition">Apply for Mutation</span>
-                            <i data-lucide="pencil-line" class="w-5 h-5 text-dynamic-accent group-hover:scale-110 transition"></i>
+                    <a href="#" class="quick-link-btn">
+                        <div class="flex items-center space-x-3">
+                            <div class="icon-bg bg-gray-700/80">
+                                <i data-lucide="pencil-line" class="w-5 h-5 text-white"></i>
+                            </div>
+                            <span class="font-medium text-gray-400">Apply for Mutation (Simulated)</span>
                         </div>
-                        <p class="text-xs text-gray-500 mt-1">Simulated feature: Start the process for ownership transfer.</p>
+                        <i data-lucide="lock" class="w-4 h-4 text-gray-500"></i>
                     </a>
                 </div>
             </div>
