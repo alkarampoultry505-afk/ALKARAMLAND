@@ -62,23 +62,26 @@
             text-shadow: 0 0 5px var(--primary-accent); /* Header Neon Glow */
         }
         
-        /* --- Digital Link Card Style (High Contrast) --- */
+        /* --- DIGITAL LINK CARD STYLE CHANGE (Sharp, Dashed Outline Look) --- */
         .digital-link-card {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 14px 20px;
-            background-color: rgba(0, 0, 0, 0.3); 
-            border-radius: 4px; 
-            transition: all 0.25s ease-in-out;
-            border-left: 5px solid var(--secondary-accent); /* Green Accent Bar */
+            background-color: rgba(0, 0, 0, 0.4); /* Darker background */
+            border-radius: 2px; /* Sharper corners */
+            transition: all 0.3s ease-in-out;
+            /* New: Dashed border for 'wireframe' or 'data-line' look */
+            border: 1px dashed rgba(0, 255, 255, 0.4); 
+            box-shadow: none; 
         }
 
         .digital-link-card:hover {
-            background-color: rgba(0, 0, 0, 0.6); 
-            border-left: 5px solid var(--primary-accent); /* Cyan Highlight on hover */
-            box-shadow: inset 0 0 8px rgba(0, 255, 255, 0.4);
-            transform: translateX(5px);
+            background-color: rgba(0, 0, 0, 0.7); 
+            /* Highlight the text and add a tight glow */
+            border-color: var(--primary-accent); 
+            box-shadow: 0 0 8px rgba(0, 255, 255, 0.6), inset 0 0 4px var(--primary-accent);
+            transform: none; /* Removed the slide effect for a more static interface feel */
         }
         
         /* --- Custom Headings --- */
@@ -146,15 +149,15 @@
             const errorMessage = document.getElementById('error-message');
 
             if (password === correctPassword) {
-                // Sahi password: Links section dikhao aur password prompt chupa do
+                // Correct Password: Show links section and hide password prompt
                 quickLinksSection.style.display = 'block';
                 passwordPrompt.style.display = 'none';
-                errorMessage.textContent = ''; // Error message clear karo
+                errorMessage.textContent = ''; // Clear error message
             } else {
-                // Galat password: Error message dikhao
-                errorMessage.textContent = "Incorrect Access Code. Denied.";
+                // Incorrect Password: Show error message
+                errorMessage.textContent = "Incorrect Access Code. Authentication Failed.";
                 errorMessage.classList.add('text-primary-cyan'); 
-                inputElement.value = ''; // Input field clear karo
+                inputElement.value = ''; // Clear input field
             }
         }
         
@@ -389,7 +392,7 @@
                             </h3>
                         </div>
 
-                        <div class="digital-link-card opacity-50 cursor-not-allowed border-left-transparent hover:border-l-0">
+                        <div class="digital-link-card opacity-50 cursor-not-allowed">
                             <span class="flex items-center text-gray-500">
                                 <i data-lucide="credit-card" class="w-4 h-4 mr-2 text-gray-500"></i>
                                 Online Fee Payment Module (SIMULATED)
@@ -399,7 +402,7 @@
                             </span>
                         </div>
 
-                        <div class="digital-link-card opacity-50 cursor-not-allowed border-left-transparent hover:border-l-0">
+                        <div class="digital-link-card opacity-50 cursor-not-allowed">
                             <span class="flex items-center text-gray-500">
                                 <i data-lucide="pencil-line" class="w-4 h-4 mr-2 text-gray-500"></i>
                                 Apply for Mutation/Transfer (SIMULATED)
