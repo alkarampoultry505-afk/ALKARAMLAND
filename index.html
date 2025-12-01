@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PORTFOLIO PROJECT: Digital Revenue & Land Records Portal (Neon Theme)</title>
+    <title>PORTFOLIO PROJECT: Digital Revenue & Land Records Portal (Executive Theme)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&family=Bebas+Neue&display=swap" rel="stylesheet" />
 
     <style>
-        /* --- NEW DESIGN VARIABLES (Cyberpunk / Neon Aesthetic) --- */
+        /* --- NEW DESIGN VARIABLES (Executive / Professional Dark Mode Aesthetic) --- */
         :root {
-            --primary-accent: #a855f7; /* Violet-500 */
-            --secondary-accent: #ec4899; /* Pink-500 */
-            --dark-bg-color: #121212; /* Charcoal Black */
-            --card-bg-color: #1f1f1f; /* Dark Gray for Cards */
-            --text-color: #f3f4f6; /* Light Gray Text */
+            --primary-accent: #f59e0b; /* Amber/Gold */
+            --secondary-accent: #3b82f6; /* Authority Blue */
+            --dark-bg-color: #0a0f18; /* Very Deep Blue-Black */
+            --card-bg-color: #161b25; /* Dark Blue Gray for Cards */
+            --text-color: #e5e7eb; /* Light Gray Text */
         }
         
         body {
@@ -23,17 +23,16 @@
             scroll-behavior: smooth;
             background-color: var(--dark-bg-color);
             color: var(--text-color);
-            /* Subtle dark grid background pattern */
-            background-image: linear-gradient(to right, #252525 1px, transparent 1px), 
-                              linear-gradient(to bottom, #252525 1px, transparent 1px);
-            background-size: 20px 20px;
+            /* Subtle dark vertical stripe background pattern for executive look */
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 100%;
         }
 
-        /* --- Header: Solid Dark with Neon Bottom Border --- */
+        /* --- Header: Solid Dark with Gold Bottom Border --- */
         .header-bg {
-            background-color: rgba(18, 18, 18, 0.95);
+            background-color: rgba(10, 15, 24, 0.95); /* Match dark-bg-color */
             backdrop-filter: blur(4px); 
-            border-bottom: 2px solid var(--primary-accent); 
+            border-bottom: 3px solid var(--primary-accent); 
         }
 
         /* --- Custom Scrollbar --- */
@@ -51,66 +50,101 @@
             background: var(--secondary-accent);
         }
 
-        /* --- Neon Card Style (Flatter, High Contrast) --- */
-        .neon-card {
+        /* --- Executive Card Style (Sharp, Bordered) --- */
+        .executive-card {
             background-color: var(--card-bg-color);
-            border: 2px solid var(--primary-accent); 
-            border-radius: 4px; /* Less rounded corners */
-            box-shadow: 0 0 15px rgba(168, 85, 247, 0.3); /* Luminous violet glow */
+            border: 1px solid rgba(245, 158, 11, 0.3); /* Subtle Gold Border */
+            border-left: 5px solid var(--primary-accent);
+            border-radius: 4px; 
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); 
             transition: all 0.3s ease;
         }
-        .neon-card:hover {
-            box-shadow: 0 0 25px rgba(236, 72, 153, 0.6), 0 0 5px rgba(168, 85, 247, 0.8); /* Pink/Violet glow on hover */
+        .executive-card:hover {
+            box-shadow: 0 4px 20px rgba(245, 158, 11, 0.2); /* Subtle Gold Glow on hover */
             transform: translateY(-2px);
-            border-color: var(--secondary-accent);
+            border-color: var(--secondary-accent); /* Blue hover border */
+            border-left: 5px solid var(--secondary-accent); 
         }
 
-        /* --- Modern Link Card Style (High Contrast) --- */
-        .modern-link-card {
+        /* --- Executive Link Card Style (Clean, Authority Blue) --- */
+        .executive-link-card {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 18px;
-            background-color: #2c2c2c; 
-            border-radius: 4px; /* Less rounded links */
+            padding: 14px 20px;
+            background-color: #0f172a; /* Slate 900 for Links */
+            border-radius: 2px; /* Very sharp corners */
             transition: all 0.25s ease-in-out;
-            border-left: 4px solid transparent;
+            border: 1px solid #1e293b; /* Subtle separator */
         }
 
-        .modern-link-card:hover {
-            background-color: #383838;
-            border-left: 4px solid var(--secondary-accent);
-            transform: translateX(4px);
-            box-shadow: 0 0 8px rgba(236, 72, 153, 0.4); 
+        .executive-link-card:hover {
+            background-color: #1e293b; /* Darker on hover */
+            border: 1px solid var(--primary-accent); /* Gold highlight */
+            transform: translateX(3px);
+            box-shadow: 0 0 5px rgba(245, 158, 11, 0.5);
         }
         
         /* --- Custom Headings --- */
-        .project-heading {
+        .executive-heading {
             font-family: 'Bebas Neue', sans-serif;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             text-transform: uppercase;
-            font-size: 3rem; 
-            line-height: 1;
-            color: white;
-            text-shadow: 0 0 15px rgba(168, 85, 247, 0.6); /* Violet Glow */
+            font-size: 2.5rem; 
+            line-height: 1.1;
+            color: var(--primary-accent); /* Gold */
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); 
         }
         
         .section-title {
-            color: var(--secondary-accent); /* Pink Accent */
-            text-shadow: 0 0 5px rgba(236, 72, 153, 0.3);
+            color: var(--secondary-accent); /* Authority Blue Accent */
+            text-shadow: none;
+            font-weight: 700;
+        }
+        
+        .link-text {
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+        }
+        .link-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 12px;
+            filter: grayscale(10%) drop-shadow(0 0 1px rgba(255, 255, 255, 0.5));
         }
 
         /* Legacy Content Integration (Politians/Religious Links) */
         .legacy-title {
-            color: #d1d5db; /* Text-gray-300 */
+            color: var(--primary-accent); /* Gold Accent */
         }
         .general-link-style {
-            color: #d1d5db; 
-            border-bottom: 1px dashed rgba(255, 255, 255, 0.1); /* Dashed separator */
+            color: #94a3b8; /* Slate-400 */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
         .general-link-style:hover {
             color: var(--secondary-accent);
         }
+        
+        /* Social Link Buttons - Clean Look */
+        .social-link-button {
+            display: inline-block;
+            padding: 2px 8px;
+            margin-right: 5px;
+            border-radius: 2px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--dark-bg-color);
+            transition: background-color 0.2s;
+        }
+        .x-link { background-color: #94a3b8; } /* Slate */
+        .fb-link { background-color: #3b82f6; } /* Blue */
+        .ig-link { background-color: #f472b6; } /* Pink */
+        
+        .x-link:hover { background-color: white; }
+        .fb-link:hover { background-color: #60a5fa; }
+        .ig-link:hover { background-color: #f9a8d4; }
+
 
     </style>
 
@@ -124,8 +158,8 @@
                         display: ['Bebas Neue', 'sans-serif'],
                     },
                     colors: {
-                        'primary-neon': 'var(--primary-accent)',
-                        'secondary-neon': 'var(--secondary-accent)',
+                        'primary-gold': 'var(--primary-accent)',
+                        'secondary-blue': 'var(--secondary-accent)',
                         'dark-bg-main': 'var(--dark-bg-color)',
                     },
                 }
@@ -156,7 +190,7 @@
             } else {
                 // Galat password: Error message dikhao
                 errorMessage.textContent = "Incorrect Password. Please try again.";
-                errorMessage.classList.add('text-secondary-neon'); // Using neon error color
+                errorMessage.classList.add('text-primary-gold'); // Using gold error color
                 inputElement.value = ''; // Input field clear karo
             }
         }
@@ -214,49 +248,49 @@
         }
     </script>
     
-    <header class="header-bg fixed top-0 left-0 w-full z-10 shadow-lg">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
+    <header class="header-bg fixed top-0 left-0 w-full z-10 shadow-xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
             <div class="flex items-center space-x-3">
-                <i data-lucide="scan-line" class="w-6 h-6 text-primary-neon"></i>
-                <h1 class="text-xl font-bold tracking-widest text-white">
-                    AL KARAM LAND REVENUE
+                <i data-lucide="scan-line" class="w-7 h-7 text-primary-gold"></i>
+                <h1 class="text-xl font-bold tracking-widest text-white font-display">
+                    AL KARAM LAND REVENUE PORTAL
                 </h1>
             </div>
             <div class="flex items-center space-x-4 text-sm">
                 <div class="flex items-center text-gray-400">
-                    <div class="w-3 h-3 rounded-full bg-primary-neon mr-2 shadow-[0_0_8px_rgba(168,85,247,0.7)]" title="Auth Status"></div>
-                    <span class="hidden sm:block">Status: <span class="text-primary-neon font-semibold">Live Demo (Neon Look)</span></span>
+                    <div class="w-3 h-3 rounded-full bg-primary-gold mr-2 shadow-md shadow-primary-gold" title="Auth Status"></div>
+                    <span class="hidden sm:block">Status: <span class="text-primary-gold font-semibold">Executive Demo (Gold Look)</span></span>
                 </div>
             </div>
         </div>
     </header>
 
-    <main class="pt-20 pb-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <main class="pt-24 pb-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div class="neon-card p-8 rounded-lg mb-10 border-t-4 border-primary-neon">
+        <div class="executive-card p-8 rounded-lg mb-12">
             <div class="flex flex-col md:flex-row items-start md:items-center justify-between mb-6">
                 <div class="space-y-2">
-                    <h1 class="project-heading text-4xl">Digital Revenue & Land Records Portal</h1>
-                    <p class="text-lg font-medium text-secondary-neon">Al Karam E-Governance Solution</p>
+                    <h1 class="executive-heading text-4xl">Digital Revenue & Land Records Portal</h1>
+                    <p class="text-lg font-medium text-secondary-blue">Al Karam E-Governance Solution</p>
                 </div>
                 <div class="mt-4 md:mt-0">
                     <img src="https://i.ibb.co/YTyLHmky/Whats-App-Image-2025-11-19-at-11-06-27-AM.jpg" alt="Developer Profile" 
-                        class="w-24 h-24 object-cover rounded-full border-4 border-secondary-neon shadow-[0_0_15px_rgba(236,72,153,0.6)]">
+                        class="w-24 h-24 object-cover rounded-full border-4 border-primary-gold shadow-lg shadow-primary-gold/40">
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4 border-t border-gray-600">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4 border-t border-gray-700">
                 
                 <div class="md:col-span-3">
-                    <h3 class="text-base font-semibold text-primary-neon mb-2 flex items-center section-title">
-                        <i data-lucide="target" class="w-4 h-4 mr-1"></i> Project Goal
+                    <h3 class="text-base font-semibold text-primary-gold mb-2 flex items-center section-title">
+                        <i data-lucide="target" class="w-4 h-4 mr-2 text-primary-gold"></i> Project Goal
                     </h3>
-                    <p class="text-sm text-gray-400 border-l-4 border-primary-neon/50 pl-3 italic mb-4">
+                    <p class="text-sm text-gray-400 border-l-4 border-primary-gold/50 pl-4 italic mb-4 bg-primary-gold/5 rounded-sm p-2">
                         This website, **Al Karam Revenue Documents**, has been specially developed to manage and securely store all agricultural land records. All rights of this website belong exclusively to its owner, **Mr. Shahid Ikram Malik**.
                     </p>
                     
-                    <h3 class="text-base font-semibold text-primary-neon mb-2 mt-4 flex items-center section-title">
-                        <i data-lucide="user-check" class="w-4 h-4 mr-1"></i> Brief Introduction
+                    <h3 class="text-base font-semibold text-primary-gold mb-2 mt-4 flex items-center section-title">
+                        <i data-lucide="user-check" class="w-4 h-4 mr-2 text-primary-gold"></i> Brief Introduction
                     </h3>
                     <p class="text-sm text-gray-400">
                         Mr. Shahid Ikram Malik is a trustworthy, hardworking, and visionary individual who is introducing a modern and innovative system for the secure, organized, and digital management of agricultural land records.
@@ -267,32 +301,32 @@
                 <div class="md:col-span-3"> 
                     <h3 class="text-base font-semibold text-gray-400 mb-2">Technologies Used</h3>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-primary-neon/30 text-white text-xs rounded-full font-medium shadow-md border border-primary-neon">HTML5 / CSS3</span>
-                        <span class="px-3 py-1 bg-primary-neon/30 text-white text-xs rounded-full font-medium shadow-md border border-primary-neon">JavaScript (ES6+)</span>
-                        <span class="px-3 py-1 bg-primary-neon/30 text-white text-xs rounded-full font-medium shadow-md border border-primary-neon">Tailwind CSS</span>
-                        <span class="px-3 py-1 bg-primary-neon/30 text-white text-xs rounded-full font-medium shadow-md border border-primary-neon">Firebase (Auth, Firestore) - *Original Tech Stack*</span>
+                        <span class="px-3 py-1 bg-secondary-blue/30 text-white text-xs rounded-full font-medium border border-secondary-blue">HTML5 / CSS3</span>
+                        <span class="px-3 py-1 bg-secondary-blue/30 text-white text-xs rounded-full font-medium border border-secondary-blue">JavaScript (ES6+)</span>
+                        <span class="px-3 py-1 bg-secondary-blue/30 text-white text-xs rounded-full font-medium border border-secondary-blue">Tailwind CSS</span>
+                        <span class="px-3 py-1 bg-secondary-blue/30 text-white text-xs rounded-full font-medium border border-secondary-blue">Firebase (Auth, Firestore) - *Original Tech Stack*</span>
                     </div>
                 </div>
             </div>
         </div>
         
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
             
-            <div class="lg:col-span-1 space-y-8">
+            <div class="lg:col-span-2 space-y-8">
                 
-                <div id="password-prompt" class="neon-card p-6 rounded-lg border border-primary-neon/70">
+                <div id="password-prompt" class="executive-card p-6">
                     <h3 class="text-xl font-bold mb-4 section-title flex items-center">
-                        <i data-lucide="lock" class="w-5 h-5 mr-2"></i>
+                        <i data-lucide="lock" class="w-5 h-5 mr-2 text-primary-gold"></i>
                         Quick Links Access Secure
                     </h3>
                     <p class="text-sm text-gray-400 mb-4">Please enter the security password to view quick links and documents.</p>
                     
                     <div class="flex flex-col space-y-3">
                         <input type="password" id="quick-links-password" placeholder="Enter Password (Hint: ALKARAM786)" 
-                               class="w-full px-4 py-3 rounded-md bg-gray-800 border-2 border-primary-neon/50 text-white focus:border-secondary-neon focus:outline-none"
+                               class="w-full px-4 py-3 rounded-sm bg-gray-800 border-2 border-secondary-blue/50 text-white focus:border-primary-gold focus:outline-none"
                                onkeypress="if(event.keyCode == 13) checkPassword()">
                         <button onclick="checkPassword()"
-                                class="flex items-center justify-center px-6 py-3 rounded-md bg-secondary-neon hover:bg-secondary-neon/80 text-dark-bg-main font-bold transition duration-300 shadow-lg shadow-secondary-neon/40">
+                                class="flex items-center justify-center px-6 py-3 rounded-sm bg-primary-gold hover:bg-primary-gold/80 text-dark-bg-main font-bold transition duration-300 shadow-md shadow-primary-gold/40">
                             <i data-lucide="key" class="w-4 h-4 mr-2"></i>
                             Access Quick Links
                         </button>
@@ -300,91 +334,91 @@
                     <p id="error-message" class="mt-3 text-center text-sm font-medium"></p>
                 </div>
                 
-                <div id="quick-links-access" class="neon-card p-6 rounded-lg border border-primary-neon/70" style="display: none;">
+                <div id="quick-links-access" class="executive-card p-6" style="display: none;">
                     <h3 class="text-xl font-bold mb-4 section-title flex items-center">
-                        <i data-lucide="hard-drive" class="w-5 h-5 mr-2"></i>
+                        <i data-lucide="hard-drive" class="w-5 h-5 mr-2 text-primary-gold"></i>
                         Quick Links & Simulated Services
                     </h3>
                     
                     <div class="space-y-3">
                         
-                        <a href="https://al-karamfeedsmill.vercel.app/" target="_blank" class="modern-link-card">
-                            <span class="link-text font-bold text-lg">
-                                <i data-lucide="building-2" class="w-5 h-5 mr-2 text-secondary-neon"></i>
+                        <a href="https://al-karamfeedsmill.vercel.app/" target="_blank" class="executive-link-card">
+                            <span class="link-text font-bold text-lg text-primary-gold">
+                                <i data-lucide="building-2" class="w-5 h-5 mr-2 text-primary-gold"></i>
                                 Al Karam Feeds Mill (Website)
                             </span>
                             <span class="icon-placeholder">
-                                <i data-lucide="external-link" class="w-4 h-4 text-primary-neon"></i>
+                                <i data-lucide="external-link" class="w-4 h-4 text-secondary-blue"></i>
                             </span>
                         </a>
 
-                        <a href="https://drive.google.com/drive/folders/1orezy0DFRBFQ7xBkDiJXvRKkkgBB7DKI" target="_blank" class="modern-link-card">
+                        <a href="https://drive.google.com/drive/folders/1orezy0DFRBFQ7xBkDiJXvRKkkgBB7DKI" target="_blank" class="executive-link-card">
                             <span class="link-text">
-                                <i data-lucide="folder-open" class="w-4 h-4 mr-2 text-secondary-neon"></i>
+                                <i data-lucide="folder-open" class="w-4 h-4 mr-2 text-secondary-blue"></i>
                                 Revenue Record Folder (Drive)
                             </span>
                             <span class="icon-placeholder">
-                                <i data-lucide="external-link" class="w-4 h-4 text-primary-neon"></i>
+                                <i data-lucide="external-link" class="w-4 h-4 text-secondary-blue"></i>
                             </span>
                         </a>
 
-                        <a href="https://drive.google.com/drive/folders/1L3EpqCTI2dJd-bOvzU1NwQt7nOYi1iTz" target="_blank" class="modern-link-card">
+                        <a href="https://drive.google.com/drive/folders/1L3EpqCTI2dJd-bOvzU1NwQt7nOYi1iTz" target="_blank" class="executive-link-card">
                             <span class="link-text">
-                                <i data-lucide="file-check-2" class="w-4 h-4 mr-2 text-secondary-neon"></i>
+                                <i data-lucide="file-check-2" class="w-4 h-4 mr-2 text-secondary-blue"></i>
                                 Agreements Folder (Drive)
                             </span>
                             <span class="icon-placeholder">
-                                <i data-lucide="external-link" class="w-4 h-4 text-primary-neon"></i>
+                                <i data-lucide="external-link" class="w-4 h-4 text-secondary-blue"></i>
                             </span>
                         </a>
                         
-                        <a href="https://drive.google.com/drive/folders/1cYBKNNTNAgj7WHfbSbBoir9vZCUWQld8" target="_blank" class="modern-link-card">
+                        <a href="https://drive.google.com/drive/folders/1cYBKNNTNAgj7WHfbSbBoir9vZCUWQld8" target="_blank" class="executive-link-card">
                             <span class="link-text">
-                                <i data-lucide="image" class="w-4 h-4 mr-2 text-secondary-neon"></i>
+                                <i data-lucide="image" class="w-4 h-4 mr-2 text-secondary-blue"></i>
                                 Image Gallery Folder (Drive)
                             </span>
                             <span class="icon-placeholder">
-                                <i data-lucide="external-link" class="w-4 h-4 text-primary-neon"></i>
+                                <i data-lucide="external-link" class="w-4 h-4 text-secondary-blue"></i>
                             </span>
                         </a>
                         
-                        <a href="https://drive.google.com/drive/folders/1Yzd5ODoeUfcg7TtROrpLA9RDymgU3hBD" target="_blank" class="modern-link-card">
+                        <a href="https://drive.google.com/drive/folders/1Yzd5ODoeUfcg7TtROrpLA9RDymgU3hBD" target="_blank" class="executive-link-card">
                             <span class="link-text">
-                                <i data-lucide="car" class="w-4 h-4 mr-2 text-secondary-neon"></i>
+                                <i data-lucide="car" class="w-4 h-4 mr-2 text-secondary-blue"></i>
                                 Vehicle List (Drive)
                             </span>
                             <span class="icon-placeholder">
-                                <i data-lucide="external-link" class="w-4 h-4 text-primary-neon"></i>
+                                <i data-lucide="external-link" class="w-4 h-4 text-secondary-blue"></i>
                             </span>
                         </a>
 
-                        <a href="https://drive.google.com/drive/folders/1eZVVq9p8ENA7btPLbrvg0R0JliCyfS4K" target="_blank" class="modern-link-card">
+                        <a href="https://drive.google.com/drive/folders/1eZVVq9p8ENA7btPLbrvg0R0JliCyfS4K" target="_blank" class="executive-link-card">
                             <span class="link-text">
-                                <i data-lucide="file-text" class="w-4 h-4 mr-2 text-secondary-neon"></i>
+                                <i data-lucide="file-text" class="w-4 h-4 mr-2 text-secondary-blue"></i>
                                 Sale Certificate (Drive)
                             </span>
                             <span class="icon-placeholder">
-                                <i data-lucide="external-link" class="w-4 h-4 text-primary-neon"></i>
+                                <i data-lucide="external-link" class="w-4 h-4 text-secondary-blue"></i>
                             </span>
                         </a>
 
-                        <a href="https://drive.google.com/drive/folders/1i-9S-n35qPTCNXhSGWv8PFPHE8aV0SIQ" target="_blank" class="modern-link-card">
+                        <a href="https://drive.google.com/drive/folders/1i-9S-n35qPTCNXhSGWv8PFPHE8aV0SIQ" target="_blank" class="executive-link-card">
                             <span class="link-text">
-                                <i data-lucide="smartphone" class="w-4 h-4 mr-2 text-secondary-neon"></i>
+                                <i data-lucide="smartphone" class="w-4 h-4 mr-2 text-secondary-blue"></i>
                                 CNIC App (Drive)
                             </span>
                             <span class="icon-placeholder">
-                                <i data-lucide="external-link" class="w-4 h-4 text-primary-neon"></i>
+                                <i data-lucide="external-link" class="w-4 h-4 text-secondary-blue"></i>
                             </span>
                         </a>
 
-                        <a href="https://drive.google.com/drive/folders/1w6i4v-wIrANuXZ85iX4UpGHJprwJWGZF" target="_blank" class="modern-link-card">
+                        <a href="https://drive.google.com/drive/folders/1w6i4v-wIrANuXZ85iX4UpGHJprwJWGZF" target="_blank" class="executive-link-card">
                             <span class="link-text">
-                                <i data-lucide="clipboard-list" class="w-4 h-4 mr-2 text-secondary-neon"></i>
+                                <i data-lucide="clipboard-list" class="w-4 h-4 mr-2 text-secondary-blue"></i>
                                 Case List (Drive)
                             </span>
                             <span class="icon-placeholder">
-                                <i data-lucide="external-link" class="w-4 h-4 text-primary-neon"></i>
+                                <i data-lucide="external-link" class="w-4 h-4 text-secondary-blue"></i>
                             </span>
                         </a>
                         
@@ -394,7 +428,7 @@
                             </h3>
                         </div>
 
-                        <a href="#" class="modern-link-card opacity-50 cursor-not-allowed border-left-transparent">
+                        <a href="#" class="executive-link-card opacity-50 cursor-not-allowed border-left-transparent hover:border-l-0">
                             <span class="link-text">
                                 <i data-lucide="credit-card" class="w-4 h-4 mr-2 text-gray-500"></i>
                                 Online Fee Payment (Simulated)
@@ -404,7 +438,7 @@
                             </span>
                         </a>
 
-                        <a href="#" class="modern-link-card opacity-50 cursor-not-allowed border-left-transparent">
+                        <a href="#" class="executive-link-card opacity-50 cursor-not-allowed border-left-transparent hover:border-l-0">
                             <span class="link-text">
                                 <i data-lucide="pencil-line" class="w-4 h-4 mr-2 text-gray-500"></i>
                                 Apply for Mutation (Simulated)
@@ -418,418 +452,418 @@
             </div>
 
             <div class="lg:col-span-1">
-                 <div class="neon-card p-6 rounded-lg border border-primary-neon/70">
+                 <div class="executive-card p-6 h-full">
                     <h2 class="text-xl font-bold mb-4 section-title flex items-center">
-                        <i data-lucide="global" class="w-5 h-5 mr-2"></i>
+                        <i data-lucide="global" class="w-5 h-5 mr-2 text-primary-gold"></i>
                         External E-Governance Portals & Daily Websites
                     </h2>
                     
-                    <div class="space-y-3">
+                    <div class="space-y-3 custom-scroll max-h-[850px] overflow-y-auto pr-3">
                         
-                        <h3 class="text-base font-semibold text-secondary-neon pt-2 pb-2 border-t border-gray-700 flex items-center">
-                            <i data-lucide="message-square" class="w-4 h-4 mr-1 text-secondary-neon"></i> 🔴 Social Media
+                        <h3 class="text-base font-semibold text-primary-gold pt-2 pb-2 border-t border-gray-700 flex items-center">
+                            <i data-lucide="message-square" class="w-4 h-4 mr-1 text-secondary-blue"></i> 🔵 Social Media
                         </h3>
-                        <a href="https://www.youtube.com" target="_blank" class="modern-link-card">
+                        <a href="https://www.youtube.com" target="_blank" class="executive-link-card">
                             <span class="link-text">
                                 <img src="${getIconUrl('youtube')}" alt="YouTube Icon" class="link-icon">
                                 YouTube
                             </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-neon/50 ml-2"></i>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold/50 ml-2"></i>
                         </a>
-                        <a href="https://www.facebook.com" target="_blank" class="modern-link-card">
+                        <a href="https://www.facebook.com" target="_blank" class="executive-link-card">
                             <span class="link-text">
                                 <img src="${getIconUrl('facebook')}" alt="Facebook Icon" class="link-icon">
                                 Facebook
                             </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-neon/50 ml-2"></i>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold/50 ml-2"></i>
                         </a>
-                        <a href="https://www.tiktok.com" target="_blank" class="modern-link-card">
+                        <a href="https://www.tiktok.com" target="_blank" class="executive-link-card">
                             <span class="link-text">
                                 <img src="${getIconUrl('tiktok')}" alt="TikTok Icon" class="link-icon">
                                 TikTok
                             </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-neon/50 ml-2"></i>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold/50 ml-2"></i>
                         </a>
-                        <a href="https://www.twitter.com" target="_blank" class="modern-link-card">
+                        <a href="https://www.twitter.com" target="_blank" class="executive-link-card">
                             <span class="link-text">
                                 <img src="${getIconUrl('twitter')}" alt="Twitter/X Icon" class="link-icon">
                                 Twitter / X
                             </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-neon/50 ml-2"></i>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold/50 ml-2"></i>
                         </a>
-                        <a href="https://www.instagram.com" target="_blank" class="modern-link-card">
+                        <a href="https://www.instagram.com" target="_blank" class="executive-link-card">
                             <span class="link-text">
                                 <img src="${getIconUrl('instagram')}" alt="Instagram Icon" class="link-icon">
                                 Instagram
                             </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-neon/50 ml-2"></i>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold/50 ml-2"></i>
                         </a>
-                        <a href="https://web.whatsapp.com" target="_blank" class="modern-link-card">
+                        <a href="https://web.whatsapp.com" target="_blank" class="executive-link-card">
                             <span class="link-text">
                                 <img src="${getIconUrl('whatsapp')}" alt="WhatsApp Icon" class="link-icon">
                                 WhatsApp Web
                             </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-neon/50 ml-2"></i>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold/50 ml-2"></i>
                         </a>
-                        <a href="https://www.snapchat.com" target="_blank" class="modern-link-card">
+                        <a href="https://www.snapchat.com" target="_blank" class="executive-link-card">
                             <span class="link-text">
                                 <img src="${getIconUrl('snapchat')}" alt="Snapchat Icon" class="link-icon">
                                 Snapchat
                             </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-neon/50 ml-2"></i>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold/50 ml-2"></i>
                         </a>
 
                         
-                        <h3 class="text-base font-semibold text-secondary-neon pt-4 pb-2 border-t border-gray-700 flex items-center">
-                            <i data-lucide="search" class="w-4 h-4 mr-1 text-blue-400"></i> 🔵 Google Services
+                        <h3 class="text-base font-semibold text-primary-gold pt-4 pb-2 border-t border-gray-700 flex items-center">
+                            <i data-lucide="search" class="w-4 h-4 mr-1 text-blue-400"></i> 🌐 Google Services
                         </h3>
-                        <a href="https://www.google.com" target="_blank" class="modern-link-card">
+                        <a href="https://www.google.com" target="_blank" class="executive-link-card">
                             <span class="link-text">
                                 <img src="${getIconUrl('google')}" alt="Google Search Icon" class="link-icon">
                                 Google Search
                             </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-neon/50 ml-2"></i>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold/50 ml-2"></i>
                         </a>
-                        <a href="https://mail.google.com" target="_blank" class="modern-link-card">
+                        <a href="https://mail.google.com" target="_blank" class="executive-link-card">
                             <span class="link-text">
                                 <img src="${getIconUrl('gmail')}" alt="Gmail Icon" class="link-icon">
                                 Gmail
                             </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-neon/50 ml-2"></i>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold/50 ml-2"></i>
                         </a>
-                        <a href="https://maps.google.com" target="_blank" class="modern-link-card">
+                        <a href="https://maps.google.com" target="_blank" class="executive-link-card">
                             <span class="link-text">
                                 <img src="${getIconUrl('maps')}" alt="Google Maps Icon" class="link-icon">
                                 Google Maps
                             </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-neon/50 ml-2"></i>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold/50 ml-2"></i>
                         </a>
-                        <a href="https://drive.google.com" target="_blank" class="modern-link-card">
+                        <a href="https://drive.google.com" target="_blank" class="executive-link-card">
                             <span class="link-text">
                                 <img src="${getIconUrl('drive')}" alt="Google Drive Icon" class="link-icon">
                                 Google Drive
                             </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-neon/50 ml-2"></i>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold/50 ml-2"></i>
                         </a>
-                        <a href="https://translate.google.com" target="_blank" class="modern-link-card">
+                        <a href="https://translate.google.com" target="_blank" class="executive-link-card">
                             <span class="link-text">
                                 <img src="${getIconUrl('translate')}" alt="Google Translate Icon" class="link-icon">
                                 Google Translate
                             </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-neon/50 ml-2"></i>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold/50 ml-2"></i>
                         </a>
-                        <a href="https://photos.google.com" target="_blank" class="modern-link-card">
+                        <a href="https://photos.google.com" target="_blank" class="executive-link-card">
                             <span class="link-text">
                                 <img src="${getIconUrl('photos')}" alt="Google Photos Icon" class="link-icon">
                                 Google Photos
                             </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-neon/50 ml-2"></i>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold/50 ml-2"></i>
                         </a>
-                        <a href="https://play.google.com" target="_blank" class="modern-link-card">
+                        <a href="https://play.google.com" target="_blank" class="executive-link-card">
                             <span class="link-text">
                                 <img src="${getIconUrl('play')}" alt="Google Play Store Icon" class="link-icon">
                                 Google Play Store
                             </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-neon/50 ml-2"></i>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold/50 ml-2"></i>
                         </a>
                         
-                        <h3 class="text-base font-semibold text-secondary-neon pt-4 pb-2 border-t border-gray-700 flex items-center">
+                        <h3 class="text-base font-semibold text-primary-gold pt-4 pb-2 border-t border-gray-700 flex items-center">
                             <i data-lucide="briefcase" class="w-4 h-4 mr-1 text-green-400"></i> 🟢 Work & Cloud Tools
                         </h3>
-                        <a href="https://www.office.com" target="_blank" class="modern-link-card">
+                        <a href="https://www.office.com" target="_blank" class="executive-link-card">
                             <span class="link-text">
                                 <img src="${getIconUrl('office')}" alt="MS Office Icon" class="link-icon">
                                 Microsoft Office Online
                             </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-neon/50 ml-2"></i>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold/50 ml-2"></i>
                         </a>
-                        <a href="https://outlook.live.com" target="_blank" class="modern-link-card">
+                        <a href="https://outlook.live.com" target="_blank" class="executive-link-card">
                             <span class="link-text">
                                 <img src="${getIconUrl('outlook')}" alt="Outlook Icon" class="link-icon">
                                 Outlook Email
                             </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-neon/50 ml-2"></i>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold/50 ml-2"></i>
                         </a>
-                        <a href="https://www.canva.com" target="_blank" class="modern-link-card">
+                        <a href="https://www.canva.com" target="_blank" class="executive-link-card">
                             <span class="link-text">
                                 <img src="${getIconUrl('canva')}" alt="Canva Icon" class="link-icon">
                                 Canva (Free Designing)
                             </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-neon/50 ml-2"></i>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold/50 ml-2"></i>
                         </a>
-                        <a href="https://www.dropbox.com" target="_blank" class="modern-link-card">
+                        <a href="https://www.dropbox.com" target="_blank" class="executive-link-card">
                             <span class="link-text">
                                 <img src="${getIconUrl('dropbox')}" alt="Dropbox Icon" class="link-icon">
                                 Dropbox
                             </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-neon/50 ml-2"></i>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold/50 ml-2"></i>
                         </a>
-                        <a href="https://wetransfer.com" target="_blank" class="modern-link-card">
+                        <a href="https://wetransfer.com" target="_blank" class="executive-link-card">
                             <span class="link-text">
                                 <img src="${getIconUrl('wetransfer')}" alt="WeTransfer Icon" class="link-icon">
                                 WeTransfer (File Sharing)
                             </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-neon/50 ml-2"></i>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold/50 ml-2"></i>
                         </a>
                         
-                        <h3 class="text-base font-semibold text-secondary-neon pt-4 pb-2 border-t border-gray-700 flex items-center">
+                        <h3 class="text-base font-semibold text-primary-gold pt-4 pb-2 border-t border-gray-700 flex items-center">
                             <i data-lucide="network" class="w-4 h-4 mr-1 text-orange-400"></i> 🟠 Business / Marketing
                         </h3>
-                        <a href="https://www.linkedin.com" target="_blank" class="modern-link-card">
+                        <a href="https://www.linkedin.com" target="_blank" class="executive-link-card">
                             <span class="link-text">
                                 <img src="${getIconUrl('linkedin')}" alt="LinkedIn Icon" class="link-icon">
                                 LinkedIn
                             </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-neon/50 ml-2"></i>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold/50 ml-2"></i>
                         </a>
-                        <a href="https://www.fiverr.com" target="_blank" class="modern-link-card">
+                        <a href="https://www.fiverr.com" target="_blank" class="executive-link-card">
                             <span class="link-text">
                                 <img src="${getIconUrl('fiverr')}" alt="Fiverr Icon" class="link-icon">
                                 Fiverr (Freelancing)
                             </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-neon/50 ml-2"></i>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold/50 ml-2"></i>
                         </a>
-                        <a href="https://www.upwork.com" target="_blank" class="modern-link-card">
+                        <a href="https://www.upwork.com" target="_blank" class="executive-link-card">
                             <span class="link-text">
                                 <img src="${getIconUrl('upwork')}" alt="Upwork Icon" class="link-icon">
                                 Upwork (Freelancing)
                             </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-neon/50 ml-2"></i>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold/50 ml-2"></i>
                         </a>
-                        <a href="https://www.freelancer.com" target="_blank" class="modern-link-card">
+                        <a href="https://www.freelancer.com" target="_blank" class="executive-link-card">
                             <span class="link-text">
                                 <img src="${getIconUrl('freelancer')}" alt="Freelancer Icon" class="link-icon">
                                 Freelancer
                             </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-neon/50 ml-2"></i>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold/50 ml-2"></i>
                         </a>
-                        <a href="https://www.google.com/business" target="_blank" class="modern-link-card">
+                        <a href="https://www.google.com/business" target="_blank" class="executive-link-card">
                             <span class="link-text">
                                 <img src="${getIconUrl('business')}" alt="Google Business Icon" class="link-icon">
                                 Google Business Profile
                             </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-neon/50 ml-2"></i>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold/50 ml-2"></i>
                         </a>
 
-                        <h3 class="text-base font-semibold text-secondary-neon pt-4 pb-2 border-t border-gray-700 flex items-center">
+                        <h3 class="text-base font-semibold text-primary-gold pt-4 pb-2 border-t border-gray-700 flex items-center">
                             <i data-lucide="gavel" class="w-4 h-4 mr-1 text-purple-400"></i> 🟣 Pakistan Govt Useful Links
                         </h3>
-                        <a href="https://id.nadra.gov.pk" target="_blank" class="modern-link-card">
+                        <a href="https://id.nadra.gov.pk" target="_blank" class="executive-link-card">
                             <span class="link-text">
                                 <img src="${getIconUrl('nadra')}" alt="NADRA Icon" class="link-icon">
                                 NADRA Portal
                             </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-neon/50 ml-2"></i>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold/50 ml-2"></i>
                         </a>
-                        <a href="https://citizenportal.gov.pk" target="_blank" class="modern-link-card">
+                        <a href="https://citizenportal.gov.pk" target="_blank" class="executive-link-card">
                             <span class="link-text">
                                 <img src="${getIconUrl('citizen')}" alt="Citizen Portal Icon" class="link-icon">
                                 Pakistan Citizen Portal
                             </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-neon/50 ml-2"></i>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold/50 ml-2"></i>
                         </a>
-                        <a href="https://sindh.gov.pk" target="_blank" class="modern-link-card">
+                        <a href="https://sindh.gov.pk" target="_blank" class="executive-link-card">
                             <span class="link-text">
                                 <img src="${getIconUrl('sindh.gov.pk')}" alt="Sindh Govt Icon" class="link-icon">
                                 Sindh Govt Portal
                             </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-neon/50 ml-2"></i>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold/50 ml-2"></i>
                         </a>
-                        <a href="https://www.fbr.gov.pk" target="_blank" class="modern-link-card">
+                        <a href="https://www.fbr.gov.pk" target="_blank" class="executive-link-card">
                             <span class="link-text">
                                 <img src="${getIconUrl('fbr')}" alt="FBR Icon" class="link-icon">
                                 FBR (Tax)
                             </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-neon/50 ml-2"></i>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold/50 ml-2"></i>
                         </a>
-                        <a href="https://www.ecp.gov.pk" target="_blank" class="modern-link-card">
+                        <a href="https://www.ecp.gov.pk" target="_blank" class="executive-link-card">
                             <span class="link-text">
                                 <img src="${getIconUrl('ecp')}" alt="ECP Icon" class="link-icon">
                                 ECP (Voting Info)
                             </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-neon/50 ml-2"></i>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold/50 ml-2"></i>
                         </a>
 
                         <h3 class="text-base font-semibold text-gray-400 pt-4 pb-1 border-t border-gray-700 flex items-center">
                             <i data-lucide="gem" class="w-4 h-4 mr-1 text-green-500"></i> Revenue, Land, Property & Agriculture
                         </h3>
-                        <a href="https://bor.sindh.gov.pk" target="_blank" class="modern-link-card">
+                        <a href="https://bor.sindh.gov.pk" target="_blank" class="executive-link-card">
                             <span class="link-text">
                                 <img src="${getIconUrl('bor.sindh.gov.pk')}" alt="BoR Icon" class="link-icon">
                                 4. Board of Revenue Sindh (BoR)
                             </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-neon/50 ml-2"></i>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold/50 ml-2"></i>
                         </a>
-                        <a href="https://sindhzameen.gos.pk" target="_blank" class="modern-link-card">
+                        <a href="https://sindhzameen.gos.pk" target="_blank" class="executive-link-card">
                             <span class="link-text">
                                 <img src="${getIconUrl('sindhzameen.gos.pk')}" alt="Sindh Zameen Icon" class="link-icon">
                                 5. Sindh Zameen (Land Records)
                             </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-neon/50 ml-2"></i>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold/50 ml-2"></i>
                         </a>
-                        <a href="https://aitapp.srb.gos.pk/#/session/signin" target="_blank" class="modern-link-card">
+                        <a href="https://aitapp.srb.gos.pk/#/session/signin" target="_blank" class="executive-link-card">
                             <span class="link-text">
                                 <img src="${getIconUrl('srb.gos.pk')}" alt="SRB Icon" class="link-icon">
                                 SRB AIT Application – Sindh Sales Tax
                             </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-neon/50 ml-2"></i>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold/50 ml-2"></i>
                         </a>
                         
                         <h3 class="text-base font-semibold text-gray-400 pt-4 pb-1 border-t border-gray-700 flex items-center">
                             <i data-lucide="user-cog" class="w-4 h-4 mr-1 text-blue-500"></i> Chief Minister / Governor / Administration
                         </h3>
-                        <a href="https://cmsindh.gov.pk" target="_blank" class="modern-link-card">
+                        <a href="https://cmsindh.gov.pk" target="_blank" class="executive-link-card">
                             <span class="link-text">
                                 <img src="${getIconUrl('cmsindh.gov.pk')}" alt="CM Sindh Icon" class="link-icon">
                                 1. Chief Minister Sindh
                             </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-neon/50 ml-2"></i>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold/50 ml-2"></i>
                         </a>
-                        <a href="https://governorsindh.gov.pk" target="_blank" class="modern-link-card">
+                        <a href="https://governorsindh.gov.pk" target="_blank" class="executive-link-card">
                             <span class="link-text">
                                 <img src="${getIconUrl('governorsindh.gov.pk')}" alt="Governor Sindh Icon" class="link-icon">
                                 2. Governor Sindh
                             </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-neon/50 ml-2"></i>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold/50 ml-2"></i>
                         </a>
-                        <a href="https://sga.sindh.gov.pk" target="_blank" class="modern-link-card">
+                        <a href="https://sga.sindh.gov.pk" target="_blank" class="executive-link-card">
                             <span class="link-text">
                                 <img src="${getIconUrl('sga.sindh.gov.pk')}" alt="SGA&CD Icon" class="link-icon">
                                 3. SGA&CD (Admin Dept)
                             </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-neon/50 ml-2"></i>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold/50 ml-2"></i>
                         </a>
 
                         <h3 class="text-base font-semibold text-gray-400 pt-4 pb-1 border-t border-gray-700 flex items-center">
                             <i data-lucide="shield" class="w-4 h-4 mr-1 text-red-500"></i> Police / Home Dept / Law
                         </h3>
-                        <a href="https://sindhpolice.gov.pk" target="_blank" class="modern-link-card">
+                        <a href="https://sindhpolice.gov.pk" target="_blank" class="executive-link-card">
                             <span class="link-text">
                                 <img src="${getIconUrl('sindhpolice.gov.pk')}" alt="Police Icon" class="link-icon">
                                 6. Sindh Police Official
                             </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-neon/50 ml-2"></i>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold/50 ml-2"></i>
                         </a>
-                        <a href="https://home.sindh.gov.pk" target="_blank" class="modern-link-card">
+                        <a href="https://home.sindh.gov.pk" target="_blank" class="executive-link-card">
                             <span class="link-text">
                                 <img src="${getIconUrl('home.sindh.gov.pk')}" alt="Home Dept Icon" class="link-icon">
                                 7. Home Department Sindh
                             </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-neon/50 ml-2"></i>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold/50 ml-2"></i>
                         </a>
-                        <a href="https://www.sindhhighcourt.gov.pk" target="_blank" class="modern-link-card">
+                        <a href="https://www.sindhhighcourt.gov.pk" target="_blank" class="executive-link-card">
                             <span class="link-text">
                                 <img src="${getIconUrl('sindhhighcourt.gov.pk')}" alt="High Court Icon" class="link-icon">
                                 8. Sindh High Court
                             </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-neon/50 ml-2"></i>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold/50 ml-2"></i>
                         </a>
 
                         <h3 class="text-base font-semibold text-gray-400 pt-4 pb-1 border-t border-gray-700 flex items-center">
                             <i data-lucide="calculator" class="w-4 h-4 mr-1 text-blue-400"></i> Finance & Tax (Remaining)
                         </h3>
-                        <a href="https://finance.sindh.gov.pk" target="_blank" class="modern-link-card">
+                        <a href="https://finance.sindh.gov.pk" target="_blank" class="executive-link-card">
                             <span class="link-text">
                                 <img src="${getIconUrl('finance.sindh.gov.pk')}" alt="Finance Dept Icon" class="link-icon">
                                 26. Finance Department
                             </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-neon/50 ml-2"></i>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold/50 ml-2"></i>
                         </a>
-                        <a href="https://srb.gos.pk" target="_blank" class="modern-link-card">
+                        <a href="https://srb.gos.pk" target="_blank" class="executive-link-card">
                             <span class="link-text">
                                 <img src="${getIconUrl('srb.gos.pk')}" alt="SRB Icon" class="link-icon">
                                 27. Sindh Revenue Board (SRB)
                             </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-neon/50 ml-2"></i>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold/50 ml-2"></i>
                         </a>
-                        <a href="https://excise.gos.pk" target="_blank" class="modern-link-card">
+                        <a href="https://excise.gos.pk" target="_blank" class="executive-link-card">
                             <span class="link-text">
                                 <img src="${getIconUrl('excise.gos.pk')}" alt="Excise Dept Icon" class="link-icon">
                                 28. Excise & Taxation (Vehicle Verification)
                             </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-neon/50 ml-2"></i>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold/50 ml-2"></i>
                         </a>
                         
                         <h3 class="text-base font-semibold text-gray-400 pt-4 pb-1 border-t border-gray-700 flex items-center">
                             <i data-lucide="graduation-cap" class="w-4 h-4 mr-1 text-red-500"></i> Education (Schools, Colleges, Universities)
                         </h3>
-                        <a href="https://seld.sindh.gov.pk" target="_blank" class="modern-link-card">
+                        <a href="https://seld.sindh.gov.pk" target="_blank" class="executive-link-card">
                             <span class="link-text">
                                 <img src="${getIconUrl('seld.sindh.gov.pk')}" alt="SELD Icon" class="link-icon">
                                 12. SELD (School Education)
                             </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-neon/50 ml-2"></i>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold/50 ml-2"></i>
                         </a>
-                        <a href="https://college.sindh.gov.pk" target="_blank" class="modern-link-card">
+                        <a href="https://college.sindh.gov.pk" target="_blank" class="executive-link-card">
                             <span class="link-text">
                                 <img src="${getIconUrl('college.sindh.gov.pk')}" alt="College Edu Icon" class="link-icon">
                                 13. College Education
                             </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-neon/50 ml-2"></i>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold/50 ml-2"></i>
                         </a>
-                        <a href="https://admission.sindh.gov.pk" target="_blank" class="modern-link-card">
+                        <a href="https://admission.sindh.gov.pk" target="_blank" class="executive-link-card">
                             <span class="link-text">
                                 <img src="${getIconUrl('admission.sindh.gov.pk')}" alt="Sindh HEC Icon" class="link-icon">
                                 14. Sindh HEC / Online Admissions
                             </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-neon/50 ml-2"></i>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold/50 ml-2"></i>
                         </a>
 
                         <h3 class="text-base font-semibold text-gray-400 pt-4 pb-1 border-t border-gray-700 flex items-center">
                             <i data-lucide="heart-handshake" class="w-4 h-4 mr-1 text-orange-500"></i> Health / Medical
                         </h3>
-                        <a href="https://sindhhealth.gov.pk" target="_blank" class="modern-link-card">
+                        <a href="https://sindhhealth.gov.pk" target="_blank" class="executive-link-card">
                             <span class="link-text">
                                 <img src="${getIconUrl('sindhhealth.gov.pk')}" alt="Health Dept Icon" class="link-icon">
                                 16. Health Department Sindh
                             </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-neon/50 ml-2"></i>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold/50 ml-2"></i>
                         </a>
-                        <a href="https://shcc.org.pk" target="_blank" class="modern-link-card">
+                        <a href="https://shcc.org.pk" target="_blank" class="executive-link-card">
                             <span class="link-text">
                                 <img src="${getIconUrl('shcc.org.pk')}" alt="SHCC Icon" class="link-icon">
                                 17. Sindh Healthcare Commission
                             </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-neon/50 ml-2"></i>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold/50 ml-2"></i>
                         </a>
 
                         <h3 class="text-base font-semibold text-gray-400 pt-4 pb-1 border-t border-gray-700 flex items-center">
                             <i data-lucide="droplet" class="w-4 h-4 mr-1 text-blue-500"></i> Water / Environment / Transport
                         </h3>
-                        <a href="https://irrigation.sindh.gov.pk" target="_blank" class="modern-link-card">
+                        <a href="https://irrigation.sindh.gov.pk" target="_blank" class="executive-link-card">
                             <span class="link-text">
                                 <img src="${getIconUrl('irrigation.sindh.gov.pk')}" alt="Irrigation Icon" class="link-icon">
                                 23. Irrigation Department
                             </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-neon/50 ml-2"></i>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold/50 ml-2"></i>
                         </a>
-                        <a href="https://phe.sindh.gov.pk" target="_blank" class="modern-link-card">
+                        <a href="https://phe.sindh.gov.pk" target="_blank" class="executive-link-card">
                             <span class="link-text">
                                 <img src="${getIconUrl('phe.sindh.gov.pk')}" alt="PHE Icon" class="link-icon">
                                 24. Public Health Engineering (PHE)
                             </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-neon/50 ml-2"></i>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold/50 ml-2"></i>
                         </a>
-                        <a href="https://sepa.sindh.gov.pk" target="_blank" class="modern-link-card">
+                        <a href="https://sepa.sindh.gov.pk" target="_blank" class="executive-link-card">
                             <span class="link-text">
                                 <img src="${getIconUrl('sepa.sindh.gov.pk')}" alt="SEPA Icon" class="link-icon">
                                 25. Environment (SEPA)
                             </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-neon/50 ml-2"></i>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold/50 ml-2"></i>
                         </a>
-                        <a href="https://transport.sindh.gov.pk" target="_blank" class="modern-link-card">
+                        <a href="https://transport.sindh.gov.pk" target="_blank" class="executive-link-card">
                             <span class="link-text">
                                 <img src="${getIconUrl('transport.sindh.gov.pk')}" alt="Transport Icon" class="link-icon">
                                 21. Transport Department
                             </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-neon/50 ml-2"></i>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold/50 ml-2"></i>
                         </a>
-                        <a href="https://brtsindh.gos.pk" target="_blank" class="modern-link-card">
+                        <a href="https://brtsindh.gos.pk" target="_blank" class="executive-link-card">
                             <span class="link-text">
                                 <img src="${getIconUrl('brtsindh.gos.pk')}" alt="BRT Icon" class="link-icon">
                                 22. Sindh Mass Transit Authority (BRT)
                             </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-neon/50 ml-2"></i>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold/50 ml-2"></i>
                         </a>
                     </div>
                 </div>
@@ -837,16 +871,16 @@
         </div>
         
         <div class="mt-12">
-            <h2 class="project-heading text-2xl mb-6 border-b-2 border-primary-neon/50 pb-2 flex items-center">
-                <i data-lucide="folder-open" class="w-6 h-6 inline-block mr-2 text-primary-neon"></i> 
+            <h2 class="executive-heading text-2xl mb-6 border-b-2 border-primary-gold/50 pb-2 flex items-center">
+                <i data-lucide="folder-open" class="w-6 h-6 inline-block mr-2 text-primary-gold"></i> 
                 All Important Links Folder (Religious & Political)
             </h2>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 
-                <div class="neon-card p-6 rounded-lg border-l-4 border-secondary-neon legacy-card">
+                <div class="executive-card p-6 border-l-4 border-secondary-blue legacy-card">
                     <h3 class="text-lg font-bold mb-4 flex items-center legacy-title">
-                        <i data-lucide="book-open" class="w-5 h-5 mr-2 text-secondary-neon"></i> Quran & Islamic Resources
+                        <i data-lucide="book-open" class="w-5 h-5 mr-2 text-secondary-blue"></i> Quran & Islamic Resources
                     </h3>
                     <ul class="space-y-3 text-sm">
                         <li><a href="https://www.google.com/search?q=QURAN+READING+PDF+AND+ONLINE+LINKS" target="_blank" class="general-link-style">Quran Reading PDF & Online Links</a></li>
@@ -854,9 +888,9 @@
                     </ul>
                 </div>
 
-                <div class="neon-card p-6 rounded-lg border-l-4 border-blue-400 legacy-card">
+                <div class="executive-card p-6 border-l-4 border-primary-gold legacy-card">
                     <h3 class="text-lg font-bold mb-4 flex items-center legacy-title">
-                        <i data-lucide="hand-heart" class="w-5 h-5 mr-2 text-blue-400"></i> Islamic Duas / Prayers
+                        <i data-lucide="hand-heart" class="w-5 h-5 mr-2 text-primary-gold"></i> Islamic Duas / Prayers
                     </h3>
                     <ul class="space-y-3 text-sm">
                         <li><a href="https://www.google.com/search?q=GOOD+MORNNIG+MSGS+AND+PRAYERS" target="_blank" class="general-link-style">Good Morning Messages & Prayers</a></li>
@@ -864,7 +898,7 @@
                     </ul>
                 </div>
 
-                <div class="neon-card p-6 rounded-lg border-l-4 border-red-500 legacy-card">
+                <div class="executive-card p-6 border-l-4 border-red-500 legacy-card">
                     <h3 class="text-lg font-bold mb-4 flex items-center legacy-title">
                         <i data-lucide="globe" class="w-5 h-5 mr-2 text-red-500"></i> Wikipedia & General Resources
                     </h3>
@@ -877,9 +911,9 @@
                     </ul>
                 </div>
                 
-                <div class="neon-card p-6 rounded-lg border-l-4 border-primary-neon legacy-card md:col-span-2 lg:col-span-1">
+                <div class="executive-card p-6 border-l-4 border-secondary-blue legacy-card md:col-span-2 lg:col-span-1">
                     <h3 class="text-lg font-bold mb-4 flex items-center legacy-title">
-                        <i data-lucide="user-square" class="w-5 h-5 mr-2 text-primary-neon"></i> Pakistani Political Leaders
+                        <i data-lucide="user-square" class="w-5 h-5 mr-2 text-secondary-blue"></i> Pakistani Political Leaders
                     </h3>
                     <ul class="space-y-4 text-sm">
                         <li>
@@ -923,9 +957,9 @@
                     </ul>
                 </div>
 
-                <div class="neon-card p-6 rounded-lg border-l-4 border-yellow-500 legacy-card md:col-span-2 lg:col-span-1">
+                <div class="executive-card p-6 border-l-4 border-primary-gold legacy-card md:col-span-2 lg:col-span-1">
                     <h3 class="text-lg font-bold mb-4 flex items-center legacy-title">
-                        <i data-lucide="star" class="w-5 h-5 mr-2 text-yellow-500"></i> Pakistani Celebrities / Athletes
+                        <i data-lucide="star" class="w-5 h-5 mr-2 text-primary-gold"></i> Pakistani Celebrities / Athletes
                     </h3>
                     <ul class="space-y-4 text-sm">
                         <li>
@@ -962,9 +996,9 @@
                     </ul>
                 </div>
 
-                <div class="neon-card p-6 rounded-lg border-l-4 border-pink-500 legacy-card">
+                <div class="executive-card p-6 border-l-4 border-green-500 legacy-card">
                     <h3 class="text-lg font-bold mb-4 flex items-center legacy-title">
-                        <i data-lucide="landmark" class="w-5 h-5 mr-2 text-pink-500"></i> Global Leaders / Politicians
+                        <i data-lucide="landmark" class="w-5 h-5 mr-2 text-green-500"></i> Global Leaders / Politicians
                     </h3>
                     <ul class="space-y-4 text-sm">
                         <li>
@@ -1020,10 +1054,10 @@
         </div>
     </main>
 
-    <footer class="bg-dark-bg-main border-t border-gray-800 mt-12 py-6">
+    <footer class="bg-dark-bg-main border-t border-gray-700 mt-12 py-6">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm text-gray-500">
             Digital Revenue Portal - Portfolio Project | Demonstrated Functionality & Technical Skills
-            <p class="mt-1 text-xs text-primary-neon">
+            <p class="mt-1 text-xs text-primary-gold">
                 Website Developed by Hassan Jatoi : 03083500829 WhatsApp
             </p>
         </div>
