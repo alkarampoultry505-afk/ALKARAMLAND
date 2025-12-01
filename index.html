@@ -3,122 +3,105 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PORTFOLIO PROJECT: Digital Revenue & Land Records Portal</title>
+    <title>PORTFOLIO PROJECT: Digital Revenue & Land Records Portal (Roman Modern Edition)</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&family=Bebas+Neue&display=swap" rel="stylesheet" />
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&family=Cinzel:wght@400;700;900&display=swap" rel="stylesheet" />
 
     <style>
-        /* --- DESIGN VARIABLES (Glassmorphism/Futuristic Aesthetic) --- */
+        /* --- NEW DESIGN VARIABLES (Roman Modern Aesthetic) --- */
         :root {
-            --accent-color: #00e0ff; /* Bright Cyan/Sky Blue */
-            --secondary-accent: #00ff88; /* Vibrant Green */
-            --dark-bg-color: #0d1226; /* Deep Dark Blue */
-            --dark-card-color: rgba(255, 255, 255, 0.05); /* Transparent Card Base */
+            --primary-accent: #ffd700; /* Rich Gold */
+            --secondary-accent: #a8a29e; /* Muted Stone/Silver */
+            --dark-bg-color: #0c0c1e; /* Deep Navy Blue/Black */
+            --card-bg-color: rgba(212, 175, 55, 0.05); /* Very subtle Gold tint for cards */
+            --text-color: #f0f0f0; /* Off-White */
+            --header-font: 'Cinzel', serif; /* Roman-style font */
         }
         
         body {
             font-family: 'Inter', sans-serif;
             scroll-behavior: smooth;
             background-color: var(--dark-bg-color);
-            color: #e2e8f0;
-            /* Background Pattern/Texture for Premium Look */
-            background-image: radial-gradient(circle at center, rgba(16, 25, 40, 0.8), var(--dark-bg-color) 70%), 
-                              repeating-linear-gradient(0deg, #10162e, #10162e 1px, transparent 1px, transparent 100px);
-            background-size: 100% 100%, 100% 100%;
+            color: var(--text-color);
+            background-image: 
+                linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><defs><pattern id="g" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M5 0V10M10 5H0" stroke="%23374151" stroke-width="0.5" stroke-opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23g)"/></svg>');
+            background-size: cover, 50px 50px;
         }
 
-        .header-bg {
-            background-color: rgba(26, 35, 59, 0.9); /* Semi-transparent header */
-            backdrop-filter: blur(8px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        /* --- Custom Scrollbar (Kept for overall page scroll look) --- */
-        .custom-scroll::-webkit-scrollbar {
-            width: 8px;
-        }
-        .custom-scroll::-webkit-scrollbar-track {
-            background: #1a233b;
-        }
-        .custom-scroll::-webkit-scrollbar-thumb {
-            background: var(--accent-color);
-            border-radius: 4px;
-        }
-        .custom-scroll::-webkit-scrollbar-thumb:hover {
-            background: var(--secondary-accent);
-        }
-
-        /* --- Glassmorphism Card Style --- */
-        .glass-card {
-            background-color: var(--dark-card-color);
-            border: 1px solid rgba(255, 255, 255, 0.15); /* Light border */
-            backdrop-filter: blur(10px); /* Blur effect */
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+        /* --- Roman Card Style (Clean, Bordered, Gold Accent) --- */
+        .roman-card {
+            background-color: var(--dark-bg-color);
+            border: 1px solid var(--primary-accent); /* Thin Gold Border */
+            border-radius: 4px; 
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.1), 0 0 5px rgba(255, 215, 0, 0.2); 
             transition: all 0.3s ease;
         }
-        .glass-card:hover {
-            border-color: var(--accent-color);
-            box-shadow: 0 0 15px rgba(0, 224, 255, 0.4);
+        .roman-card:hover {
+            border-color: var(--secondary-accent);
+            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.4);
+            transform: translateY(-2px);
         }
 
-        /* --- Modern Link Card Style (USED FOR ALL LINKS NOW) --- */
-        .modern-link-card {
+        /* --- Header: Clean Structured Bar --- */
+        .header-bg {
+            background-color: rgba(12, 12, 30, 0.95);
+            backdrop-filter: blur(5px);
+            border-bottom: 2px solid var(--primary-accent);
+        }
+        
+        .header-title {
+            font-family: var(--header-font);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--primary-accent);
+            text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+        }
+        
+        /* --- DIGITAL LINK CARD STYLE (Clean Panel) --- */
+        .digital-link-card {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 18px;
-            background-color: rgba(30, 40, 60, 0.7); /* Darker base for contrast */
-            border-radius: 8px;
+            padding: 10px 15px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 2px;
             transition: all 0.25s ease-in-out;
-            border-left: 4px solid transparent;
+            border-left: 3px solid var(--secondary-accent); /* Silver/Stone line */
         }
 
-        .modern-link-card:hover {
-            background-color: rgba(30, 40, 60, 1);
-            border-left: 4px solid var(--accent-color);
-            transform: translateX(4px);
-            box-shadow: 0 0 8px rgba(0, 224, 255, 0.3); /* Subtle glow on hover */
-        }
-
-        .modern-link-card .link-text {
-            font-weight: 500;
-            color: #cbd5e1;
-            /* Ensure text is aligned with icon */
-            display: flex;
-            align-items: center;
-            font-size: 0.875rem; /* text-sm */
-        }
-
-        .modern-link-card:hover .link-text {
-            color: var(--accent-color);
+        .digital-link-card:hover {
+            background-color: var(--card-bg-color);
+            border-left: 3px solid var(--primary-accent); /* Gold line on hover */
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+            transform: scale(1.02);
+            z-index: 10;
         }
         
-        /* Icon within link card */
-        .modern-link-card .link-icon {
-            width: 20px;
-            height: 20px;
-            margin-right: 8px;
-            border-radius: 4px; /* Slight border radius for visual appeal */
-            object-fit: contain; /* Ensure icon is not cropped */
-        }
-
-        /* --- Custom Headings --- */
-        .project-heading {
-            font-family: 'Bebas Neue', sans-serif;
-            letter-spacing: 2px;
+        /* --- Custom Headings (Roman Style) --- */
+        .roman-heading {
+            font-family: var(--header-font);
+            letter-spacing: 4px;
             text-transform: uppercase;
-            font-size: 3rem; /* 48px */
-            line-height: 1;
-            color: white;
-            text-shadow: 0 0 10px rgba(0, 224, 255, 0.5); /* Glowing text */
+            font-size: 2.5rem; 
+            line-height: 1.1;
+            color: var(--primary-accent); 
+            text-shadow: 0 0 1px var(--primary-accent); 
         }
         
         .section-title {
-            color: var(--accent-color);
-            text-shadow: 0 0 5px rgba(0, 224, 255, 0.2);
+            font-family: var(--header-font);
+            color: var(--secondary-accent);
+            font-weight: 700;
+            text-shadow: none;
         }
 
+        .category-heading {
+            text-transform: uppercase;
+        }
     </style>
 
     <script>
@@ -128,18 +111,19 @@
                 extend: {
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
-                        display: ['Bebas Neue', 'sans-serif'], /* For large titles */
+                        roman: ['Cinzel', 'serif'],
                     },
                     colors: {
-                        'dynamic-accent': 'var(--accent-color)',
-                        'dark-bg': 'var(--dark-bg-color)',
+                        'primary-gold': 'var(--primary-accent)',
+                        'secondary-stone': 'var(--secondary-accent)',
+                        'dark-bg-main': 'var(--dark-bg-color)',
                     },
                 }
             }
         }
     </script>
 </head>
-<body class="custom-scroll">
+<body class="overflow-x-hidden">
 
     <script>
         window.onload = function() {
@@ -155,624 +139,389 @@
             const errorMessage = document.getElementById('error-message');
 
             if (password === correctPassword) {
-                // Sahi password: Links section dikhao aur password prompt chupa do
+                // Sahi Password: Links section dikhao aur password prompt chupa do
                 quickLinksSection.style.display = 'block';
                 passwordPrompt.style.display = 'none';
-                errorMessage.textContent = ''; // Error message clear karo
+                errorMessage.textContent = 'ACCESS GRANTED. WELCOME, ADMINISTRATOR.'; 
+                errorMessage.classList.remove('text-primary-gold');
+                errorMessage.classList.add('text-secondary-stone', 'font-bold');
             } else {
-                // Galat password: Error message dikhao
-                errorMessage.textContent = "Incorrect Password. Please try again.";
-                errorMessage.classList.add('text-red-500');
+                // Galat Password: Error message dikhao
+                errorMessage.textContent = "Incorrect Access Code. Authentication Failed.";
+                errorMessage.classList.add('text-primary-gold', 'font-bold'); 
+                errorMessage.classList.remove('text-secondary-stone');
                 inputElement.value = ''; // Input field clear karo
             }
         }
         
-        // --- Helper function to generate icon URL (Placeholder for standard websites) ---
+        // --- Helper function to generate icon URL (Updated to fit the new aesthetic) ---
         function getIconUrl(domain) {
-            // High quality image URLs from Icons8 or similar sources
-            if (domain.includes('google')) return 'https://img.icons8.com/color/48/google-logo.png';
-            if (domain.includes('facebook')) return 'https://img.icons8.com/fluency/48/facebook-new.png';
-            if (domain.includes('youtube')) return 'https://img.icons8.com/color/48/youtube-play.png';
-            if (domain.includes('tiktok')) return 'https://img.icons8.com/fluency/48/tiktok.png';
-            if (domain.includes('twitter') || domain.includes('x')) return 'https://img.icons8.com/fluency/48/twitter.png';
-            if (domain.includes('instagram')) return 'https://img.icons8.com/fluency/48/instagram-new.png';
-            if (domain.includes('whatsapp')) return 'https://img.icons8.com/fluency/48/whatsapp.png';
-            if (domain.includes('snapchat')) return 'https://img.icons8.com/color/48/snapchat.png';
-            if (domain.includes('gmail')) return 'https://img.icons8.com/color/48/gmail.png';
-            if (domain.includes('drive')) return 'https://img.icons8.com/color/48/google-drive.png';
-            if (domain.includes('office')) return 'https://img.icons8.com/color/48/microsoft-office-2019.png';
-            if (domain.includes('outlook')) return 'https://img.icons8.com/fluency/48/outlook-kalender.png';
-            if (domain.includes('canva')) return 'https://img.icons8.com/external-tal-revivo-color-tal-revivo/48/external-canva-a-free-online-graphic-design-tool-logo-color-tal-revivo.png';
-            if (domain.includes('linkedin')) return 'https://img.icons8.com/fluency/48/linkedin.png';
-            if (domain.includes('fiverr')) return 'https://img.icons8.com/color/48/fiverr.png';
-            if (domain.includes('upwork')) return 'https://img.icons8.com/color/48/upwork.png';
-            
-            // --- New Pakistan Links (Railways, SEZ) ---
-            if (domain.includes('railways.gov.pk') || domain.includes('pakrailways')) return 'https://img.icons8.com/color/48/train.png'; // Pakistan Railways
-            if (domain.includes('ksez.com.pk')) return 'https://img.icons8.com/color/48/factory.png'; // KSEZ
-            
-            // --- New Sindh Government Portals ---
-            if (domain.includes('sindh.gov.pk')) return 'https://img.icons8.com/color/48/building.png'; // Govt of Sindh Portal (General)
-            if (domain.includes('sindhpolice')) return 'https://img.icons8.com/color/48/police-badge.png'; // Sindh Police
-            if (domain.includes('spsc.gos.pk')) return 'https://img.icons8.com/color/48/certificate.png'; // SPSC
-            if (domain.includes('sindhhighcourt')) return 'https://img.icons8.com/color/48/court.png'; // High Court
-
-            // --- World Knowledge & Inspiration (Birds, Animals, Quotes) ---
-            if (domain.includes('birdlife.org') || domain.includes('ebird')) return 'https://img.icons8.com/fluency/48/dove.png'; // Birds
-            if (domain.includes('quotationspage') || domain.includes('quotes')) return 'https://img.icons8.com/color/48/quote-left.png'; // Quotes
-            if (domain.includes('nationalgeographic.com') && !domain.includes('photography')) return 'https://img.icons8.com/fluency/48/tiger.png'; // Animals/NatGeo
-
-            // --- NEW: World Digital Archives & Assets (UTILITY ARCHI WALEY) ---
-            if (domain.includes('unesco.org')) return 'https://img.icons8.com/color/48/globe.png';
-            if (domain.includes('nationalgeographic.com/photography')) return 'https://img.icons8.com/color/48/camera.png';
-            if (domain.includes('nasa')) return 'https://img.icons8.com/color/48/nasa.png';
-            if (domain.includes('britishmuseum.org') || domain.includes('si.edu') || domain.includes('louvre.fr') || domain.includes('artsandculture.google.com')) return 'https://img.icons8.com/color/48/museum.png'; // Museums/Culture
-            if (domain.includes('gettyimages.com') || domain.includes('shutterstock') || domain.includes('pixabay') || domain.includes('unsplash') || domain.includes('pexels')) return 'https://img.icons8.com/color/48/image.png'; // Stock/Photo sites
-            if (domain.includes('wikimedia.org')) return 'https://img.icons8.com/color/48/wikipedia.png';
-            if (domain.includes('nypl.org') || domain.includes('loc.gov')) return 'https://img.icons8.com/color/48/book-shelf.png'; // Libraries/Collections
-            if (domain.includes('europeana.eu')) return 'https://img.icons8.com/color/48/europe.png';
-            if (domain.includes('rct.uk')) return 'https://img.icons8.com/color/48/crown.png'; // Royal Collection Trust
-            if (domain.includes('history.com') || domain.includes('worldhistory.org')) return 'https://img.icons8.com/color/48/ancient-greece.png'; // History
-
-            // Land (Retained as fallback, although the link section was replaced)
-            if (domain.includes('nadra')) return 'https://img.icons8.com/color/48/identification-documents.png';
-            if (domain.includes('larmis')) return 'https://img.icons8.com/color/48/map-marker.png';
-            if (domain.includes('srb.gos.pk')) return 'https://img.icons8.com/color/48/tax.png'; // SRB
-            if (domain.includes('fbr.gov.pk')) return 'https://img.icons8.com/color/48/tax.png'; // FBR
-            if (domain.includes('cmsindh')) return 'https://img.icons8.com/color/48/person-male.png'; // CM
-            if (domain.includes('governorsindh')) return 'https://img.icons8.com/color/48/person-female.png'; // Governor
-            if (domain.includes('seld') || domain.includes('college')) return 'https://img.icons8.com/color/48/school.png'; // Education
-            if (domain.includes('health') || domain.includes('nicvd') || domain.includes('siut')) return 'https://img.icons8.com/color/48/first-aid-kit.png'; // Health
-            if (domain.includes('finance')) return 'https://img.icons8.com/color/48/money-transfer.png'; // Finance
-            if (domain.includes('irrigation') || domain.includes('phe.sindh')) return 'https://img.icons8.com/color/48/water-droplet.png'; // Water
-            if (domain.includes('sbca')) return 'https://img.icons8.com/color/48/city.png'; // SBCA
-            if (domain.includes('kmc.gos.pk')) return 'https://img.icons8.com/color/48/crane.png'; // KMC
-
-            // Default for other links
-            return 'https://img.icons8.com/color/48/internet.png'; 
+            // Using subtle dark icons for the Roman Modern aesthetic
+            if (domain.includes('google')) return 'https://img.icons8.com/ios-filled/20/ffd700/google-logo.png';
+            if (domain.includes('youtube')) return 'https://img.icons8.com/ios-filled/20/ffd700/youtube-play.png';
+            if (domain.includes('nadra')) return 'https://img.icons8.com/ios-filled/20/ffd700/passport-id.png';
+            if (domain.includes('fbr')) return 'https://img.icons8.com/ios-filled/20/ffd700/tax.png';
+            if (domain.includes('quran')) return 'https://img.icons8.com/ios-filled/20/ffd700/quran.png';
+            if (domain.includes('rekhta') || domain.includes('poetry')) return 'https://img.icons8.com/ios-filled/20/ffd700/quill-pen.png';
+            if (domain.includes('drive')) return 'https://img.icons8.com/ios-filled/20/ffd700/google-drive.png';
+            if (domain.includes('property') || domain.includes('zoopla') || domain.includes('emaar')) return 'https://img.icons8.com/ios-filled/20/ffd700/home-page.png';
+            if (domain.includes('travel') || domain.includes('booking') || domain.includes('expedia')) return 'https://img.icons8.com/ios-filled/20/ffd700/airport.png';
+            if (domain.includes('tourism')) return 'https://img.icons8.com/ios-filled/20/ffd700/compass.png';
+            if (domain.includes('wiki')) return 'https://img.icons8.com/ios-filled/20/ffd700/wikipedia.png';
+            return 'https://img.icons8.com/ios-filled/20/ffd700/internet.png'; // Default
         }
     </script>
-
-    <div class="header-bg sticky top-0 z-50">
+    
+    <header class="header-bg fixed top-0 left-0 w-full z-20 shadow-lg">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-            <div class="flex items-center space-x-4">
-                <i data-lucide="scan-text" class="w-6 h-6 text-dynamic-accent"></i>
-                <h1 class="project-heading text-xl md:text-2xl lg:text-3xl">
-                    Digital Revenue & Land Records Portal
+            <div class="flex items-center space-x-3">
+                <i data-lucide="scan-line" class="w-7 h-7 text-primary-gold animate-pulse"></i>
+                <h1 class="text-xl font-bold tracking-widest header-title">
+                    <span class="text-secondary-stone">PORTAL</span>: REVENUE RECORDS SYSTEM
                 </h1>
             </div>
-            <nav class="hidden md:flex space-x-6 text-sm font-medium">
-                <a href="#quick-links" class="text-gray-300 hover:text-dynamic-accent transition duration-200">Quick Links</a>
-                <a href="#about" class="text-gray-300 hover:text-dynamic-accent transition duration-200">About</a>
-                <a href="#contact" class="text-gray-300 hover:text-dynamic-accent transition duration-200">Contact</a>
-            </nav>
+            <div class="flex items-center space-x-4 text-sm">
+                <div class="flex items-center text-gray-400">
+                    <div class="w-3 h-3 rounded-full bg-primary-gold mr-2 shadow-md shadow-primary-gold/50" title="Auth Status"></div>
+                    <span class="hidden sm:block">Status: <span class="text-primary-gold font-semibold">ONLINE / ACCESS TAYYAR HAI</span></span>
+                </div>
+            </div>
         </div>
-    </div>
+    </header>
 
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-
-        <section id="about" class="mb-12 glass-card p-6 md:p-8 rounded-xl">
-            <h2 class="section-title text-2xl font-bold mb-4 flex items-center">
-                <i data-lucide="info" class="w-5 h-5 mr-2"></i> About the Portal
-            </h2>
-            <div class="grid md:grid-cols-5 gap-6 md:gap-8 text-gray-400">
-                <div class="md:col-span-2">
-                    <h3 class="text-base font-semibold text-gray-400 mb-2">Project Goal</h3>
-                    <p class="text-sm leading-relaxed">This portfolio project showcases technical proficiency in front-end development (HTML, CSS/Tailwind, JavaScript) by creating a centralized, modern interface for accessing crucial digital services, particularly for government, revenue, and public access portals in Pakistan. It is designed for maximum speed and accessibility.</p>
-                </div>
-                <div class="md:col-span-3">
-                    <h3 class="text-base font-semibold text-gray-400 mb-2">Technologies Used</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-dynamic-accent/30 text-white text-xs rounded-full font-medium shadow-md">HTML5 / CSS3</span>
-                        <span class="px-3 py-1 bg-dynamic-accent/30 text-white text-xs rounded-full font-medium shadow-md">JavaScript (ES6+)</span>
-                        <span class="px-3 py-1 bg-dynamic-accent/30 text-white text-xs rounded-full font-medium shadow-md">Tailwind CSS</span>
-                        <span class="px-3 py-1 bg-dynamic-accent/30 text-white text-xs rounded-full font-medium shadow-md">Lucide Icons</span>
-                        <span class="px-3 py-1 bg-dynamic-accent/30 text-white text-xs rounded-full font-medium shadow-md">Glassmorphism UI</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="quick-links" class="mb-12">
-            <h2 class="project-heading mb-6 text-3xl">Access Quick Links</h2>
-
-            <div id="password-prompt" class="glass-card p-6 rounded-xl max-w-lg mx-auto text-center">
-                <h3 class="text-xl font-bold text-red-400 mb-4">CONFIDENTIAL ACCESS</h3>
-                <p class="text-gray-400 mb-4">Enter Password to view sensitive and internal links.</p>
-                <input type="password" id="quick-links-password" class="w-full p-3 mb-4 rounded-lg bg-[#1a233b] border border-gray-700 text-white placeholder-gray-500 focus:border-dynamic-accent focus:ring focus:ring-dynamic-accent/50" placeholder="Enter Password">
-                <button onclick="checkPassword()" class="w-full py-3 rounded-lg bg-dynamic-accent hover:bg-dynamic-accent/80 text-dark-bg font-bold transition duration-200 shadow-lg shadow-dynamic-accent/30">
-                    ACCESS PORTAL
-                </button>
-                <p id="error-message" class="mt-3 font-medium"></p>
-            </div>
-
-            <div id="quick-links-access" style="display: none;">
-                <div class="grid md:grid-cols-2 gap-6">
-
-                    <div class="col-span-1">
-                        
-                        <h3 class="text-base font-semibold text-dynamic-accent pt-4 pb-2 border-t border-gray-700/50 flex items-center">
-                            <i data-lucide="building-2" class="w-4 h-4 mr-1 text-yellow-500"></i> Pakistan National Links & SEZs
-                        </h3>
-                        <a href="https://www.railways.gov.pk/" target="_blank" class="modern-link-card">
-                            <span class="link-text">
-                                <img src="${getIconUrl('railways.gov.pk')}" alt="PR Icon" class="link-icon"> Pakistan Railways Official Portal
-                            </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://www.pakrailways.gov.pk/train" target="_blank" class="modern-link-card">
-                            <span class="link-text">
-                                <img src="${getIconUrl('pakrailways.gov.pk/train')}" alt="PR Icon" class="link-icon"> Pakistan Railways (RABTA - Train Timings)
-                            </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://www.ksez.com.pk/" target="_blank" class="modern-link-card">
-                            <span class="link-text">
-                                <img src="${getIconUrl('ksez.com.pk')}" alt="KSEZ Icon" class="link-icon"> Al Karam Khairpur Special Economic Zone (KSEZ)
-                            </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        
-                        <h3 class="text-base font-semibold text-gray-400 pt-4 pb-1 border-t border-gray-700/50 flex items-center">
-                            <i data-lucide="archive" class="w-4 h-4 mr-1 text-red-500"></i> World Digital Archives & Assets
-                        </h3>
-                        <a href="https://whc.unesco.org/en/list/" target="_blank" class="modern-link-card">
-                            <span class="link-text">
-                                <img src="${getIconUrl('unesco.org')}" alt="UNESCO Icon" class="link-icon"> 1. UNESCO World Heritage List
-                            </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://www.nationalgeographic.com/photography" target="_blank" class="modern-link-card">
-                            <span class="link-text">
-                                <img src="${getIconUrl('nationalgeographic.com/photography')}" alt="NatGeo Icon" class="link-icon"> 2. National Geographic Photography
-                            </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://images.nasa.gov/" target="_blank" class="modern-link-card">
-                            <span class="link-text">
-                                <img src="${getIconUrl('images.nasa.gov')}" alt="NASA Icon" class="link-icon"> 3. NASA Image and Video Library
-                            </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://www.britishmuseum.org/collection" target="_blank" class="modern-link-card">
-                            <span class="link-text">
-                                <img src="${getIconUrl('britishmuseum.org')}" alt="Museum Icon" class="link-icon"> 4. British Museum Collection
-                            </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://www.si.edu/openaccess" target="_blank" class="modern-link-card">
-                            <span class="link-text">
-                                <img src="${getIconUrl('si.edu')}" alt="Museum Icon" class="link-icon"> 5. Smithsonian Institution Open Access
-                            </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://www.history.com/photos" target="_blank" class="modern-link-card">
-                            <span class="link-text">
-                                <img src="${getIconUrl('history.com')}" alt="History Icon" class="link-icon"> 6. History.com Photo Collections
-                            </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://collections.louvre.fr/" target="_blank" class="modern-link-card">
-                            <span class="link-text">
-                                <img src="${getIconUrl('louvre.fr')}" alt="Louvre Icon" class="link-icon"> 7. Louvre Museum Collections
-                            </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://artsandculture.google.com/" target="_blank" class="modern-link-card">
-                            <span class="link-text">
-                                <img src="${getIconUrl('artsandculture.google.com')}" alt="Google Arts Icon" class="link-icon"> 8. Google Arts & Culture
-                            </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://www.gettyimages.com/" target="_blank" class="modern-link-card">
-                            <span class="link-text">
-                                <img src="${getIconUrl('gettyimages.com')}" alt="Image Icon" class="link-icon"> 9. Getty Images
-                            </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://www.shutterstock.com/explore/free-images" target="_blank" class="modern-link-card">
-                            <span class="link-text">
-                                <img src="${getIconUrl('shutterstock.com')}" alt="Image Icon" class="link-icon"> 10. Shutterstock Free Images
-                            </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://pixabay.com/" target="_blank" class="modern-link-card">
-                            <span class="link-text">
-                                <img src="${getIconUrl('pixabay.com')}" alt="Image Icon" class="link-icon"> 11. Pixabay (Free Stock Images)
-                            </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://unsplash.com/" target="_blank" class="modern-link-card">
-                            <span class="link-text">
-                                <img src="${getIconUrl('unsplash.com')}" alt="Image Icon" class="link-icon"> 12. Unsplash (Free Stock Images)
-                            </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://www.pexels.com/" target="_blank" class="modern-link-card">
-                            <span class="link-text">
-                                <img src="${getIconUrl('pexels.com')}" alt="Image Icon" class="link-icon"> 13. Pexels (Free Stock Images)
-                            </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://commons.wikimedia.org/" target="_blank" class="modern-link-card">
-                            <span class="link-text">
-                                <img src="${getIconUrl('commons.wikimedia.org')}" alt="Wiki Icon" class="link-icon"> 14. Wikimedia Commons
-                            </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://www.worldhistory.org/images/" target="_blank" class="modern-link-card">
-                            <span class="link-text">
-                                <img src="${getIconUrl('worldhistory.org')}" alt="History Icon" class="link-icon"> 15. World History Encyclopedia Images
-                            </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://digitalcollections.nypl.org/" target="_blank" class="modern-link-card">
-                            <span class="link-text">
-                                <img src="${getIconUrl('nypl.org')}" alt="Library Icon" class="link-icon"> 16. NY Public Library Digital Collections
-                            </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://www.europeana.eu/en" target="_blank" class="modern-link-card">
-                            <span class="link-text">
-                                <img src="${getIconUrl('europeana.eu')}" alt="Europeana Icon" class="link-icon"> 17. Europeana (Digital European Heritage)
-                            </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://www.loc.gov/pictures/" target="_blank" class="modern-link-card">
-                            <span class="link-text">
-                                <img src="${getIconUrl('loc.gov')}" alt="Library Icon" class="link-icon"> 18. Library of Congress Prints & Photos
-                            </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://earthobservatory.nasa.gov/" target="_blank" class="modern-link-card">
-                            <span class="link-text">
-                                <img src="${getIconUrl('earthobservatory.nasa.gov')}" alt="NASA Icon" class="link-icon"> 19. NASA Earth Observatory
-                            </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://www.rct.uk/collection" target="_blank" class="modern-link-card">
-                            <span class="link-text">
-                                <img src="${getIconUrl('rct.uk')}" alt="Crown Icon" class="link-icon"> 20. Royal Collection Trust (UK)
-                            </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        
-                        <h3 class="text-base font-semibold text-dynamic-accent pt-4 pb-2 border-t border-gray-700/50 flex items-center">
-                            <i data-lucide="receipt" class="w-4 h-4 mr-1 text-green-400"></i> Financial & Revenue Links (Sindh & Federal)
-                        </h3>
-                        <a href="https://www.fbr.gov.pk" target="_blank" class="modern-link-card">
-                            <span class="link-text">
-                                <img src="${getIconUrl('fbr.gov.pk')}" alt="FBR Icon" class="link-icon"> FBR – Federal Board of Revenue 
-                            </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://aitapp.srb.gos.pk/#/session/signin" target="_blank" class="modern-link-card">
-                            <span class="link-text">
-                                <img src="${getIconUrl('srb.gos.pk')}" alt="SRB Icon" class="link-icon"> SRB AIT Application – Sindh Sales Tax 
-                            </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        
-                        <h3 class="text-base font-semibold text-gray-400 pt-4 pb-1 border-t border-gray-700/50 flex items-center">
-                            <i data-lucide="landmark" class="w-4 h-4 mr-1 text-secondary-accent"></i> Sindh Government Main Portals
-                        </h3>
-                        <a href="https://www.sindh.gov.pk/" target="_blank" class="modern-link-card">
-                            <span class="link-text">
-                                <img src="${getIconUrl('sindh.gov.pk')}" alt="GoS Icon" class="link-icon"> 1. Government of Sindh Official Portal
-                            </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://sindhpolice.gov.pk/" target="_blank" class="modern-link-card">
-                            <span class="link-text">
-                                <img src="${getIconUrl('sindhpolice.gov.pk')}" alt="Police Icon" class="link-icon"> 2. Sindh Police (Proud to Serve)
-                            </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://spsc.gos.pk/" target="_blank" class="modern-link-card">
-                            <span class="link-text">
-                                <img src="${getIconUrl('spsc.gos.pk')}" alt="SPSC Icon" class="link-icon"> 3. Sindh Public Service Commission (SPSC)
-                            </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://sindhhighcourt.gov.pk/" target="_blank" class="modern-link-card">
-                            <span class="link-text">
-                                <img src="${getIconUrl('sindhhighcourt.gov.pk')}" alt="SHC Icon" class="link-icon"> 4. High Court of Sindh (SHC)
-                            </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        
-                        <h3 class="text-base font-semibold text-gray-400 pt-4 pb-1 border-t border-gray-700/50 flex items-center">
-                            <i data-lucide="graduation-cap" class="w-4 h-4 mr-1 text-red-500"></i> Education & Health (Sindh)
-                        </h3>
-                        <a href="https://seld.sindh.gov.pk" target="_blank" class="modern-link-card">
-                            <span class="link-text">
-                                <img src="${getIconUrl('seld.sindh.gov.pk')}" alt="SELD Icon" class="link-icon"> 5. SELD (School Education) 
-                            </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://nicvd.org" target="_blank" class="modern-link-card">
-                            <span class="link-text">
-                                <img src="${getIconUrl('nicvd.org')}" alt="NICVD Icon" class="link-icon"> 6. NICVD (Cardiovascular Diseases) 
-                            </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://siut.org/" target="_blank" class="modern-link-card">
-                            <span class="link-text">
-                                <img src="${getIconUrl('siut.org')}" alt="SIUT Icon" class="link-icon"> 7. SIUT (Sindh Institute of Urology and Transplantation)
-                            </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        
-                        <h3 class="text-base font-semibold text-gray-400 pt-4 pb-1 border-t border-gray-700/50 flex items-center">
-                            <i data-lucide="wrench" class="w-4 h-4 mr-1 text-orange-400"></i> Other Key Sindh Departments
-                        </h3>
-                        <a href="https://irrigation.sindh.gov.pk" target="_blank" class="modern-link-card">
-                            <span class="link-text">
-                                <img src="${getIconUrl('irrigation.sindh.gov.pk')}" alt="Irrigation Icon" class="link-icon"> 8. Irrigation Department
-                            </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://phe.sindh.gov.pk" target="_blank" class="modern-link-card">
-                            <span class="link-text">
-                                <img src="${getIconUrl('phe.sindh.gov.pk')}" alt="PHE Icon" class="link-icon"> 9. Public Health Engineering (PHE)
-                            </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://sepa.sindh.gov.pk" target="_blank" class="modern-link-card">
-                            <span class="link-text">
-                                <img src="${getIconUrl('sepa.sindh.gov.pk')}" alt="SEPA Icon" class="link-icon"> 10. Sindh Environmental Protection Agency (SEPA)
-                            </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://sbca.gos.pk" target="_blank" class="modern-link-card">
-                            <span class="link-text">
-                                <img src="${getIconUrl('sbca.gos.pk')}" alt="SBCA Icon" class="link-icon"> 11. Sindh Building Control Authority (SBCA) 
-                            </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://kmc.gos.pk" target="_blank" class="modern-link-card">
-                            <span class="link-text">
-                                <img src="${getIconUrl('kmc.gos.pk')}" alt="KMC Icon" class="link-icon"> 12. KMC Karachi (Metropolitan Corporation) 
-                            </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        
-                    </div>
-
-                    <div class="col-span-1">
-                        
-                        <h3 class="text-base font-semibold text-dynamic-accent pt-4 pb-2 border-t border-gray-700/50 flex items-center">
-                            <i data-lucide="code" class="w-4 h-4 mr-1 text-dynamic-accent"></i> Tech & Productivity
-                        </h3>
-                        <a href="https://www.google.com" target="_blank" class="modern-link-card">
-                            <span class="link-text">
-                                <img src="${getIconUrl('google')}" alt="Google Search Icon" class="link-icon"> Google Search
-                            </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://mail.google.com" target="_blank" class="modern-link-card">
-                            <span class="link-text">
-                                <img src="${getIconUrl('gmail')}" alt="Gmail Icon" class="link-icon"> Gmail
-                            </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://maps.google.com" target="_blank" class="modern-link-card">
-                            <span class="link-text">
-                                <img src="${getIconUrl('maps')}" alt="Google Maps Icon" class="link-icon"> Google Maps
-                            </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://www.canva.com" target="_blank" class="modern-link-card">
-                            <span class="link-text">
-                                <img src="${getIconUrl('canva')}" alt="Canva Icon" class="link-icon"> Canva
-                            </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        
-                        <h3 class="text-base font-semibold text-dynamic-accent pt-4 pb-2 border-t border-gray-700/50 flex items-center">
-                            <i data-lucide="briefcase" class="w-4 h-4 mr-1 text-cyan-400"></i> Freelancing & Business
-                        </h3>
-                        <a href="https://www.linkedin.com" target="_blank" class="modern-link-card">
-                            <span class="link-text">
-                                <img src="${getIconUrl('linkedin')}" alt="LinkedIn Icon" class="link-icon"> LinkedIn
-                            </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://www.fiverr.com" target="_blank" class="modern-link-card">
-                            <span class="link-text">
-                                <img src="${getIconUrl('fiverr')}" alt="Fiverr Icon" class="link-icon"> Fiverr 
-                            </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://www.upwork.com" target="_blank" class="modern-link-card">
-                            <span class="link-text">
-                                <img src="${getIconUrl('upwork')}" alt="Upwork Icon" class="link-icon"> Upwork
-                            </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://www.google.com/business" target="_blank" class="modern-link-card">
-                            <span class="link-text">
-                                <img src="${getIconUrl('business')}" alt="Google Business Icon" class="link-icon"> Google Business Profile
-                            </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-
-                        <h3 class="text-base font-semibold text-dynamic-accent pt-4 pb-2 border-t border-gray-700/50 flex items-center">
-                            <i data-lucide="globe" class="w-4 h-4 mr-1 text-green-500"></i> World Knowledge & Inspiration (Birds, Animals, Quotes)
-                        </h3>
-                        <a href="https://www.nationalgeographic.com/" target="_blank" class="modern-link-card">
-                            <span class="link-text">
-                                <img src="${getIconUrl('nationalgeographic.com')}" alt="NatGeo Icon" class="link-icon"> National Geographic (Animals/Science)
-                            </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://www.birdlife.org/" target="_blank" class="modern-link-card">
-                            <span class="link-text">
-                                <img src="${getIconUrl('birdlife.org')}" alt="BirdLife Icon" class="link-icon"> BirdLife International (Global Conservation)
-                            </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://ebird.org/" target="_blank" class="modern-link-card">
-                            <span class="link-text">
-                                <img src="${getIconUrl('ebird.org')}" alt="eBird Icon" class="link-icon"> eBird by Cornell Lab of Ornithology (Bird Data)
-                            </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://www.quotationspage.com/" target="_blank" class="modern-link-card">
-                            <span class="link-text">
-                                <img src="${getIconUrl('quotationspage.com')}" alt="Quotes Icon" class="link-icon"> The Quotations Page (Famous Sayings)
-                            </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        
-                        <h3 class="text-base font-semibold text-gray-400 pt-4 pb-1 border-t border-gray-700/50 flex items-center">
-                            <i data-lucide="folder-open" class="w-4 h-4 mr-1 text-yellow-300"></i> Internal/Drive Folders
-                        </h3>
-                        <a href="https://drive.google.com/drive/folders/1w7cQjL-8p6U5s0qgYt_1jR1aP3sYt4Qv" target="_blank" class="modern-link-card">
-                            <span class="link-text">
-                                <i data-lucide="file-text" class="w-4 h-4 mr-2 text-secondary-accent"></i> Land Record App Documents 
-                            </span>
-                            <span class="icon-placeholder">
-                                <i data-lucide="external-link" class="w-4 h-4 text-dynamic-accent"></i>
-                            </span>
-                        </a>
-                        <a href="https://drive.google.com/drive/folders/1i-9S-n35qPTCNXhSGWv8PFPHE8aV0SIQ" target="_blank" class="modern-link-card">
-                            <span class="link-text">
-                                <i data-lucide="smartphone" class="w-4 h-4 mr-2 text-secondary-accent"></i> CNIC App (Drive) 
-                            </span>
-                            <span class="icon-placeholder">
-                                <i data-lucide="external-link" class="w-4 h-4 text-dynamic-accent"></i>
-                            </span>
-                        </a>
-                        <a href="https://drive.google.com/drive/folders/1w6i4v-wIrANuXZ..." target="_blank" class="modern-link-card">
-                            <span class="link-text">
-                                <i data-lucide="database" class="w-4 h-4 mr-2 text-secondary-accent"></i> Master Data Folder (Access Needed)
-                            </span>
-                            <span class="icon-placeholder">
-                                <i data-lucide="external-link" class="w-4 h-4 text-dynamic-accent"></i>
-                            </span>
-                        </a>
-
-                    </div>
-                </div>
-
-                <div class="mt-10 p-6 glass-card rounded-xl">
-                    <h3 class="text-xl font-bold section-title mb-4 flex items-center">
-                        <i data-lucide="users" class="w-5 h-5 mr-2"></i> World Leaders (Social Media)
-                    </h3>
-                    <div class="text-gray-400 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                        <ul class="space-y-2">
-                            <li class="flex justify-between items-center border-b border-gray-700/50 pb-2">
-                                <span class="person-name font-medium">Imran Khan</span>
-                                <span class="social-links space-x-2 text-sm">
-                                    <a class="x text-blue-400 hover:text-white transition" href="https://x.com/ImranKhanPTI">X</a>
-                                    <a class="fb text-blue-600 hover:text-white transition" href="https://www.facebook.com/ImranKhanOfficial/">FB</a>
-                                </span>
-                            </li>
-                            <li class="flex justify-between items-center border-b border-gray-700/50 pb-2">
-                                <span class="person-name font-medium">Nawaz Sharif</span>
-                                <span class="social-links space-x-2 text-sm">
-                                    <a class="x text-blue-400 hover:text-white transition" href="https://x.com/NawazSharifMNS">X</a>
-                                    <a class="fb text-blue-600 hover:text-white transition" href="https://www.facebook.com/NawazSharifMNS/">FB</a>
-                                </span>
-                            </li>
-                            <li class="flex justify-between items-center border-b border-gray-700/50 pb-2">
-                                <span class="person-name font-medium">Bilawal Bhutto Zardari</span>
-                                <span class="social-links space-x-2 text-sm">
-                                    <a class="x text-blue-400 hover:text-white transition" href="https://x.com/BBhuttoZardari">X</a>
-                                    <a class="fb text-blue-600 hover:text-white transition" href="https://www.facebook.com/BilawalBhuttoZardari">FB</a>
-                                </span>
-                            </li>
-                        </ul>
-                        <ul class="space-y-2">
-                            <li class="flex justify-between items-center border-b border-gray-700/50 pb-2">
-                                <span class="person-name font-medium">Joe Biden</span>
-                                <span class="social-links space-x-2 text-sm">
-                                    <a class="x text-blue-400 hover:text-white transition" href="https://x.com/JoeBiden">X</a>
-                                    <a class="fb text-blue-600 hover:text-white transition" href="https://www.facebook.com/joebiden">FB</a>
-                                    <a class="ig text-pink-500 hover:text-white transition" href="https://www.instagram.com/joebiden/">IG</a>
-                                </span>
-                            </li>
-                            <li class="flex justify-between items-center border-b border-gray-700/50 pb-2">
-                                <span class="person-name font-medium">Donald Trump</span>
-                                <span class="social-links space-x-2 text-sm">
-                                    <a class="x text-blue-400 hover:text-white transition" href="https://x.com/realDonaldTrump">X</a>
-                                    <a class="fb text-blue-600 hover:text-white transition" href="https://www.facebook.com/DonaldTrump">FB</a>
-                                </span>
-                            </li>
-                            <li class="flex justify-between items-center border-b border-gray-700/50 pb-2">
-                                <span class="person-name font-medium">Narendra Modi</span>
-                                <span class="social-links space-x-2 text-sm">
-                                    <a class="x text-blue-400 hover:text-white transition" href="https://x.com/narendramodi">X</a>
-                                    <a class="fb text-blue-600 hover:text-white transition" href="https://www.facebook.com/narendramodi/">FB</a>
-                                    <a class="ig text-pink-500 hover:text-white transition" href="https://www.instagram.com/narendramodi/">IG</a>
-                                </span>
-                            </li>
-                        </ul>
-                        <ul class="space-y-2">
-                            <li class="flex justify-between items-center border-b border-gray-700/50 pb-2">
-                                <span class="person-name font-medium">Vladimir Putin</span>
-                                <span class="social-links space-x-2 text-sm">
-                                    <a class="fb text-blue-600 hover:text-white transition" href="https://www.facebook.com/putin.ru">FB</a>
-                                    <a class="ig text-pink-500 hover:text-white transition" href="https://www.instagram.com/putinofficial/">IG</a>
-                                </span>
-                            </li>
-                            <li class="flex justify-between items-center border-b border-gray-700/50 pb-2">
-                                <span class="person-name font-medium">Justin Trudeau</span>
-                                <span class="social-links space-x-2 text-sm">
-                                    <a class="x text-blue-400 hover:text-white transition" href="https://x.com/JustinTrudeau">X</a>
-                                    <a class="fb text-blue-600 hover:text-white transition" href="https://www.facebook.com/justin.trudeau">FB</a>
-                                    <a class="ig text-pink-500 hover:text-white transition" href="https://www.instagram.com/justinpjtrudeau/">IG</a>
-                                </span>
-                            </li>
-                            <li class="flex justify-between items-center border-b border-gray-700/50 pb-2">
-                                <span class="person-name font-medium">Jacinda Ardern</span>
-                                <span class="social-links space-x-2 text-sm">
-                                    <a class="x text-blue-400 hover:text-white transition" href="https://x.com/jacindaardern">X</a>
-                                    <a class="fb text-blue-600 hover:text-white transition" href="https://www.facebook.com/jacindaardern">FB</a>
-                                    <a class="ig text-pink-500 hover:text-white transition" href="https://www.instagram.com/jacindaardern/">IG</a>
-                                </span>
-                            </li>
-                        </ul>
-                        <ul class="space-y-2">
-                            <li class="flex justify-between items-center border-b border-gray-700/50 pb-2">
-                                <span class="person-name font-medium">Barack Obama</span>
-                                <span class="social-links space-x-2 text-sm">
-                                    <a class="x text-blue-400 hover:text-white transition" href="https://x.com/BarackObama">X</a>
-                                    <a class="fb text-blue-600 hover:text-white transition" href="https://www.facebook.com/barackobama">FB</a>
-                                    <a class="ig text-pink-500 hover:text-white transition" href="https://www.instagram.com/barackobama/">IG</a>
-                                </span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <main class="pt-24 pb-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <section id="contact" class="mt-12">
-            <h2 class="section-title text-2xl font-bold mb-4 flex items-center">
-                <i data-lucide="mail" class="w-5 h-5 mr-2"></i> Contact Info
-            </h2>
-            <div class="glass-card p-6 md:p-8 rounded-xl text-gray-400">
-                <p class="text-sm">
-                    For technical support, inquiries, or customized portal development, please contact the developer:
-                </p>
-                <p class="text-base font-bold mt-3 text-white">
-                    Hassan Jatoi: 
-                    <a href="https://wa.me/923083500829" target="_blank" class="text-secondary-accent hover:text-white transition ml-2">
-                        +92 308 3500829 (WhatsApp)
-                    </a>
-                </p>
+        <div class="roman-card p-8 mb-12">
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between mb-6">
+                <div class="space-y-2">
+                    <h1 class="roman-heading text-4xl">Digital Revenue & Land Records Interface</h1>
+                    <p class="text-lg font-roman text-secondary-stone">Administratio Propositum II.I (Admin's Project 2.1)</p>
+                </div>
+                <div class="mt-4 md:mt-0">
+                    <img src="https://i.ibb.co/YTyLHmky/Whats-App-Image-2025-11-19-at-11-06-27-AM.jpg" alt="Developer Profile" 
+                        class="w-24 h-24 object-cover rounded-full border-4 border-primary-gold shadow-xl shadow-primary-gold/50">
+                </div>
             </div>
-        </section>
 
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4 border-t border-gray-700/50">
+                
+                <div class="md:col-span-3">
+                    <h3 class="text-base font-semibold text-primary-gold mb-2 flex items-center category-heading section-title">
+                        <i data-lucide="scan-line" class="w-4 h-4 mr-2 text-primary-gold"></i> Mission Ka Maqsad
+                    </h3>
+                    <p class="text-sm text-gray-300 border-l-4 border-primary-gold/50 pl-4 italic mb-4 bg-primary-gold/5 p-2">
+                        **AL KARAM REVENUE DOCUMENTS** agricultural land records ko **mehfooz (secure) aur munazzam (organized)** tareeqay se manage karne ke liye design kiya gaya hai. Sab rights iske owner, **Mr. Shahid Ikram Malik** ke paas hain.
+                    </p>
+                    
+                    <h3 class="text-base font-semibold text-primary-gold mb-2 mt-4 flex items-center category-heading section-title">
+                        <i data-lucide="cpu" class="w-4 h-4 mr-2 text-primary-gold"></i> System Administrator Ka Profile
+                    </h3>
+                    <p class="text-sm text-gray-300">
+                        Mr. Shahid Ikram Malik ek visionary professional hain jinhone land record digitization ke liye modern aur secure system introduce kiya. Yeh portal is baat ki zamanat deta hai ki records **protected, transparent, aur digital** hon.
+                    </p>
+                </div>
+                <div class="md:col-span-3"> 
+                    <h3 class="text-base font-semibold text-gray-400 mb-2">Istemal Hone Wali Technology (Frontend)</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-secondary-stone/30 text-white text-xs rounded-full font-sans border border-secondary-stone shadow-sm">HTML5 / JavaScript (Pure Static)</span>
+                        <span class="px-3 py-1 bg-secondary-stone/30 text-white text-xs rounded-full font-sans border border-secondary-stone shadow-sm">Tailwind CSS (CDN)</span>
+                        <span class="px-3 py-1 bg-secondary-stone/30 text-white text-xs rounded-full font-sans border border-secondary-stone shadow-sm">GitHub Pages Ready</span>
+                        <span class="px-3 py-1 bg-secondary-stone/30 text-white text-xs rounded-full font-sans border border-secondary-stone shadow-sm">Roman Modern Design</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <div class="lg:col-span-2 space-y-8">
+                
+                <div id="password-prompt" class="roman-card p-6">
+                    <h3 class="text-xl font-bold mb-4 category-heading section-title flex items-center">
+                        <i data-lucide="lock" class="w-5 h-5 mr-2 text-primary-gold"></i>
+                        ACCESS DENIED: Quick Links Encrypted Hain
+                    </h3>
+                    <p class="text-sm text-gray-300 mb-4">Internal links aur documents dekhne ke liye 8-digit security access code daalein.</p>
+                    
+                    <div class="flex flex-col space-y-3">
+                        <input type="password" id="quick-links-password" placeholder="Access Code Enter Karein (ALKARAM786)" 
+                               class="w-full px-4 py-3 rounded-sm bg-dark-bg-main border-2 border-secondary-stone/50 text-white focus:border-primary-gold focus:outline-none placeholder-gray-600 font-sans"
+                               onkeypress="if(event.keyCode == 13) checkPassword()">
+                        <button onclick="checkPassword()"
+                                class="flex items-center justify-center px-6 py-3 rounded-sm bg-primary-gold hover:bg-primary-gold/80 text-dark-bg-main font-bold transition duration-300 shadow-lg shadow-primary-gold/40 category-heading">
+                            <i data-lucide="key" class="w-4 h-4 mr-2"></i>
+                            DECRYPT AUR ACCESS KAREIN
+                        </button>
+                    </div>
+                    <p id="error-message" class="mt-3 text-center text-sm font-sans"></p>
+                </div>
+                
+                <div id="quick-links-access" class="roman-card p-6" style="display: none;">
+                    <h3 class="text-xl font-bold mb-4 category-heading section-title flex items-center">
+                        <i data-lucide="folder-open" class="w-5 h-5 mr-2 text-secondary-stone"></i>
+                        INTERNAL DATA MATRIX (SECURED DOCUMENTS)
+                    </h3>
+                    
+                    <div class="space-y-3" id="internal-links-list">
+                        
+                        <a href="https://al-karamfeedsmill.vercel.app/" target="_blank" class="digital-link-card">
+                            <span class="flex items-center font-bold text-lg text-primary-gold">
+                                <i data-lucide="building-2" class="w-5 h-5 mr-2 text-primary-gold"></i>
+                                Al Karam Feeds Mill (LIVE DOMAIN)
+                            </span>
+                            <span class="icon-placeholder text-secondary-stone font-sans text-sm">
+                                LINK ACTIVE <i data-lucide="external-link" class="w-4 h-4 inline ml-1"></i>
+                            </span>
+                        </a>
+
+                        <a href="https://drive.google.com/drive/folders/1orezy0DFRBFQ7xBkDiJXvRKkkgBB7DKI" target="_blank" class="digital-link-card">
+                            <span class="flex items-center text-gray-300">
+                                <i data-lucide="folder-open" class="w-4 h-4 mr-2 text-secondary-stone"></i>
+                                Revenue Record Data Folder (Google Drive)
+                            </span>
+                            <span class="icon-placeholder text-secondary-stone text-sm">
+                                VIEW <i data-lucide="arrow-right" class="w-4 h-4 inline ml-1"></i>
+                            </span>
+                        </a>
+
+                        <a href="https://drive.google.com/drive/folders/1L3EpqCTI2dJd-bOvzU1NwQt7nOYi1iTz" target="_blank" class="digital-link-card">
+                            <span class="flex items-center text-gray-300">
+                                <i data-lucide="file-check-2" class="w-4 h-4 mr-2 text-secondary-stone"></i>
+                                Legal Agreements & Contracts (Drive)
+                            </span>
+                            <span class="icon-placeholder text-secondary-stone text-sm">
+                                VIEW <i data-lucide="arrow-right" class="w-4 h-4 inline ml-1"></i>
+                            </span>
+                        </a>
+                        
+                        <div class="pt-2">
+                             <h3 class="text-xs font-semibold text-gray-400 mb-1 flex items-center category-heading">
+                                <i data-lucide="eye-off" class="w-3 h-3 mr-1 text-red-500"></i> Placeholder Services (Offline Modules)
+                            </h3>
+                        </div>
+
+                        <div class="digital-link-card opacity-50 cursor-not-allowed">
+                            <span class="flex items-center text-gray-500">
+                                <i data-lucide="credit-card" class="w-4 h-4 mr-2 text-gray-500"></i>
+                                Online Fee Payment Module (SIMULATED)
+                            </span>
+                            <span class="icon-placeholder text-gray-500 text-sm">
+                                LOCK <i data-lucide="lock" class="w-4 h-4 inline ml-1"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-1">
+                 <div class="roman-card p-6 h-full">
+                    <h2 class="text-xl font-bold mb-4 category-heading section-title flex items-center">
+                        <i data-lucide="network" class="w-5 h-5 mr-2 text-primary-gold"></i>
+                        EXTERNAL DATA LINKS & E-GOV
+                    </h2>
+                    
+                    <div class="space-y-3 custom-scroll max-h-[850px] overflow-y-auto pr-3">
+                        
+                        <h3 class="text-base font-semibold text-primary-gold pt-2 pb-2 border-t border-gray-700/50 flex items-center category-heading">
+                            <i data-lucide="gavel" class="w-4 h-4 mr-1 text-secondary-stone"></i> 🟣 E-Governance / Legal
+                        </h3>
+                        <a href="https://id.nadra.gov.pk" target="_blank" class="digital-link-card">
+                            <span class="flex items-center text-gray-300">
+                                <img src="${getIconUrl('nadra')}" alt="NADRA Icon" class="w-5 h-5 mr-2">
+                                NADRA Portal
+                            </span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold ml-2"></i>
+                        </a>
+                        <a href="https://citizenportal.gov.pk" target="_blank" class="digital-link-card">
+                            <span class="flex items-center text-gray-300">
+                                <i data-lucide="user-plus" class="w-5 h-5 mr-2 text-secondary-stone"></i>
+                                Pakistan Citizen Portal
+                            </span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold ml-2"></i>
+                        </a>
+                        <a href="https://bor.sindh.gov.pk" target="_blank" class="digital-link-card">
+                            <span class="flex items-center text-gray-300">
+                                <i data-lucide="stamp" class="w-5 h-5 mr-2 text-secondary-stone"></i>
+                                Sindh Board of Revenue (BoR)
+                            </span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold ml-2"></i>
+                        </a>
+                        <a href="https://www.fbr.gov.pk" target="_blank" class="digital-link-card">
+                            <span class="flex items-center text-gray-300">
+                                <img src="${getIconUrl('fbr')}" alt="FBR Icon" class="w-5 h-5 mr-2">
+                                FBR (Tax)
+                            </span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold ml-2"></i>
+                        </a>
+                        
+                        <h3 class="text-base font-semibold text-primary-gold pt-4 pb-2 border-t border-gray-700/50 flex items-center category-heading">
+                            <i data-lucide="search" class="w-4 h-4 mr-1 text-secondary-stone"></i> 🌐 Daily Services
+                        </h3>
+                        <a href="https://mail.google.com" target="_blank" class="digital-link-card">
+                            <span class="flex items-center text-gray-300">
+                                <i data-lucide="mail" class="w-5 h-5 mr-2 text-secondary-stone"></i>
+                                Gmail Access
+                            </span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold ml-2"></i>
+                        </a>
+                        <a href="https://drive.google.com" target="_blank" class="digital-link-card">
+                            <span class="flex items-center text-gray-300">
+                                <img src="${getIconUrl('drive')}" alt="Google Drive Icon" class="w-5 h-5 mr-2">
+                                Google Drive
+                            </span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold ml-2"></i>
+                        </a>
+                        <a href="https://translate.google.com" target="_blank" class="digital-link-card">
+                            <span class="flex items-center text-gray-300">
+                                <i data-lucide="languages" class="w-5 h-5 mr-2 text-secondary-stone"></i>
+                                Google Translate
+                            </span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold ml-2"></i>
+                        </a>
+                        <a href="https://web.whatsapp.com" target="_blank" class="digital-link-card">
+                            <span class="flex items-center text-gray-300">
+                                <i data-lucide="message-square" class="w-5 h-5 mr-2 text-secondary-stone"></i>
+                                WhatsApp Web
+                            </span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mt-12">
+            <h2 class="roman-heading text-2xl mb-6 border-b-2 border-primary-gold/50 pb-2 flex items-center">
+                <i data-lucide="database" class="w-6 h-6 inline-block mr-2 text-primary-gold"></i> 
+                ADVANCED DATA STACKS (Hinglish Links)
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <div class="roman-card p-6 border-l-4 border-primary-gold">
+                    <h3 class="text-lg font-bold mb-4 flex items-center section-title category-heading">
+                        <i data-lucide="home" class="w-5 h-5 mr-2 text-primary-gold"></i> GLOBAL PROPERTY & SALES
+                    </h3>
+                    <ul class="space-y-3 text-sm text-gray-300">
+                        <li><a href="https://properties.emaar.com/en/" target="_blank" class="digital-link-card hover:text-primary-gold"><img src="${getIconUrl('emaar')}" class="w-5 h-5 mr-2 inline-block"> Emaar Properties (Dubai Developer)</a></li>
+                        <li><a href="https://www.zoopla.co.uk/overseas/property/united-arab-emirates/dubai/" target="_blank" class="digital-link-card hover:text-primary-gold"><img src="${getIconUrl('property')}" class="w-5 h-5 mr-2 inline-block"> Zoopla Overseas (Dubai Property)</a></li>
+                        <li><a href="https://www.rightmove.co.uk/overseas-property/in-europe.html" target="_blank" class="digital-link-card hover:text-primary-gold"><i data-lucide="landmark" class="w-5 h-5 mr-2 inline-block text-secondary-stone"></i> Rightmove (Europe Property)</a></li>
+                        <li><a href="https://www.savills.com/residential/world-map.aspx" target="_blank" class="digital-link-card hover:text-primary-gold"><i data-lucide="map-pin" class="w-5 h-5 mr-2 inline-block text-secondary-stone"></i> Savills (Worldwide Luxury Property)</a></li>
+                        <li><a href="https://www.realestate.com.au/international/" target="_blank" class="digital-link-card hover:text-primary-gold"><i data-lucide="globe" class="w-5 h-5 mr-2 inline-block text-secondary-stone"></i> Global Residential Sales Portals</a></li>
+                    </ul>
+                </div>
+                
+                <div class="roman-card p-6 border-l-4 border-secondary-stone">
+                    <h3 class="text-lg font-bold mb-4 flex items-center section-title category-heading">
+                        <i data-lucide="plane" class="w-5 h-5 mr-2 text-secondary-stone"></i> GLOBAL TOUR & TRAVEL BOOKINGS
+                    </h3>
+                    <ul class="space-y-3 text-sm text-gray-300">
+                        <li><a href="https://www.booking.com" target="_blank" class="digital-link-card hover:text-primary-gold"><img src="${getIconUrl('booking')}" class="w-5 h-5 mr-2 inline-block"> Booking.com (Hotels & Flights)</a></li>
+                        <li><a href="https://www.expedia.com" target="_blank" class="digital-link-card hover:text-primary-gold"><img src="${getIconUrl('expedia')}" class="w-5 h-5 mr-2 inline-block"> Expedia (Packages & Deals)</a></li>
+                        <li><a href="https://www.kayak.com" target="_blank" class="digital-link-card hover:text-primary-gold"><i data-lucide="ticket" class="w-5 h-5 mr-2 inline-block text-primary-gold"></i> Kayak (Flight Comparison)</a></li>
+                        <li><a href="https://www.viator.com" target="_blank" class="digital-link-card hover:text-primary-gold"><i data-lucide="route" class="w-5 h-5 mr-2 inline-block text-primary-gold"></i> Viator (Activities & Tours)</a></li>
+                        <li><a href="https://flights.google.com" target="_blank" class="digital-link-card hover:text-primary-gold"><i data-lucide="rocket" class="w-5 h-5 mr-2 inline-block text-primary-gold"></i> Google Flights (Price Tracker)</a></li>
+                    </ul>
+                </div>
+                
+                <div class="roman-card p-6 border-l-4 border-primary-gold">
+                    <h3 class="text-lg font-bold mb-4 flex items-center section-title category-heading">
+                        <i data-lucide="map" class="w-5 h-5 mr-2 text-primary-gold"></i> FAMOUS PLACES & TOURISM
+                    </h3>
+                    <ul class="space-y-3 text-sm text-gray-300">
+                        <li><a href="https://salampakistan.gov.pk/" target="_blank" class="digital-link-card hover:text-secondary-stone"><img src="${getIconUrl('tourism')}" class="w-5 h-5 mr-2 inline-block"> Pakistan Official Tourism Portal</a></li>
+                        <li><a href="https://www.lonelyplanet.com/pakistan" target="_blank" class="digital-link-card hover:text-secondary-stone"><i data-lucide="mountain" class="w-5 h-5 mr-2 inline-block text-secondary-stone"></i> Gilgit-Baltistan (Northern Areas Guide)</a></li>
+                        <li><a href="https://www.lonelyplanet.com/dubai" target="_blank" class="digital-link-card hover:text-secondary-stone"><i data-lucide="sun" class="w-5 h-5 mr-2 inline-block text-secondary-stone"></i> Dubai (Travel Guide)</a></li>
+                        <li><a href="https://www.lonelyplanet.com/italy/rome" target="_blank" class="digital-link-card hover:text-secondary-stone"><i data-lucide="shield-half" class="w-5 h-5 mr-2 inline-block text-secondary-stone"></i> Rome, Italy (History & Sites)</a></li>
+                        <li><a href="https://www.lonelyplanet.com/france/paris" target="_blank" class="digital-link-card hover:text-secondary-stone"><i data-lucide="gem" class="w-5 h-5 mr-2 inline-block text-secondary-stone"></i> Paris, France (The City of Light)</a></li>
+                        <li><a href="https://www.lonelyplanet.com/united-kingdom/london" target="_blank" class="digital-link-card hover:text-secondary-stone"><i data-lucide="briefcase" class="w-5 h-5 mr-2 inline-block text-secondary-stone"></i> London, UK (Global Hub)</a></li>
+                    </ul>
+                </div>
+                
+                <div class="roman-card p-6 border-l-4 border-secondary-stone">
+                    <h3 class="text-lg font-bold mb-4 flex items-center section-title category-heading">
+                        <i data-lucide="book-open" class="w-5 h-5 mr-2 text-secondary-stone"></i> ISLAMIC AUR DEENI RESOURCES
+                    </h3>
+                    <ul class="space-y-3 text-sm text-gray-300">
+                        <li><a href="https://quran.com" target="_blank" class="digital-link-card hover:text-primary-gold"><img src="${getIconUrl('quran')}" class="w-5 h-5 mr-2 inline-block"> Quran.com (Tarjuma ke Saath)</a></li>
+                        <li><a href="https://sunnah.com" target="_blank" class="digital-link-card hover:text-primary-gold"><i data-lucide="hand-metal" class="w-5 h-5 mr-2 inline-block text-primary-gold"></i> Sunnah.com (Hadees Collections)</a></li>
+                        <li><a href="https://www.islamicfinder.org/prayer-times/" target="_blank" class="digital-link-card hover:text-primary-gold"><i data-lucide="sunrise" class="w-5 h-5 mr-2 inline-block text-primary-gold"></i> Namaz Ke Auqat (Prayer Times)</a></li>
+                        <li><a href="https://dar-us-salam.com/" target="_blank" class="digital-link-card hover:text-primary-gold"><i data-lucide="book-open-check" class="w-5 h-5 mr-2 inline-block text-primary-gold"></i> Darussalam (Islamic Books)</a></li>
+                    </ul>
+                </div>
+
+                <div class="roman-card p-6 border-l-4 border-primary-gold">
+                    <h3 class="text-lg font-bold mb-4 flex items-center section-title category-heading">
+                        <i data-lucide="feather" class="w-5 h-5 mr-2 text-primary-gold"></i> SHAYARI AUR ADABI RESOURCES
+                    </h3>
+                    <ul class="space-y-3 text-sm text-gray-300">
+                        <li><a href="https://rekhta.org" target="_blank" class="digital-link-card hover:text-secondary-stone"><img src="${getIconUrl('rekhta')}" class="w-5 h-5 mr-2 inline-block"> Rekhta (Urdu Shayari Ka Khazana)</a></li>
+                        <li><a href="https://www.urdusukhan.com/" target="_blank" class="digital-link-card hover:text-secondary-stone"><i data-lucide="clipboard-pen" class="w-5 h-5 mr-2 inline-block text-secondary-stone"></i> Urdu Sukhan (Modern Poetry)</a></li>
+                        <li><a href="https://www.allamaiqbal.com/" target="_blank" class="digital-link-card hover:text-secondary-stone"><i data-lucide="crown" class="w-5 h-5 mr-2 inline-block text-secondary-stone"></i> Allama Iqbal Poetry</a></li>
+                        <li><a href="https://www.poets.org/" target="_blank" class="digital-link-card hover:text-secondary-stone"><i data-lucide="users-round" class="w-5 h-5 mr-2 inline-block text-secondary-stone"></i> Poets.org (Global English Poetry)</a></li>
+                    </ul>
+                </div>
+                
+                <div class="roman-card p-6 border-l-4 border-secondary-stone">
+                    <h3 class="text-lg font-bold mb-4 flex items-center section-title category-heading">
+                        <i data-lucide="radio" class="w-5 h-5 mr-2 text-secondary-stone"></i> NEWS CHANNELS & MEDIA
+                    </h3>
+                    <ul class="space-y-3 text-sm text-gray-300">
+                        <li><a href="https://arynews.tv" target="_blank" class="digital-link-card hover:text-primary-gold"><i data-lucide="newspaper" class="w-5 h-5 mr-2 inline-block text-primary-gold"></i> ARY News (Live/Urdu)</a></li>
+                        <li><a href="https://www.geo.tv" target="_blank" class="digital-link-card hover:text-primary-gold"><i data-lucide="newspaper" class="w-5 h-5 mr-2 inline-block text-primary-gold"></i> Geo News (Live/Urdu)</a></li>
+                        <li><a href="https://www.dawn.com" target="_blank" class="digital-link-card hover:text-primary-gold"><i data-lucide="book-text" class="w-5 h-5 mr-2 inline-block text-primary-gold"></i> Dawn Newspaper (English)</a></li>
+                        <li><a href="https://www.bbc.com/urdu" target="_blank" class="digital-link-card hover:text-primary-gold"><i data-lucide="globe" class="w-5 h-5 mr-2 inline-block text-primary-gold"></i> BBC Urdu</a></li>
+                    </ul>
+                </div>
+
+                
+            </div>
+            
+            <div class="mt-12 space-y-4">
+                <h2 class="roman-heading text-xl border-b border-secondary-stone/50 pb-2 flex items-center category-heading">
+                    <i data-lucide="square-dot" class="w-5 h-5 inline-block mr-2 text-secondary-stone"></i> 
+                    INTERNAL UTILITY LINKS (OFFLINE/PLACEHOLDERS)
+                </h2>
+                <p class="text-sm text-gray-400 italic">Yeh links internal data ya offline modules ke liye hain. Inka maqsad sirf page ka layout banana hai.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="roman-card p-4 space-y-2 text-sm opacity-60">
+                        <h4 class="font-bold text-primary-gold category-heading border-b border-gray-800 pb-1">Archive Links Group A (1-5)</h4>
+                        <a href="javascript:void(0)" class="digital-link-card text-xs cursor-not-allowed">File 404-A-1 (Revenue Backup) <i data-lucide="file-archive" class="w-3 h-3 text-secondary-stone"></i></a>
+                        <a href="javascript:void(0)" class="digital-link-card text-xs cursor-not-allowed">File 404-A-2 (Legal Drafts) <i data-lucide="file-archive" class="w-3 h-3 text-secondary-stone"></i></a>
+                        <a href="javascript:void(0)" class="digital-link-card text-xs cursor-not-allowed">File 404-A-3 (Accounts Data) <i data-lucide="file-archive" class="w-3 h-3 text-secondary-stone"></i></a>
+                        <a href="javascript:void(0)" class="digital-link-card text-xs cursor-not-allowed">File 404-A-4 (Personnel Roster) <i data-lucide="file-archive" class="w-3 h-3 text-secondary-stone"></i></a>
+                        <a href="javascript:void(0)" class="digital-link-card text-xs cursor-not-allowed">File 404-A-5 (Audit Reports) <i data-lucide="file-archive" class="w-3 h-3 text-secondary-stone"></i></a>
+                    </div>
+                    
+                    <div class="roman-card p-4 space-y-2 text-sm opacity-60">
+                        <h4 class="font-bold text-primary-gold category-heading border-b border-gray-800 pb-1">Archive Links Group B (6-10)</h4>
+                        <a href="javascript:void(0)" class="digital-link-card text-xs cursor-not-allowed">File 404-B-6 (Land Maps) <i data-lucide="file-archive" class="w-3 h-3 text-secondary-stone"></i></a>
+                        <a href="javascript:void(0)" class="digital-link-card text-xs cursor-not-allowed">File 404-B-7 (Mutation Docs) <i data-lucide="file-archive" class="w-3 h-3 text-secondary-stone"></i></a>
+                        <a href="javascript:void(0)" class="digital-link-card text-xs cursor-not-allowed">File 404-B-8 (Sale Deeds) <i data-lucide="file-archive" class="w-3 h-3 text-secondary-stone"></i></a>
+                        <a href="javascript:void(0)" class="digital-link-card text-xs cursor-not-allowed">File 404-B-9 (Court Orders) <i data-lucide="file-archive" class="w-3 h-3 text-secondary-stone"></i></a>
+                        <a href="javascript:void(0)" class="digital-link-card text-xs cursor-not-allowed">File 404-B-10 (Property Tax) <i data-lucide="file-archive" class="w-3 h-3 text-secondary-stone"></i></a>
+                    </div>
+                    
+                    <div class="roman-card p-4 space-y-2 text-sm opacity-60">
+                        <h4 class="font-bold text-primary-gold category-heading border-b border-gray-800 pb-1">Archive Links Group C (11-15)</h4>
+                        <a href="javascript:void(0)" class="digital-link-card text-xs cursor-not-allowed">File 404-C-11 (Bank Records) <i data-lucide="file-archive" class="w-3 h-3 text-secondary-stone"></i></a>
+                        <a href="javascript:void(0)" class="digital-link-card text-xs cursor-not-allowed">File 404-C-12 (Utility Bills) <i data-lucide="file-archive" class="w-3 h-3 text-secondary-stone"></i></a>
+                        <a href="javascript:void(0)" class="digital-link-card text-xs cursor-not-allowed">File 404-C-13 (Vehicle Log) <i data-lucide="file-archive" class="w-3 h-3 text-secondary-stone"></i></a>
+                        <a href="javascript:void(0)" class="digital-link-card text-xs cursor-not-allowed">File 404-C-14 (Staff IDs) <i data-lucide="file-archive" class="w-3 h-3 text-secondary-stone"></i></a>
+                        <a href="javascript:void(0)" class="digital-link-card text-xs cursor-not-allowed">File 404-C-15 (Pending Cases) <i data-lucide="file-archive" class="w-3 h-3 text-secondary-stone"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 
-    <footer class="bg-dark-bg border-t border-gray-800 mt-12 py-6">
+    <footer class="bg-dark-bg-main border-t-2 border-primary-gold mt-12 py-6 shadow-2xl shadow-primary-gold/10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm text-gray-500">
-            Digital Revenue Portal - Portfolio Project | Demonstrated Functionality & Technical Skills
-            <p class="mt-1 text-xs text-dynamic-accent">
-                Website Developed by Hassan Jatoi : 03083500829 WhatsApp
+            Digital Revenue Portal - Portfolio Project | Demonstrating Technical & Design Skills
+            <p class="mt-1 text-xs text-primary-gold font-roman category-heading">
+                <i data-lucide="zap" class="w-3 h-3 inline-block mr-1"></i> 
+                SYSTEM ENGINEERED BY HASSAN JATOI : 03083500829 WHATSAPP
             </p>
         </div>
     </footer>
