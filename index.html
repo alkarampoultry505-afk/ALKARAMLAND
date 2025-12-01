@@ -1112,7 +1112,320 @@
                 </div>
         </div>
         </main>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+    /* Global Styles */
+    body {
+        font-family: 'Poppins', sans-serif;
+        /* Light Blue/Grey Gradient Background */
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        padding: 20px;
+        margin: 0;
+        color: #333;
+    }
+    .container {
+        max-width: 1000px;
+        margin: 30px auto;
+        background: #ffffff;
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    }
+    h1 {
+        text-align: center;
+        color: #4a4e69;
+        margin-bottom: 40px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        border-bottom: 3px solid #6c5ce7; /* Purple underline */
+        padding-bottom: 10px;
+    }
 
+    /* Section Styles */
+    .section-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 25px;
+        justify-content: center;
+    }
+    .section-card {
+        background: #ffffff;
+        padding: 25px;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        transition: transform 0.3s, box-shadow 0.3s;
+        flex: 1 1 calc(45% - 25px); /* Two columns layout */
+        min-width: 300px;
+        border-left: 5px solid; /* Colored border for distinction */
+    }
+    .section-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Color Coding for Sections (The beautiful part) */
+    .section-card.resources { border-left-color: #ff6b6b; /* Reddish */ }
+    .section-card.quran { border-left-color: #1dd1a1; /* Mint Green */ }
+    .section-card.islamic-duas { border-left-color: #6c5ce7; /* Purple */ }
+    .section-card.pakistan-political { border-left-color: #54a0ff; /* Blue */ }
+    .section-card.pakistan-celebrity { border-left-color: #feca57; /* Orange/Yellow */ }
+    .section-card.global-leaders { border-left-color: #ff9f43; /* Dark Orange */ }
+
+    h3 {
+        font-size: 1.5em;
+        color: #2c3e50;
+        margin-top: 0;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border-bottom: 1px dashed #ddd;
+        padding-bottom: 10px;
+    }
+    h3 i {
+        font-size: 1.2em;
+    }
+
+    /* List and Link Styles */
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    li {
+        margin: 15px 0;
+        padding: 10px 0;
+        border-bottom: 1px dotted #eee;
+    }
+    li:last-child {
+        border-bottom: none;
+    }
+    
+    .person-name {
+        font-weight: 600;
+        color: #4a4e69;
+        margin-bottom: 5px;
+        display: block;
+    }
+    .social-links a {
+        display: inline-block;
+        margin-right: 12px;
+        padding: 5px 10px;
+        border-radius: 6px;
+        font-size: 0.9em;
+        transition: background-color 0.2s, color 0.2s;
+        text-decoration: none;
+        font-weight: 600;
+    }
+    
+    /* Social Media Link Colors (The colourful part) */
+    .social-links a.x { background: #222; color: #fff; } /* Black for X/Twitter */
+    .social-links a.fb { background: #4267B2; color: #fff; } /* Blue for Facebook */
+    .social-links a.ig { background: #E1306C; color: #fff; } /* Pink/Red for Instagram */
+    .social-links a.external { background: #ecf0f1; color: #2c3e50; }
+
+    .social-links a:hover {
+        opacity: 0.8;
+        transform: scale(1.05);
+    }
+    
+    /* General Links */
+    .general-link a {
+        color: #3498db;
+        text-decoration: none;
+        font-weight: 600;
+        display: block;
+        padding: 5px 0;
+        transition: color 0.2s;
+    }
+    .general-link a:hover {
+        color: #e74c3c;
+    }
+    
+    /* Responsive Design (Ensures it looks good on mobile) */
+    @media (max-width: 768px) {
+        .container {
+            margin: 10px;
+            padding: 20px;
+        }
+        .section-card {
+            flex: 1 1 100%; /* Single column layout on small screens */
+            min-width: auto;
+        }
+    }
+</style>
+    <div class="container">
+    <h1><i style="font-style: normal;">🔗</i> All Important Links Folder</h1>
+
+    <div class="section-group">
+        <div class="section-card resources">
+            <h3><i style="font-style: normal;">📚</i> Wikipedia & Resources</h3>
+            <ul>
+                <li class="general-link"><a href="https://en.wikipedia.org/wiki/List_of_Pakistanis">List of Pakistanis – Wikipedia</a></li>
+                <li class="general-link"><a href="https://www.rekhta.org/location/pakistan">Rekhta Pakistan Literature</a></li>
+                <li class="general-link"><a href="https://en.wikipedia.org/wiki/Forbes_list_of_the_World%27s_Most_Powerful_People">Forbes – Most Powerful People</a></li>
+                <li class="general-link"><a href="https://www.historyextra.com/period/modern/historical-figures-famous-significant-people-through-history-biographies/">History – Famous People</a></li>
+                <li class="general-link"><a href="https://en.wikipedia.org/wiki/Holiest_sites_in_Islam">Holiest Sites in Islam</a></li>
+            </ul>
+        </div>
+
+        <div class="section-card quran">
+            <h3><i style="font-style: normal;">📖</i> Quran & Islamic Resources</h3>
+            <ul>
+                <li class="general-link"><a href="https://www.google.com/search?q=QURAN+READING+PDF+AND+ONLINE+LINKS">Quran Reading PDF & Online Links</a></li>
+                <li class="general-link"><a href="https://www.pinterest.com/drasat131/islamic-images/">Islamic Images – Pinterest</a></li>
+            </ul>
+        </div>
+
+        <div class="section-card islamic-duas">
+            <h3><i style="font-style: normal;">🤲</i> Islamic Duas / Prayers</h3>
+            <ul>
+                <li class="general-link"><a href="https://www.google.com/search?q=GOOD+MORNNIG+MSGS+AND+PRAYERS">Good Morning Messages & Prayers</a></li>
+                <li class="general-link"><a href="https://www.google.com/search?q=ISLAMIC+PRAYERS+DUAS+QUOTE">Islamic Prayers & Duas Quotes</a></li>
+            </ul>
+        </div>
+        
+        <div class="section-card pakistan-political">
+            <h3><i style="font-style: normal;">🇵🇰</i> Pakistani Political Leaders</h3>
+            <ul>
+                <li>
+                    <span class="person-name">Imran Khan</span>
+                    <span class="social-links">
+                        <a class="x" href="https://x.com/ImranKhanPTI">X</a>
+                        <a class="fb" href="https://www.facebook.com/ImranKhan">Facebook</a>
+                        <a class="ig" href="https://www.instagram.com/imrankhan.pti/">Instagram</a>
+                    </span>
+                </li>
+                <li>
+                    <span class="person-name">Maryam Nawaz Sharif</span>
+                    <span class="social-links">
+                        <a class="x" href="https://x.com/MaryamNSharif">X</a>
+                        <a class="fb" href="https://www.facebook.com/maryamnawazfanpage">Facebook</a>
+                        <a class="ig" href="https://www.instagram.com/maryamnawaz.official/">Instagram</a>
+                    </span>
+                </li>
+                <li>
+                    <span class="person-name">Shehbaz Sharif</span>
+                    <span class="social-links">
+                        <a class="x" href="https://x.com/CMShehbaz">X</a>
+                    </span>
+                </li>
+                <li>
+                    <span class="person-name">Bilawal Bhutto Zardari</span>
+                    <span class="social-links">
+                        <a class="x" href="https://x.com/BBhuttoZardari">X</a>
+                        <a class="fb" href="https://www.facebook.com/bilawalbhuttozardari">Facebook</a>
+                        <a class="ig" href="https://www.instagram.com/bilawalbhuttozardari/">Instagram</a>
+                    </span>
+                </li>
+                <li>
+                    <span class="person-name">Fawad Chaudhry</span>
+                    <span class="social-links">
+                        <a class="x" href="https://x.com/fawadchaudhry">X</a>
+                        <a class="fb" href="https://www.facebook.com/FawadChaudhryOfficial">Facebook</a>
+                        <a class="ig" href="https://www.instagram.com/fawadchaudhryofficial/">Instagram</a>
+                    </span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="section-card pakistan-celebrity">
+            <h3><i style="font-style: normal;">🎬</i> Pakistani Celebrities / Athletes</h3>
+            <ul>
+                <li>
+                    <span class="person-name">Mahira Khan</span>
+                    <span class="social-links">
+                        <a class="x" href="https://x.com/mahirakhan">X</a>
+                        <a class="fb" href="https://www.facebook.com/MahiraKhan">FB</a>
+                        <a class="ig" href="https://www.instagram.com/mahirahkhan/">IG</a>
+                    </span>
+                </li>
+                <li>
+                    <span class="person-name">Fawad Khan</span>
+                    <span class="social-links">
+                        <a class="x" href="https://x.com/FawadKhan">X</a>
+                        <a class="fb" href="https://www.facebook.com/FawadKhanOfficial">FB</a>
+                        <a class="ig" href="https://www.instagram.com/fawadkhan/">IG</a>
+                    </span>
+                </li>
+                <li>
+                    <span class="person-name">Shahid Afridi</span>
+                    <span class="social-links">
+                        <a class="x" href="https://x.com/SAfridiOfficial">X</a>
+                        <a class="fb" href="https://www.facebook.com/ShahidAfridiOfficial">FB</a>
+                        <a class="ig" href="https://www.instagram.com/shahidafridi/">IG</a>
+                    </span>
+                </li>
+                <li>
+                    <span class="person-name">Sania Mirza</span>
+                    <span class="social-links">
+                        <a class="fb" href="https://www.facebook.com/saniamirza">FB</a>
+                        <a class="ig" href="https://www.instagram.com/saniamirza/">IG</a>
+                    </span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="section-card global-leaders">
+            <h3><i style="font-style: normal;">🌎</i> Global Leaders / Politicians</h3>
+            <ul>
+                <li>
+                    <span class="person-name">Donald Trump</span>
+                    <span class="social-links">
+                        <a class="x" href="https://x.com/realDonaldTrump">X</a>
+                        <a class="fb" href="https://www.facebook.com/DonaldTrump">FB</a>
+                        <a class="ig" href="https://www.instagram.com/realdonaldtrump/">IG</a>
+                    </span>
+                </li>
+                <li>
+                    <span class="person-name">Joe Biden</span>
+                    <span class="social-links">
+                        <a class="x" href="https://x.com/JoeBiden">X</a>
+                        <a class="fb" href="https://www.facebook.com/joebiden">FB</a>
+                        <a class="ig" href="https://www.instagram.com/joebiden/">IG</a>
+                    </span>
+                </li>
+                <li>
+                    <span class="person-name">Barack Obama</span>
+                    <span class="social-links">
+                        <a class="x" href="https://x.com/BarackObama">X</a>
+                        <a class="fb" href="https://www.facebook.com/barackobama">FB</a>
+                        <a class="ig" href="https://www.instagram.com/barackobama/">IG</a>
+                    </span>
+                </li>
+                <li>
+                    <span class="person-name">Narendra Modi</span>
+                    <span class="social-links">
+                        <a class="x" href="https://x.com/narendramodi">X</a>
+                        <a class="fb" href="https://www.facebook.com/narendramodi">FB</a>
+                        <a class="ig" href="https://www.instagram.com/narendramodi/">IG</a>
+                    </span>
+                </li>
+                <li>
+                    <span class="person-name">Vladimir Putin</span>
+                    <span class="social-links">
+                        <a class="fb" href="https://www.facebook.com/putin.ru">FB</a>
+                        <a class="ig" href="https://www.instagram.com/putinofficial/">IG</a>
+                    </span>
+                </li>
+                <li>
+                    <span class="person-name">Justin Trudeau</span>
+                    <span class="social-links">
+                        <a class="x" href="https://x.com/JustinTrudeau">X</a>
+                        <a class="fb" href="https://www.facebook.com/justin.trudeau">FB</a>
+                        <a class="ig" href="https://www.instagram.com/justinpjtrudeau/">IG</a>
+                    </span>
+                </li>
+                <li>
+                    <span class="person-name">Xi Jinping</span>
+                    <span class="social-links">
+                        <span class="external">No Social Links</span>
+                    </span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
     <footer class="bg-dark-bg border-t border-gray-800 mt-12 py-6">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm text-gray-500">
             Digital Revenue Portal - Portfolio Project | Demonstrated Functionality & Technical Skills
