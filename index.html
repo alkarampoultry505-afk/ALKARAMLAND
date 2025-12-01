@@ -132,6 +132,27 @@
         window.onload = function() {
             lucide.createIcons();
         };
+
+        function checkPassword() {
+            const correctPassword = "ALKARAM786";
+            const inputElement = document.getElementById('quick-links-password');
+            const password = inputElement.value;
+            const quickLinksSection = document.getElementById('quick-links-access');
+            const passwordPrompt = document.getElementById('password-prompt');
+            const errorMessage = document.getElementById('error-message');
+
+            if (password === correctPassword) {
+                // Sahi password: Links section dikhao aur password prompt chupa do
+                quickLinksSection.style.display = 'block';
+                passwordPrompt.style.display = 'none';
+                errorMessage.textContent = ''; // Error message clear karo
+            } else {
+                // Galat password: Error message dikhao
+                errorMessage.textContent = "Incorrect Password. Please try again.";
+                errorMessage.classList.add('text-red-500');
+                inputElement.value = ''; // Input field clear karo
+            }
+        }
     </script>
     
     <header class="header-bg fixed top-0 left-0 w-full z-10 shadow-lg">
@@ -199,7 +220,25 @@
             
             <div class="lg:col-span-1 space-y-8">
                 
-                <div class="glass-card p-6 rounded-xl border border-dynamic-accent/20">
+                <div id="password-prompt" class="glass-card p-6 rounded-xl border border-dynamic-accent/20">
+                    <h3 class="text-xl font-bold mb-4 section-title flex items-center">
+                        <i data-lucide="lock" class="w-5 h-5 mr-2"></i>
+                        Quick Links Access Secure
+                    </h3>
+                    <p class="text-sm text-gray-400 mb-4">Please enter the security password to view quick links and documents.</p>
+                    
+                    <div class="flex flex-col space-y-3">
+                        <input type="password" id="quick-links-password" placeholder="Enter Password (Hint: ALKARAM786)" 
+                               class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-600 text-white focus:border-dynamic-accent focus:outline-none"
+                               onkeypress="if(event.keyCode == 13) checkPassword()"> <button onclick="checkPassword()"
+                                class="flex items-center justify-center px-6 py-3 rounded-lg bg-dynamic-accent hover:bg-dynamic-accent/80 text-dark-bg font-bold transition duration-300 shadow-lg">
+                            <i data-lucide="key" class="w-4 h-4 mr-2"></i>
+                            Access Quick Links
+                        </button>
+                    </div>
+                    <p id="error-message" class="mt-3 text-center text-sm font-medium"></p>
+                </div>
+                <div id="quick-links-access" class="glass-card p-6 rounded-xl border border-dynamic-accent/20" style="display: none;">
                     <h3 class="text-xl font-bold mb-4 section-title flex items-center">
                         <i data-lucide="hard-drive" class="w-5 h-5 mr-2"></i>
                         Quick Links & Simulated Services
@@ -315,6 +354,292 @@
                     </div>
                 </div>
             </div>
+
+            <div class="lg:col-span-1">
+                 <div class="glass-card p-6 rounded-xl border border-dynamic-accent/20">
+                    <h2 class="text-xl font-bold mb-4 section-title flex items-center">
+                        <i data-lucide="global" class="w-5 h-5 mr-2"></i>
+                        External E-Governance Portals
+                    </h2>
+                    
+                    <div class="space-y-3 max-h-[85vh] overflow-y-auto custom-scroll pr-2">
+
+                        
+                        <h3 class="text-base font-semibold text-gray-400 pt-2 pb-1 border-t border-gray-700/50 flex items-center">
+                            <i data-lucide="banknote" class="w-4 h-4 mr-1 text-blue-400"></i> Federal & Provincial Tax Portals
+                        </h3>
+                        <a href="https://iris.fbr.gov.pk/" target="_blank" class="modern-link-card">
+                            <span class="link-text text-sm">FBR IRIS Portal – Federal Taxes</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
+                        </a>
+                        <a href="https://aitapp.srb.gos.pk/#/session/signin" target="_blank" class="modern-link-card">
+                            <span class="link-text text-sm">SRB AIT Application – Sindh Sales Tax</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
+                        </a>
+                        
+
+                        <h3 class="text-base font-semibold text-gray-400 pt-4 pb-1 border-t border-gray-700/50 flex items-center">
+                            <i data-lucide="user-cog" class="w-4 h-4 mr-1 text-blue-500"></i> Chief Minister / Governor / Administration
+                        </h3>
+                        <a href="https://cmsindh.gov.pk" target="_blank" class="modern-link-card">
+                            <span class="link-text text-sm">1. Chief Minister Sindh</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
+                        </a>
+                        <a href="https://governorsindh.gov.pk" target="_blank" class="modern-link-card">
+                            <span class="link-text text-sm">2. Governor Sindh</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
+                        </a>
+                        <a href="https://sga.sindh.gov.pk" target="_blank" class="modern-link-card">
+                            <span class="link-text text-sm">3. SGA&CD (Admin Dept)</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
+                        </a>
+
+                        ---
+
+                        <h3 class="text-base font-semibold text-gray-400 pt-4 pb-1 border-t border-gray-700/50 flex items-center">
+                            <i data-lucide="gem" class="w-4 h-4 mr-1 text-green-500"></i> Revenue, Land, Property & Agriculture
+                        </h3>
+                        <a href="https://bor.sindh.gov.pk" target="_blank" class="modern-link-card">
+                            <span class="link-text text-sm">4. Board of Revenue Sindh (BoR)</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
+                        </a>
+                        <a href="https://sindhzameen.gos.pk" target="_blank" class="modern-link-card">
+                            <span class="link-text text-sm">5. Sindh Zameen Portal (Land Records)</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
+                        </a>
+                        <a href="https://agribusiness.sindh.gov.pk" target="_blank" class="modern-link-card">
+                            <span class="link-text text-sm">6. Agriculture Supply & Prices</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
+                        </a>
+                        <a href="https://cooperative.sindh.gov.pk" target="_blank" class="modern-link-card">
+                            <span class="link-text text-sm">7. Cooperative Department</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
+                        </a>
+
+                        ---
+
+                        <h3 class="text-base font-semibold text-gray-400 pt-4 pb-1 border-t border-gray-700/50 flex items-center">
+                            <i data-lucide="shield" class="w-4 h-4 mr-1 text-yellow-500"></i> Police, Home, Prosecution
+                        </h3>
+                        <a href="https://sindhpolice.gov.pk" target="_blank" class="modern-link-card">
+                            <span class="link-text text-sm">8. Sindh Police</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
+                        </a>
+                        <a href="https://home.sindh.gov.pk" target="_blank" class="modern-link-card">
+                            <span class="link-text text-sm">9. Home Department</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
+                        </a>
+                        <a href="https://prosecution.sindh.gov.pk" target="_blank" class="modern-link-card">
+                            <span class="link-text text-sm">10. Prosecution Sindh</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
+                        </a>
+                        <a href="https://atc.gos.pk" target="_blank" class="modern-link-card">
+                            <span class="link-text text-sm">11. ATC Courts (Anti-Terrorism)</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
+                        </a>
+
+                        ---
+
+                        <h3 class="text-base font-semibold text-gray-400 pt-4 pb-1 border-t border-gray-700/50 flex items-center">
+                            <i data-lucide="graduation-cap" class="w-4 h-4 mr-1 text-red-500"></i> Education (Schools, Colleges, Universities)
+                        </h3>
+                        <a href="https://seld.sindh.gov.pk" target="_blank" class="modern-link-card">
+                            <span class="link-text text-sm">12. SELD (School Education)</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
+                        </a>
+                        <a href="https://college.sindh.gov.pk" target="_blank" class="modern-link-card">
+                            <span class="link-text text-sm">13. College Education</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
+                        </a>
+                        <a href="https://admission.sindh.gov.pk" target="_blank" class="modern-link-card">
+                            <span class="link-text text-sm">14. Sindh HEC / Online Admissions</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
+                        </a>
+                        <a href="https://sef.org.pk" target="_blank" class="modern-link-card">
+                            <span class="link-text text-sm">15. Sindh Education Foundation (SEF)</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
+                        </a>
+
+                        ---
+
+                        <h3 class="text-base font-semibold text-gray-400 pt-4 pb-1 border-t border-gray-700/50 flex items-center">
+                            <i data-lucide="heart-handshake" class="w-4 h-4 mr-1 text-orange-500"></i> Health / Medical
+                        </h3>
+                        <a href="https://sindhhealth.gov.pk" target="_blank" class="modern-link-card">
+                            <span class="link-text text-sm">16. Health Department Sindh</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
+                        </a>
+                        <a href="https://shcc.org.pk" target="_blank" class="modern-link-card">
+                            <span class="link-text text-sm">17. Sindh Health Care Commission (SHCC)</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
+                        </a>
+                        <a href="https://nicvd.org" target="_blank" class="modern-link-card">
+                            <span class="link-text text-sm">18. NICVD (Heart Institute)</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
+                        </a>
+                        <a href="https://siut.org" target="_blank" class="modern-link-card">
+                            <span class="link-text text-sm">19. SIUT (Kidney/Liver Institute)</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
+                        </a>
+
+                        ---
+
+                        <h3 class="text-base font-semibold text-gray-400 pt-4 pb-1 border-t border-gray-700/50 flex items-center">
+                            <i data-lucide="bus" class="w-4 h-4 mr-1 text-purple-500"></i> Transport / Highways
+                        </h3>
+                        <a href="https://transport.sindh.gov.pk" target="_blank" class="modern-link-card">
+                            <span class="link-text text-sm">20. Transport & Mass Transit</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
+                        </a>
+                        <a href="https://highways.sindh.gov.pk" target="_blank" class="modern-link-card">
+                            <span class="link-text text-sm">21. Sindh Highways</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
+                        </a>
+                        <a href="https://brtsindh.gov.pk" target="_blank" class="modern-link-card">
+                            <span class="link-text text-sm">22. Karachi BRT (Bus Rapid Transit)</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
+                        </a>
+
+                        ---
+
+                        <h3 class="text-base font-semibold text-gray-400 pt-4 pb-1 border-t border-gray-700/50 flex items-center">
+                            <i data-lucide="droplets" class="w-4 h-4 mr-1 text-amber-500"></i> Water, Flood, Irrigation, Environment
+                        </h3>
+                        <a href="https://irrigation.sindh.gov.pk" target="_blank" class="modern-link-card">
+                            <span class="link-text text-sm">23. Irrigation Department</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
+                        </a>
+                        <a href="https://phe.sindh.gov.pk" target="_blank" class="modern-link-card">
+                            <span class="link-text text-sm">24. Public Health Engineering (PHE)</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
+                        </a>
+                        <a href="https://sepa.sindh.gov.pk" target="_blank" class="modern-link-card">
+                            <span class="link-text text-sm">25. Environment (SEPA)</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
+                        </a>
+
+                        ---
+
+                        <h3 class="text-base font-semibold text-gray-400 pt-4 pb-1 border-t border-gray-700/50 flex items-center">
+                            <i data-lucide="calculator" class="w-4 h-4 mr-1 text-blue-400"></i> Finance & Tax (Remaining)
+                        </h3>
+                        <a href="https://finance.sindh.gov.pk" target="_blank" class="modern-link-card">
+                            <span class="link-text text-sm">26. Finance Department</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
+                        </a>
+                        <a href="https://srb.gos.pk" target="_blank" class="modern-link-card">
+                            <span class="link-text text-sm">27. Sindh Revenue Board (SRB)</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
+                        </a>
+                        <a href="https://excise.gos.pk" target="_blank" class="modern-link-card">
+                            <span class="link-text text-sm">28. Excise & Taxation (Vehicle Verification)</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
+                        </a>
+
+                        ---
+
+                        <h3 class="text-base font-semibold text-gray-400 pt-4 pb-1 border-t border-gray-700/50 flex items-center">
+                            <i data-lucide="users-round" class="w-4 h-4 mr-1 text-green-400"></i> Human Rights, Women, Minorities
+                        </h3>
+                        <a href="https://hr.sindh.gov.pk" target="_blank" class="modern-link-card">
+                            <span class="link-text text-sm">29. Human Rights Department</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
+                        </a>
+                        <a href="https://women.sindh.gov.pk" target="_blank" class="modern-link-card">
+                            <span class="link-text text-sm">30. Women Development</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
+                        </a>
+                        <a href="https://minorityaffairs.sindh.gov.pk" target="_blank" class="modern-link-card">
+                            <span class="link-text text-sm">31. Minority Affairs</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
+                        </a>
+
+                        ---
+
+                        <h3 class="text-base font-semibold text-gray-400 pt-4 pb-1 border-t border-gray-700/50 flex items-center">
+                            <i data-lucide="factory" class="w-4 h-4 mr-1 text-violet-500"></i> Labour & Workers
+                        </h3>
+                        <a href="https://labour.sindh.gov.pk" target="_blank" class="modern-link-card">
+                            <span class="link-text text-sm">32. Labour & Human Resources</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
+                        </a>
+                        <a href="https://wwb.sindh.gov.pk" target="_blank" class="modern-link-card">
+                            <span class="link-text text-sm">33. Workers Welfare Board (WWB)</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
+                        </a>
+
+                        ---
+
+                        <h3 class="text-base font-semibold text-gray-400 pt-4 pb-1 border-t border-gray-700/50 flex items-center">
+                            <i data-lucide="building-2" class="w-4 h-4 mr-1 text-amber-900"></i> Local Government, Karachi Authorities
+                        </h3>
+                        <a href="https://lgd.sindh.gov.pk" target="_blank" class="modern-link-card">
+                            <span class="link-text text-sm">34. Local Government Department (LGD)</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
+                        </a>
+                        <a href="https://kmc.gos.pk" target="_blank" class="modern-link-card">
+                            <span class="link-text text-sm">35. KMC Karachi (Metropolitan Corporation)</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
+                        </a>
+                        <a href="https://sbca.gos.pk" target="_blank" class="modern-link-card">
+                            <span class="link-text text-sm">36. SBCA (Sindh Building Control Authority)</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
+                        </a>
+
+                        ---
+
+                        <h3 class="text-base font-semibold text-gray-400 pt-4 pb-1 border-t border-gray-700/50 flex items-center">
+                            <i data-lucide="bone" class="w-4 h-4 mr-1 text-orange-400"></i> Livestock, Poultry, Fisheries
+                        </h3>
+                        <a href="https://lpd.sindh.gov.pk" target="_blank" class="modern-link-card">
+                            <span class="link-text text-sm">37. Livestock & Fisheries (LPD)</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
+                        </a>
+                        <a href="https://sprc.sindh.gov.pk" target="_blank" class="modern-link-card">
+                            <span class="link-text text-sm">38. Sindh Poultry Research (SPRC)</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
+                        </a>
+
+                        ---
+
+                        <h3 class="text-base font-semibold text-gray-400 pt-4 pb-1 border-t border-gray-700/50 flex items-center">
+                            <i data-lucide="gavel" class="w-4 h-4 mr-1 text-gray-400"></i> Public Complaints / Legal Portals
+                        </h3>
+                        <a href="https://ccms.sindh.gov.pk" target="_blank" class="modern-link-card">
+                            <span class="link-text text-sm">39. CM Complaint Cell (CCMS)</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
+                        </a>
+                        <a href="https://mohtasibsindh.gov.pk" target="_blank" class="modern-link-card">
+                            <span class="link-text text-sm">40. Ombudsman Sindh (Mohtasib)</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
+                        </a>
+                        <a href="https://anticorruption.sindh.gov.pk" target="_blank" class="modern-link-card">
+                            <span class="link-text text-sm">41. Anti-Corruption Sindh</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
+                        </a>
+
+                        ---
+
+                        <h3 class="text-base font-semibold text-gray-400 pt-4 pb-1 border-t border-gray-700/50 flex items-center">
+                            <i data-lucide="laptop" class="w-4 h-4 mr-1 text-cyan-400"></i> IT & E-Government
+                        </h3>
+                        <a href="https://sitb.sindh.gov.pk" target="_blank" class="modern-link-card">
+                            <span class="link-text text-sm">42. Sindh IT Board (SITB)</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
+                        </a>
+                        <a href="https://services.sindh.gov.pk" target="_blank" class="modern-link-card">
+                            <span class="link-text text-sm">43. Sindh e-Services Portal</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
+                        </a>
+                        <a href="https://etender.sindh.gov.pk" target="_blank" class="modern-link-card">
+                            <span class="link-text text-sm">44. e-Tenders Sindh</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
+                        </a>
+
+                        
+                    </div>
+                </div>
+                </div>
 
             <div class="lg:col-span-1">
                  <div class="glass-card p-6 rounded-xl border border-dynamic-accent/20">
