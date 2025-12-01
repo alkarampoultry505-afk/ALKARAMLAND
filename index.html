@@ -105,6 +105,46 @@
             color: var(--accent-color);
             text-shadow: 0 0 5px rgba(0, 224, 255, 0.2);
         }
+        
+        /* --- Icon Card Style for Daily Use Links --- */
+        .icon-link-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 12px;
+            background-color: rgba(30, 40, 60, 0.7);
+            border-radius: 12px;
+            transition: all 0.25s ease;
+            text-align: center;
+            height: 100px; /* Fixed height for uniformity */
+            border: 1px solid transparent;
+        }
+
+        .icon-link-card:hover {
+            background-color: rgba(30, 40, 60, 1);
+            border-color: var(--secondary-accent);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 10px rgba(0, 255, 136, 0.2);
+        }
+
+        .icon-link-card img {
+            width: 36px;
+            height: 36px;
+            margin-bottom: 6px;
+            border-radius: 4px;
+        }
+
+        .icon-link-card span {
+            font-size: 0.75rem; /* text-xs */
+            font-weight: 500;
+            color: #cbd5e1;
+            line-height: 1.2;
+        }
+
+        .icon-link-card:hover span {
+            color: var(--secondary-accent);
+        }
 
     </style>
 
@@ -152,6 +192,36 @@
                 errorMessage.classList.add('text-red-500');
                 inputElement.value = ''; // Input field clear karo
             }
+        }
+        
+        // --- Helper function to generate icon URL (Placeholder) ---
+        function getIconUrl(domain) {
+            // NOTE: Replace these with actual live favicon URLs if available, or just use Lucide icons.
+            // Using placeholder for demonstration.
+            if (domain.includes('google')) return 'https://img.icons8.com/color/48/google-logo.png';
+            if (domain.includes('facebook')) return 'https://img.icons8.com/fluency/48/facebook-new.png';
+            if (domain.includes('youtube')) return 'https://img.icons8.com/color/48/youtube-play.png';
+            if (domain.includes('tiktok')) return 'https://img.icons8.com/fluency/48/tiktok.png';
+            if (domain.includes('twitter') || domain.includes('x')) return 'https://img.icons8.com/fluency/48/twitter.png';
+            if (domain.includes('instagram')) return 'https://img.icons8.com/fluency/48/instagram-new.png';
+            if (domain.includes('whatsapp')) return 'https://img.icons8.com/fluency/48/whatsapp.png';
+            if (domain.includes('snapchat')) return 'https://img.icons8.com/color/48/snapchat.png';
+            if (domain.includes('gmail')) return 'https://img.icons8.com/color/48/gmail.png';
+            if (domain.includes('drive')) return 'https://img.icons8.com/color/48/google-drive.png';
+            if (domain.includes('office')) return 'https://img.icons8.com/color/48/microsoft-office-2019.png';
+            if (domain.includes('outlook')) return 'https://img.icons8.com/fluency/48/outlook-kalender.png';
+            if (domain.includes('canva')) return 'https://img.icons8.com/external-tal-revivo-color-tal-revivo/48/external-canva-a-free-online-graphic-design-tool-logo-color-tal-revivo.png';
+            if (domain.includes('linkedin')) return 'https://img.icons8.com/fluency/48/linkedin.png';
+            if (domain.includes('fiverr')) return 'https://img.icons8.com/color/48/fiverr.png';
+            if (domain.includes('upwork')) return 'https://img.icons8.com/color/48/upwork.png';
+            if (domain.includes('nadra')) return 'https://img.icons8.com/plasticine/100/passport-id.png';
+            if (domain.includes('fbr')) return 'https://img.icons8.com/plasticine/100/tax.png';
+            if (domain.includes('wikipedia')) return 'https://img.icons8.com/color/48/wikipedia.png';
+            if (domain.includes('amazon')) return 'https://img.icons8.com/color/48/amazon.png';
+            if (domain.includes('daraz')) return 'https://img.icons8.com/external-soft-fill-juicy-fish/60/external-daraz-online-shopping-soft-fill-soft-fill-juicy-fish.png';
+            if (domain.includes('imgbb')) return 'https://img.icons8.com/color/48/image.png';
+
+            return 'https://img.icons8.com/color/48/internet.png'; // Default
         }
     </script>
     
@@ -359,297 +429,187 @@
                  <div class="glass-card p-6 rounded-xl border border-dynamic-accent/20">
                     <h2 class="text-xl font-bold mb-4 section-title flex items-center">
                         <i data-lucide="global" class="w-5 h-5 mr-2"></i>
-                        External E-Governance Portals
+                        External E-Governance Portals & Daily Websites
                     </h2>
                     
-                    <div class="space-y-3 max-h-[85vh] overflow-y-auto custom-scroll pr-2">
+                    <div class="space-y-6 max-h-[85vh] overflow-y-auto custom-scroll pr-2">
 
+                        <h3 class="text-base font-semibold text-dynamic-accent pt-2 pb-2 border-t border-gray-700/50 flex items-center">
+                            <i data-lucide="message-square" class="w-4 h-4 mr-1 text-red-500"></i> 🔴 Social Media
+                        </h3>
+                        <div class="grid grid-cols-3 sm:grid-cols-4 gap-3">
+                            <a href="https://www.youtube.com" target="_blank" class="icon-link-card">
+                                <img src="https://img.icons8.com/color/48/youtube-play.png" alt="YouTube Icon">
+                                <span>YouTube</span>
+                            </a>
+                            <a href="https://www.facebook.com" target="_blank" class="icon-link-card">
+                                <img src="https://img.icons8.com/fluency/48/facebook-new.png" alt="Facebook Icon">
+                                <span>Facebook</span>
+                            </a>
+                            <a href="https://www.tiktok.com" target="_blank" class="icon-link-card">
+                                <img src="https://img.icons8.com/fluency/48/tiktok.png" alt="TikTok Icon">
+                                <span>TikTok</span>
+                            </a>
+                            <a href="https://www.twitter.com" target="_blank" class="icon-link-card">
+                                <img src="https://img.icons8.com/fluency/48/twitter.png" alt="Twitter/X Icon">
+                                <span>Twitter / X</span>
+                            </a>
+                            <a href="https://www.instagram.com" target="_blank" class="icon-link-card">
+                                <img src="https://img.icons8.com/fluency/48/instagram-new.png" alt="Instagram Icon">
+                                <span>Instagram</span>
+                            </a>
+                            <a href="https://web.whatsapp.com" target="_blank" class="icon-link-card">
+                                <img src="https://img.icons8.com/fluency/48/whatsapp.png" alt="WhatsApp Icon">
+                                <span>WhatsApp Web</span>
+                            </a>
+                            <a href="https://www.snapchat.com" target="_blank" class="icon-link-card">
+                                <img src="https://img.icons8.com/color/48/snapchat.png" alt="Snapchat Icon">
+                                <span>Snapchat</span>
+                            </a>
+                        </div>
                         
-                        <h3 class="text-base font-semibold text-gray-400 pt-2 pb-1 border-t border-gray-700/50 flex items-center">
-                            <i data-lucide="banknote" class="w-4 h-4 mr-1 text-blue-400"></i> Federal & Provincial Tax Portals
+                        <h3 class="text-base font-semibold text-dynamic-accent pt-4 pb-2 border-t border-gray-700/50 flex items-center">
+                            <i data-lucide="search" class="w-4 h-4 mr-1 text-blue-500"></i> 🔵 Google Services
                         </h3>
-                        <a href="https://iris.fbr.gov.pk/" target="_blank" class="modern-link-card">
-                            <span class="link-text text-sm">FBR IRIS Portal – Federal Taxes</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://aitapp.srb.gos.pk/#/session/signin" target="_blank" class="modern-link-card">
-                            <span class="link-text text-sm">SRB AIT Application – Sindh Sales Tax</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
+                        <div class="grid grid-cols-3 sm:grid-cols-4 gap-3">
+                            <a href="https://www.google.com" target="_blank" class="icon-link-card">
+                                <img src="https://img.icons8.com/color/48/google-logo.png" alt="Google Search Icon">
+                                <span>Google Search</span>
+                            </a>
+                            <a href="https://mail.google.com" target="_blank" class="icon-link-card">
+                                <img src="https://img.icons8.com/color/48/gmail.png" alt="Gmail Icon">
+                                <span>Gmail</span>
+                            </a>
+                            <a href="https://maps.google.com" target="_blank" class="icon-link-card">
+                                <img src="https://img.icons8.com/color/48/google-maps.png" alt="Google Maps Icon">
+                                <span>Google Maps</span>
+                            </a>
+                            <a href="https://drive.google.com" target="_blank" class="icon-link-card">
+                                <img src="https://img.icons8.com/color/48/google-drive.png" alt="Google Drive Icon">
+                                <span>Google Drive</span>
+                            </a>
+                            <a href="https://translate.google.com" target="_blank" class="icon-link-card">
+                                <img src="https://img.icons8.com/color/48/google-translate.png" alt="Google Translate Icon">
+                                <span>Translate</span>
+                            </a>
+                            <a href="https://photos.google.com" target="_blank" class="icon-link-card">
+                                <img src="https://img.icons8.com/color/48/google-photos.png" alt="Google Photos Icon">
+                                <span>Google Photos</span>
+                            </a>
+                            <a href="https://play.google.com" target="_blank" class="icon-link-card">
+                                <img src="https://img.icons8.com/color/48/google-play.png" alt="Google Play Store Icon">
+                                <span>Play Store</span>
+                            </a>
+                        </div>
                         
-
-                        <h3 class="text-base font-semibold text-gray-400 pt-4 pb-1 border-t border-gray-700/50 flex items-center">
-                            <i data-lucide="user-cog" class="w-4 h-4 mr-1 text-blue-500"></i> Chief Minister / Governor / Administration
+                        <h3 class="text-base font-semibold text-dynamic-accent pt-4 pb-2 border-t border-gray-700/50 flex items-center">
+                            <i data-lucide="briefcase" class="w-4 h-4 mr-1 text-green-500"></i> 🟢 Work & Cloud Tools
                         </h3>
-                        <a href="https://cmsindh.gov.pk" target="_blank" class="modern-link-card">
-                            <span class="link-text text-sm">1. Chief Minister Sindh</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://governorsindh.gov.pk" target="_blank" class="modern-link-card">
-                            <span class="link-text text-sm">2. Governor Sindh</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://sga.sindh.gov.pk" target="_blank" class="modern-link-card">
-                            <span class="link-text text-sm">3. SGA&CD (Admin Dept)</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-
-                        ---
-
-                        <h3 class="text-base font-semibold text-gray-400 pt-4 pb-1 border-t border-gray-700/50 flex items-center">
-                            <i data-lucide="gem" class="w-4 h-4 mr-1 text-green-500"></i> Revenue, Land, Property & Agriculture
-                        </h3>
-                        <a href="https://bor.sindh.gov.pk" target="_blank" class="modern-link-card">
-                            <span class="link-text text-sm">4. Board of Revenue Sindh (BoR)</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://sindhzameen.gos.pk" target="_blank" class="modern-link-card">
-                            <span class="link-text text-sm">5. Sindh Zameen Portal (Land Records)</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://agribusiness.sindh.gov.pk" target="_blank" class="modern-link-card">
-                            <span class="link-text text-sm">6. Agriculture Supply & Prices</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://cooperative.sindh.gov.pk" target="_blank" class="modern-link-card">
-                            <span class="link-text text-sm">7. Cooperative Department</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-
-                        ---
-
-                        <h3 class="text-base font-semibold text-gray-400 pt-4 pb-1 border-t border-gray-700/50 flex items-center">
-                            <i data-lucide="shield" class="w-4 h-4 mr-1 text-yellow-500"></i> Police, Home, Prosecution
-                        </h3>
-                        <a href="https://sindhpolice.gov.pk" target="_blank" class="modern-link-card">
-                            <span class="link-text text-sm">8. Sindh Police</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://home.sindh.gov.pk" target="_blank" class="modern-link-card">
-                            <span class="link-text text-sm">9. Home Department</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://prosecution.sindh.gov.pk" target="_blank" class="modern-link-card">
-                            <span class="link-text text-sm">10. Prosecution Sindh</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://atc.gos.pk" target="_blank" class="modern-link-card">
-                            <span class="link-text text-sm">11. ATC Courts (Anti-Terrorism)</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-
-                        ---
-
-                        <h3 class="text-base font-semibold text-gray-400 pt-4 pb-1 border-t border-gray-700/50 flex items-center">
-                            <i data-lucide="graduation-cap" class="w-4 h-4 mr-1 text-red-500"></i> Education (Schools, Colleges, Universities)
-                        </h3>
-                        <a href="https://seld.sindh.gov.pk" target="_blank" class="modern-link-card">
-                            <span class="link-text text-sm">12. SELD (School Education)</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://college.sindh.gov.pk" target="_blank" class="modern-link-card">
-                            <span class="link-text text-sm">13. College Education</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://admission.sindh.gov.pk" target="_blank" class="modern-link-card">
-                            <span class="link-text text-sm">14. Sindh HEC / Online Admissions</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://sef.org.pk" target="_blank" class="modern-link-card">
-                            <span class="link-text text-sm">15. Sindh Education Foundation (SEF)</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-
-                        ---
-
-                        <h3 class="text-base font-semibold text-gray-400 pt-4 pb-1 border-t border-gray-700/50 flex items-center">
-                            <i data-lucide="heart-handshake" class="w-4 h-4 mr-1 text-orange-500"></i> Health / Medical
-                        </h3>
-                        <a href="https://sindhhealth.gov.pk" target="_blank" class="modern-link-card">
-                            <span class="link-text text-sm">16. Health Department Sindh</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://shcc.org.pk" target="_blank" class="modern-link-card">
-                            <span class="link-text text-sm">17. Sindh Health Care Commission (SHCC)</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://nicvd.org" target="_blank" class="modern-link-card">
-                            <span class="link-text text-sm">18. NICVD (Heart Institute)</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://siut.org" target="_blank" class="modern-link-card">
-                            <span class="link-text text-sm">19. SIUT (Kidney/Liver Institute)</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-
-                        ---
-
-                        <h3 class="text-base font-semibold text-gray-400 pt-4 pb-1 border-t border-gray-700/50 flex items-center">
-                            <i data-lucide="bus" class="w-4 h-4 mr-1 text-purple-500"></i> Transport / Highways
-                        </h3>
-                        <a href="https://transport.sindh.gov.pk" target="_blank" class="modern-link-card">
-                            <span class="link-text text-sm">20. Transport & Mass Transit</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://highways.sindh.gov.pk" target="_blank" class="modern-link-card">
-                            <span class="link-text text-sm">21. Sindh Highways</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://brtsindh.gov.pk" target="_blank" class="modern-link-card">
-                            <span class="link-text text-sm">22. Karachi BRT (Bus Rapid Transit)</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-
-                        ---
-
-                        <h3 class="text-base font-semibold text-gray-400 pt-4 pb-1 border-t border-gray-700/50 flex items-center">
-                            <i data-lucide="droplets" class="w-4 h-4 mr-1 text-amber-500"></i> Water, Flood, Irrigation, Environment
-                        </h3>
-                        <a href="https://irrigation.sindh.gov.pk" target="_blank" class="modern-link-card">
-                            <span class="link-text text-sm">23. Irrigation Department</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://phe.sindh.gov.pk" target="_blank" class="modern-link-card">
-                            <span class="link-text text-sm">24. Public Health Engineering (PHE)</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://sepa.sindh.gov.pk" target="_blank" class="modern-link-card">
-                            <span class="link-text text-sm">25. Environment (SEPA)</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-
-                        ---
-
-                        <h3 class="text-base font-semibold text-gray-400 pt-4 pb-1 border-t border-gray-700/50 flex items-center">
-                            <i data-lucide="calculator" class="w-4 h-4 mr-1 text-blue-400"></i> Finance & Tax (Remaining)
-                        </h3>
-                        <a href="https://finance.sindh.gov.pk" target="_blank" class="modern-link-card">
-                            <span class="link-text text-sm">26. Finance Department</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://srb.gos.pk" target="_blank" class="modern-link-card">
-                            <span class="link-text text-sm">27. Sindh Revenue Board (SRB)</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://excise.gos.pk" target="_blank" class="modern-link-card">
-                            <span class="link-text text-sm">28. Excise & Taxation (Vehicle Verification)</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-
-                        ---
-
-                        <h3 class="text-base font-semibold text-gray-400 pt-4 pb-1 border-t border-gray-700/50 flex items-center">
-                            <i data-lucide="users-round" class="w-4 h-4 mr-1 text-green-400"></i> Human Rights, Women, Minorities
-                        </h3>
-                        <a href="https://hr.sindh.gov.pk" target="_blank" class="modern-link-card">
-                            <span class="link-text text-sm">29. Human Rights Department</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://women.sindh.gov.pk" target="_blank" class="modern-link-card">
-                            <span class="link-text text-sm">30. Women Development</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://minorityaffairs.sindh.gov.pk" target="_blank" class="modern-link-card">
-                            <span class="link-text text-sm">31. Minority Affairs</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-
-                        ---
-
-                        <h3 class="text-base font-semibold text-gray-400 pt-4 pb-1 border-t border-gray-700/50 flex items-center">
-                            <i data-lucide="factory" class="w-4 h-4 mr-1 text-violet-500"></i> Labour & Workers
-                        </h3>
-                        <a href="https://labour.sindh.gov.pk" target="_blank" class="modern-link-card">
-                            <span class="link-text text-sm">32. Labour & Human Resources</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://wwb.sindh.gov.pk" target="_blank" class="modern-link-card">
-                            <span class="link-text text-sm">33. Workers Welfare Board (WWB)</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-
-                        ---
-
-                        <h3 class="text-base font-semibold text-gray-400 pt-4 pb-1 border-t border-gray-700/50 flex items-center">
-                            <i data-lucide="building-2" class="w-4 h-4 mr-1 text-amber-900"></i> Local Government, Karachi Authorities
-                        </h3>
-                        <a href="https://lgd.sindh.gov.pk" target="_blank" class="modern-link-card">
-                            <span class="link-text text-sm">34. Local Government Department (LGD)</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://kmc.gos.pk" target="_blank" class="modern-link-card">
-                            <span class="link-text text-sm">35. KMC Karachi (Metropolitan Corporation)</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://sbca.gos.pk" target="_blank" class="modern-link-card">
-                            <span class="link-text text-sm">36. SBCA (Sindh Building Control Authority)</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-
-                        ---
-
-                        <h3 class="text-base font-semibold text-gray-400 pt-4 pb-1 border-t border-gray-700/50 flex items-center">
-                            <i data-lucide="bone" class="w-4 h-4 mr-1 text-orange-400"></i> Livestock, Poultry, Fisheries
-                        </h3>
-                        <a href="https://lpd.sindh.gov.pk" target="_blank" class="modern-link-card">
-                            <span class="link-text text-sm">37. Livestock & Fisheries (LPD)</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://sprc.sindh.gov.pk" target="_blank" class="modern-link-card">
-                            <span class="link-text text-sm">38. Sindh Poultry Research (SPRC)</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-
-                        ---
-
-                        <h3 class="text-base font-semibold text-gray-400 pt-4 pb-1 border-t border-gray-700/50 flex items-center">
-                            <i data-lucide="gavel" class="w-4 h-4 mr-1 text-gray-400"></i> Public Complaints / Legal Portals
-                        </h3>
-                        <a href="https://ccms.sindh.gov.pk" target="_blank" class="modern-link-card">
-                            <span class="link-text text-sm">39. CM Complaint Cell (CCMS)</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://mohtasibsindh.gov.pk" target="_blank" class="modern-link-card">
-                            <span class="link-text text-sm">40. Ombudsman Sindh (Mohtasib)</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://anticorruption.sindh.gov.pk" target="_blank" class="modern-link-card">
-                            <span class="link-text text-sm">41. Anti-Corruption Sindh</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-
-                        ---
-
-                        <h3 class="text-base font-semibold text-gray-400 pt-4 pb-1 border-t border-gray-700/50 flex items-center">
-                            <i data-lucide="laptop" class="w-4 h-4 mr-1 text-cyan-400"></i> IT & E-Government
-                        </h3>
-                        <a href="https://sitb.sindh.gov.pk" target="_blank" class="modern-link-card">
-                            <span class="link-text text-sm">42. Sindh IT Board (SITB)</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://services.sindh.gov.pk" target="_blank" class="modern-link-card">
-                            <span class="link-text text-sm">43. Sindh e-Services Portal</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-                        <a href="https://etender.sindh.gov.pk" target="_blank" class="modern-link-card">
-                            <span class="link-text text-sm">44. e-Tenders Sindh</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
-                        </a>
-
+                        <div class="grid grid-cols-3 sm:grid-cols-4 gap-3">
+                            <a href="https://www.office.com" target="_blank" class="icon-link-card">
+                                <img src="https://img.icons8.com/color/48/microsoft-office-2019.png" alt="MS Office Icon">
+                                <span>MS Office Online</span>
+                            </a>
+                            <a href="https://outlook.live.com" target="_blank" class="icon-link-card">
+                                <img src="https://img.icons8.com/fluency/48/outlook-kalender.png" alt="Outlook Icon">
+                                <span>Outlook Email</span>
+                            </a>
+                            <a href="https://www.canva.com" target="_blank" class="icon-link-card">
+                                <img src="https://img.icons8.com/external-tal-revivo-color-tal-revivo/48/external-canva-a-free-online-graphic-design-tool-logo-color-tal-revivo.png" alt="Canva Icon">
+                                <span>Canva Designing</span>
+                            </a>
+                            <a href="https://www.dropbox.com" target="_blank" class="icon-link-card">
+                                <img src="https://img.icons8.com/color/48/dropbox.png" alt="Dropbox Icon">
+                                <span>Dropbox</span>
+                            </a>
+                            <a href="https://wetransfer.com" target="_blank" class="icon-link-card">
+                                <img src="https://img.icons8.com/color/48/wetransfer.png" alt="WeTransfer Icon">
+                                <span>WeTransfer</span>
+                            </a>
+                        </div>
                         
-                    </div>
-                </div>
-                </div>
+                        <h3 class="text-base font-semibold text-dynamic-accent pt-4 pb-2 border-t border-gray-700/50 flex items-center">
+                            <i data-lucide="network" class="w-4 h-4 mr-1 text-orange-400"></i> 🟠 Business / Marketing
+                        </h3>
+                        <div class="grid grid-cols-3 sm:grid-cols-4 gap-3">
+                            <a href="https://www.linkedin.com" target="_blank" class="icon-link-card">
+                                <img src="https://img.icons8.com/fluency/48/linkedin.png" alt="LinkedIn Icon">
+                                <span>LinkedIn</span>
+                            </a>
+                            <a href="https://www.fiverr.com" target="_blank" class="icon-link-card">
+                                <img src="https://img.icons8.com/color/48/fiverr.png" alt="Fiverr Icon">
+                                <span>Fiverr</span>
+                            </a>
+                            <a href="https://www.upwork.com" target="_blank" class="icon-link-card">
+                                <img src="https://img.icons8.com/color/48/upwork.png" alt="Upwork Icon">
+                                <span>Upwork</span>
+                            </a>
+                            <a href="https://www.freelancer.com" target="_blank" class="icon-link-card">
+                                <img src="https://img.icons8.com/color/48/freelancer.png" alt="Freelancer Icon">
+                                <span>Freelancer</span>
+                            </a>
+                            <a href="https://www.google.com/business" target="_blank" class="icon-link-card">
+                                <img src="https://img.icons8.com/color/48/google-my-business.png" alt="Google Business Icon">
+                                <span>Google Business</span>
+                            </a>
+                        </div>
 
-            <div class="lg:col-span-1">
-                 <div class="glass-card p-6 rounded-xl border border-dynamic-accent/20">
-                    <h2 class="text-xl font-bold mb-4 section-title flex items-center">
-                        <i data-lucide="global" class="w-5 h-5 mr-2"></i>
-                        External E-Governance Portals
-                    </h2>
-                    
-                    <div class="space-y-3 max-h-[85vh] overflow-y-auto custom-scroll pr-2">
-
+                        <h3 class="text-base font-semibold text-dynamic-accent pt-4 pb-2 border-t border-gray-700/50 flex items-center">
+                            <i data-lucide="gavel" class="w-4 h-4 mr-1 text-purple-400"></i> 🟣 Pakistan Govt Useful Links
+                        </h3>
+                        <div class="grid grid-cols-3 sm:grid-cols-4 gap-3">
+                            <a href="https://id.nadra.gov.pk" target="_blank" class="icon-link-card">
+                                <img src="https://img.icons8.com/plasticine/100/passport-id.png" alt="NADRA Icon">
+                                <span>NADRA Portal</span>
+                            </a>
+                            <a href="https://citizenportal.gov.pk" target="_blank" class="icon-link-card">
+                                <img src="https://img.icons8.com/color/48/government.png" alt="Citizen Portal Icon">
+                                <span>Citizen Portal</span>
+                            </a>
+                            <a href="https://sindh.gov.pk" target="_blank" class="icon-link-card">
+                                <img src="https://img.icons8.com/plasticine/100/police-officer.png" alt="Sindh Govt Icon">
+                                <span>Sindh Govt Portal</span>
+                            </a>
+                            <a href="https://www.fbr.gov.pk" target="_blank" class="icon-link-card">
+                                <img src="https://img.icons8.com/plasticine/100/tax.png" alt="FBR Icon">
+                                <span>FBR (Tax)</span>
+                            </a>
+                            <a href="https://www.ecp.gov.pk" target="_blank" class="icon-link-card">
+                                <img src="https://img.icons8.com/color/48/voting.png" alt="ECP Icon">
+                                <span>ECP (Voting Info)</span>
+                            </a>
+                        </div>
+                        
+                        <h3 class="text-base font-semibold text-dynamic-accent pt-4 pb-2 border-t border-gray-700/50 flex items-center">
+                            <i data-lucide="flame" class="w-4 h-4 mr-1 text-red-600"></i> 🔥 Extra Important Websites
+                        </h3>
+                        <div class="grid grid-cols-3 sm:grid-cols-4 gap-3">
+                            <a href="https://www.wikipedia.org" target="_blank" class="icon-link-card">
+                                <img src="https://img.icons8.com/color/48/wikipedia.png" alt="Wikipedia Icon">
+                                <span>Wikipedia</span>
+                            </a>
+                            <a href="https://www.amazon.com" target="_blank" class="icon-link-card">
+                                <img src="https://img.icons8.com/color/48/amazon.png" alt="Amazon Icon">
+                                <span>Amazon</span>
+                            </a>
+                            <a href="https://www.aliexpress.com" target="_blank" class="icon-link-card">
+                                <img src="https://img.icons8.com/fluency/48/aliexpress.png" alt="AliExpress Icon">
+                                <span>AliExpress</span>
+                            </a>
+                            <a href="https://www.daraz.pk" target="_blank" class="icon-link-card">
+                                <img src="https://img.icons8.com/external-soft-fill-juicy-fish/60/external-daraz-online-shopping-soft-fill-soft-fill-juicy-fish.png" alt="Daraz PK Icon">
+                                <span>Daraz PK</span>
+                            </a>
+                            <a href="https://imgbb.com" target="_blank" class="icon-link-card">
+                                <img src="https://img.icons8.com/color/48/image.png" alt="ImgBB Icon">
+                                <span>Archive Images</span>
+                            </a>
+                        </div>
+                        
+                        <h3 class="text-base font-semibold text-dynamic-accent pt-6 pb-2 border-t border-gray-700/50 flex items-center">
+                            <i data-lucide="link" class="w-4 h-4 mr-1 text-dynamic-accent"></i> Existing E-Governance Portals
+                        </h3>
+                        
                         
                         <h3 class="text-base font-semibold text-gray-400 pt-2 pb-1 border-t border-gray-700/50 flex items-center">
                             <i data-lucide="banknote" class="w-4 h-4 mr-1 text-blue-400"></i> Federal & Provincial Tax Portals
