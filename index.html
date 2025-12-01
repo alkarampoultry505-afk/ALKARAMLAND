@@ -100,6 +100,7 @@
             height: 20px;
             margin-right: 8px;
             border-radius: 4px; /* Slight border radius for visual appeal */
+            object-fit: contain; /* Ensure icon is not cropped */
         }
 
         /* --- Custom Headings --- */
@@ -166,10 +167,9 @@
             }
         }
         
-        // --- Helper function to generate icon URL (Placeholder) ---
+        // --- Helper function to generate icon URL (Placeholder for standard websites) ---
         function getIconUrl(domain) {
-            // NOTE: Replace these with actual live favicon URLs if available, or just use Lucide icons.
-            // Using placeholder for demonstration.
+            // High quality image URLs from Icons8 or similar sources
             if (domain.includes('google')) return 'https://img.icons8.com/color/48/google-logo.png';
             if (domain.includes('facebook')) return 'https://img.icons8.com/fluency/48/facebook-new.png';
             if (domain.includes('youtube')) return 'https://img.icons8.com/color/48/youtube-play.png';
@@ -195,19 +195,28 @@
             if (domain.includes('wetransfer')) return 'https://img.icons8.com/color/48/wetransfer.png';
             if (domain.includes('play')) return 'https://img.icons8.com/color/48/google-play.png';
             if (domain.includes('dropbox')) return 'https://img.icons8.com/color/48/dropbox.png';
+            if (domain.includes('aliexpress')) return 'https://img.icons8.com/fluency/48/aliexpress.png';
+            if (domain.includes('translate')) return 'https://img.icons8.com/color/48/google-translate.png';
+            if (domain.includes('photos')) return 'https://img.icons8.com/color/48/google-photos.png';
+            if (domain.includes('business')) return 'https://img.icons8.com/color/48/google-my-business.png';
+            if (domain.includes('freelancer')) return 'https://img.icons8.com/color/48/freelancer.png';
+            
+            // Government/Sindh Specific Icons (Using Lucide icons as placeholders for official seals)
+            if (domain.includes('sindh.gov.pk') || domain.includes('gos.pk')) return 'https://img.icons8.com/external-flatart-icons-lineal-color-flatarticons/64/external-gavel-law-flatart-icons-lineal-color-flatarticons.png';
+            if (domain.includes('bor.sindh.gov.pk')) return 'https://img.icons8.com/color/48/document--v1.png'; // Document/Revenue
+            if (domain.includes('sindhzameen.gos.pk')) return 'https://img.icons8.com/color/48/land-terrain.png'; // Land
+            if (domain.includes('cmsindh')) return 'https://img.icons8.com/color/48/person-male.png'; // CM
+            if (domain.includes('governorsindh')) return 'https://img.icons8.com/color/48/person-female.png'; // Governor
+            if (domain.includes('sindhpolice')) return 'https://img.icons8.com/color/48/police-badge.png'; // Police
+            if (domain.includes('seld') || domain.includes('college')) return 'https://img.icons8.com/color/48/school.png'; // Education
+            if (domain.includes('health') || domain.includes('nicvd') || domain.includes('siut')) return 'https://img.icons8.com/color/48/first-aid-kit.png'; // Health
+            if (domain.includes('transport') || domain.includes('brtsindh')) return 'https://img.icons8.com/color/48/bus.png'; // Transport
+            if (domain.includes('irrigation') || domain.includes('phe') || domain.includes('sepa')) return 'https://img.icons8.com/color/48/water.png'; // Water/Environment
+            if (domain.includes('finance') || domain.includes('srb') || domain.includes('excise')) return 'https://img.icons8.com/color/48/currency-exchange.png'; // Finance
+            if (domain.includes('ccms') || domain.includes('mohtasibsindh')) return 'https://img.icons8.com/color/48/complaint.png'; // Complaint
+            if (domain.includes('sitb') || domain.includes('eservices') || domain.includes('etender')) return 'https://img.icons8.com/color/48/server.png'; // IT/E-Gov
 
             return 'https://img.icons8.com/color/48/internet.png'; // Default
-        }
-        
-        // --- Helper function to get Lucide Icon Name based on category ---
-        function getLucideIconName(category) {
-            if (category === 'Social Media') return 'message-square';
-            if (category === 'Google Services') return 'search';
-            if (category === 'Work & Cloud Tools') return 'briefcase';
-            if (category === 'Business / Marketing') return 'network';
-            if (category === 'Pakistan Govt Useful Links') return 'gavel';
-            if (category === 'Extra Important Websites') return 'flame';
-            return 'link';
         }
     </script>
     
@@ -624,7 +633,7 @@
                         </a>
                         <a href="https://sindh.gov.pk" target="_blank" class="modern-link-card">
                             <span class="link-text">
-                                <img src="${getIconUrl('sindh')}" alt="Sindh Govt Icon" class="link-icon">
+                                <img src="${getIconUrl('sindh.gov.pk')}" alt="Sindh Govt Icon" class="link-icon">
                                 Sindh Govt Portal
                             </span>
                             <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
@@ -693,14 +702,14 @@
                         </h3>
                         <a href="https://iris.fbr.gov.pk/" target="_blank" class="modern-link-card">
                             <span class="link-text">
-                                <img src="${getIconUrl('fbr')}" alt="FBR Icon" class="link-icon">
+                                <img src="${getIconUrl('fbr')}" alt="FBR IRIS Icon" class="link-icon">
                                 FBR IRIS Portal – Federal Taxes
                             </span>
                             <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
                         </a>
                         <a href="https://aitapp.srb.gos.pk/#/session/signin" target="_blank" class="modern-link-card">
                             <span class="link-text">
-                                <i data-lucide="banknote" class="w-4 h-4 mr-2 text-blue-400"></i>
+                                <img src="${getIconUrl('srb.gos.pk')}" alt="SRB Icon" class="link-icon">
                                 SRB AIT Application – Sindh Sales Tax
                             </span>
                             <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
@@ -712,21 +721,21 @@
                         </h3>
                         <a href="https://cmsindh.gov.pk" target="_blank" class="modern-link-card">
                             <span class="link-text">
-                                <i data-lucide="user-cog" class="w-4 h-4 mr-2 text-blue-500"></i>
+                                <img src="${getIconUrl('cmsindh.gov.pk')}" alt="CM Sindh Icon" class="link-icon">
                                 1. Chief Minister Sindh
                             </span>
                             <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
                         </a>
                         <a href="https://governorsindh.gov.pk" target="_blank" class="modern-link-card">
                             <span class="link-text">
-                                <i data-lucide="user-cog" class="w-4 h-4 mr-2 text-blue-500"></i>
+                                <img src="${getIconUrl('governorsindh.gov.pk')}" alt="Governor Sindh Icon" class="link-icon">
                                 2. Governor Sindh
                             </span>
                             <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
                         </a>
                         <a href="https://sga.sindh.gov.pk" target="_blank" class="modern-link-card">
                             <span class="link-text">
-                                <i data-lucide="user-cog" class="w-4 h-4 mr-2 text-blue-500"></i>
+                                <img src="${getIconUrl('sga.sindh.gov.pk')}" alt="SGA&CD Icon" class="link-icon">
                                 3. SGA&CD (Admin Dept)
                             </span>
                             <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
@@ -739,28 +748,28 @@
                         </h3>
                         <a href="https://bor.sindh.gov.pk" target="_blank" class="modern-link-card">
                             <span class="link-text">
-                                <i data-lucide="gem" class="w-4 h-4 mr-2 text-green-500"></i>
+                                <img src="${getIconUrl('bor.sindh.gov.pk')}" alt="BoR Icon" class="link-icon">
                                 4. Board of Revenue Sindh (BoR)
                             </span>
                             <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
                         </a>
                         <a href="https://sindhzameen.gos.pk" target="_blank" class="modern-link-card">
                             <span class="link-text">
-                                <i data-lucide="gem" class="w-4 h-4 mr-2 text-green-500"></i>
+                                <img src="${getIconUrl('sindhzameen.gos.pk')}" alt="Sindh Zameen Icon" class="link-icon">
                                 5. Sindh Zameen Portal (Land Records)
                             </span>
                             <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
                         </a>
                         <a href="https://agribusiness.sindh.gov.pk" target="_blank" class="modern-link-card">
                             <span class="link-text">
-                                <i data-lucide="gem" class="w-4 h-4 mr-2 text-green-500"></i>
+                                <img src="${getIconUrl('agribusiness.sindh.gov.pk')}" alt="Agriculture Icon" class="link-icon">
                                 6. Agriculture Supply & Prices
                             </span>
                             <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
                         </a>
                         <a href="https://cooperative.sindh.gov.pk" target="_blank" class="modern-link-card">
                             <span class="link-text">
-                                <i data-lucide="gem" class="w-4 h-4 mr-2 text-green-500"></i>
+                                <img src="${getIconUrl('cooperative.sindh.gov.pk')}" alt="Cooperative Icon" class="link-icon">
                                 7. Cooperative Department
                             </span>
                             <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
@@ -773,28 +782,28 @@
                         </h3>
                         <a href="https://sindhpolice.gov.pk" target="_blank" class="modern-link-card">
                             <span class="link-text">
-                                <i data-lucide="shield" class="w-4 h-4 mr-2 text-yellow-500"></i>
+                                <img src="${getIconUrl('sindhpolice.gov.pk')}" alt="Sindh Police Icon" class="link-icon">
                                 8. Sindh Police
                             </span>
                             <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
                         </a>
                         <a href="https://home.sindh.gov.pk" target="_blank" class="modern-link-card">
                             <span class="link-text">
-                                <i data-lucide="shield" class="w-4 h-4 mr-2 text-yellow-500"></i>
+                                <img src="${getIconUrl('home.sindh.gov.pk')}" alt="Home Dept Icon" class="link-icon">
                                 9. Home Department
                             </span>
                             <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
                         </a>
                         <a href="https://prosecution.sindh.gov.pk" target="_blank" class="modern-link-card">
                             <span class="link-text">
-                                <i data-lucide="shield" class="w-4 h-4 mr-2 text-yellow-500"></i>
+                                <img src="${getIconUrl('prosecution.sindh.gov.pk')}" alt="Prosecution Icon" class="link-icon">
                                 10. Prosecution Sindh
                             </span>
                             <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
                         </a>
                         <a href="https://atc.gos.pk" target="_blank" class="modern-link-card">
                             <span class="link-text">
-                                <i data-lucide="shield" class="w-4 h-4 mr-2 text-yellow-500"></i>
+                                <img src="${getIconUrl('atc.gos.pk')}" alt="ATC Courts Icon" class="link-icon">
                                 11. ATC Courts (Anti-Terrorism)
                             </span>
                             <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
@@ -807,28 +816,28 @@
                         </h3>
                         <a href="https://seld.sindh.gov.pk" target="_blank" class="modern-link-card">
                             <span class="link-text">
-                                <i data-lucide="graduation-cap" class="w-4 h-4 mr-2 text-red-500"></i>
+                                <img src="${getIconUrl('seld.sindh.gov.pk')}" alt="SELD Icon" class="link-icon">
                                 12. SELD (School Education)
                             </span>
                             <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
                         </a>
                         <a href="https://college.sindh.gov.pk" target="_blank" class="modern-link-card">
                             <span class="link-text">
-                                <i data-lucide="graduation-cap" class="w-4 h-4 mr-2 text-red-500"></i>
+                                <img src="${getIconUrl('college.sindh.gov.pk')}" alt="College Edu Icon" class="link-icon">
                                 13. College Education
                             </span>
                             <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
                         </a>
                         <a href="https://admission.sindh.gov.pk" target="_blank" class="modern-link-card">
                             <span class="link-text">
-                                <i data-lucide="graduation-cap" class="w-4 h-4 mr-2 text-red-500"></i>
+                                <img src="${getIconUrl('admission.sindh.gov.pk')}" alt="Sindh HEC Icon" class="link-icon">
                                 14. Sindh HEC / Online Admissions
                             </span>
                             <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
                         </a>
                         <a href="https://sef.org.pk" target="_blank" class="modern-link-card">
                             <span class="link-text">
-                                <i data-lucide="graduation-cap" class="w-4 h-4 mr-2 text-red-500"></i>
+                                <img src="${getIconUrl('sef.org.pk')}" alt="SEF Icon" class="link-icon">
                                 15. Sindh Education Foundation (SEF)
                             </span>
                             <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
@@ -841,28 +850,28 @@
                         </h3>
                         <a href="https://sindhhealth.gov.pk" target="_blank" class="modern-link-card">
                             <span class="link-text">
-                                <i data-lucide="heart-handshake" class="w-4 h-4 mr-2 text-orange-500"></i>
+                                <img src="${getIconUrl('sindhhealth.gov.pk')}" alt="Health Dept Icon" class="link-icon">
                                 16. Health Department Sindh
                             </span>
                             <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
                         </a>
                         <a href="https://shcc.org.pk" target="_blank" class="modern-link-card">
                             <span class="link-text">
-                                <i data-lucide="heart-handshake" class="w-4 h-4 mr-2 text-orange-500"></i>
+                                <img src="${getIconUrl('shcc.org.pk')}" alt="SHCC Icon" class="link-icon">
                                 17. Sindh Health Care Commission (SHCC)
                             </span>
                             <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
                         </a>
                         <a href="https://nicvd.org" target="_blank" class="modern-link-card">
                             <span class="link-text">
-                                <i data-lucide="heart-handshake" class="w-4 h-4 mr-2 text-orange-500"></i>
+                                <img src="${getIconUrl('nicvd.org')}" alt="NICVD Icon" class="link-icon">
                                 18. NICVD (Heart Institute)
                             </span>
                             <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
                         </a>
                         <a href="https://siut.org" target="_blank" class="modern-link-card">
                             <span class="link-text">
-                                <i data-lucide="heart-handshake" class="w-4 h-4 mr-2 text-orange-500"></i>
+                                <img src="${getIconUrl('siut.org')}" alt="SIUT Icon" class="link-icon">
                                 19. SIUT (Kidney/Liver Institute)
                             </span>
                             <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
@@ -875,21 +884,21 @@
                         </h3>
                         <a href="https://transport.sindh.gov.pk" target="_blank" class="modern-link-card">
                             <span class="link-text">
-                                <i data-lucide="bus" class="w-4 h-4 mr-2 text-purple-500"></i>
+                                <img src="${getIconUrl('transport.sindh.gov.pk')}" alt="Transport Dept Icon" class="link-icon">
                                 20. Transport & Mass Transit
                             </span>
                             <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
                         </a>
                         <a href="https://highways.sindh.gov.pk" target="_blank" class="modern-link-card">
                             <span class="link-text">
-                                <i data-lucide="bus" class="w-4 h-4 mr-2 text-purple-500"></i>
+                                <img src="${getIconUrl('highways.sindh.gov.pk')}" alt="Highways Icon" class="link-icon">
                                 21. Sindh Highways
                             </span>
                             <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
                         </a>
                         <a href="https://brtsindh.gov.pk" target="_blank" class="modern-link-card">
                             <span class="link-text">
-                                <i data-lucide="bus" class="w-4 h-4 mr-2 text-purple-500"></i>
+                                <img src="${getIconUrl('brtsindh.gov.pk')}" alt="Karachi BRT Icon" class="link-icon">
                                 22. Karachi BRT (Bus Rapid Transit)
                             </span>
                             <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
@@ -902,21 +911,21 @@
                         </h3>
                         <a href="https://irrigation.sindh.gov.pk" target="_blank" class="modern-link-card">
                             <span class="link-text">
-                                <i data-lucide="droplets" class="w-4 h-4 mr-2 text-amber-500"></i>
+                                <img src="${getIconUrl('irrigation.sindh.gov.pk')}" alt="Irrigation Dept Icon" class="link-icon">
                                 23. Irrigation Department
                             </span>
                             <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
                         </a>
                         <a href="https://phe.sindh.gov.pk" target="_blank" class="modern-link-card">
                             <span class="link-text">
-                                <i data-lucide="droplets" class="w-4 h-4 mr-2 text-amber-500"></i>
+                                <img src="${getIconUrl('phe.sindh.gov.pk')}" alt="PHE Icon" class="link-icon">
                                 24. Public Health Engineering (PHE)
                             </span>
                             <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
                         </a>
                         <a href="https://sepa.sindh.gov.pk" target="_blank" class="modern-link-card">
                             <span class="link-text">
-                                <i data-lucide="droplets" class="w-4 h-4 mr-2 text-amber-500"></i>
+                                <img src="${getIconUrl('sepa.sindh.gov.pk')}" alt="SEPA Icon" class="link-icon">
                                 25. Environment (SEPA)
                             </span>
                             <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
@@ -929,21 +938,21 @@
                         </h3>
                         <a href="https://finance.sindh.gov.pk" target="_blank" class="modern-link-card">
                             <span class="link-text">
-                                <i data-lucide="calculator" class="w-4 h-4 mr-2 text-blue-400"></i>
+                                <img src="${getIconUrl('finance.sindh.gov.pk')}" alt="Finance Dept Icon" class="link-icon">
                                 26. Finance Department
                             </span>
                             <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
                         </a>
                         <a href="https://srb.gos.pk" target="_blank" class="modern-link-card">
                             <span class="link-text">
-                                <i data-lucide="calculator" class="w-4 h-4 mr-2 text-blue-400"></i>
+                                <img src="${getIconUrl('srb.gos.pk')}" alt="SRB Icon" class="link-icon">
                                 27. Sindh Revenue Board (SRB)
                             </span>
                             <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
                         </a>
                         <a href="https://excise.gos.pk" target="_blank" class="modern-link-card">
                             <span class="link-text">
-                                <i data-lucide="calculator" class="w-4 h-4 mr-2 text-blue-400"></i>
+                                <img src="${getIconUrl('excise.gos.pk')}" alt="Excise Dept Icon" class="link-icon">
                                 28. Excise & Taxation (Vehicle Verification)
                             </span>
                             <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
@@ -956,21 +965,21 @@
                         </h3>
                         <a href="https://hr.sindh.gov.pk" target="_blank" class="modern-link-card">
                             <span class="link-text">
-                                <i data-lucide="users-round" class="w-4 h-4 mr-2 text-green-400"></i>
+                                <img src="${getIconUrl('hr.sindh.gov.pk')}" alt="Human Rights Icon" class="link-icon">
                                 29. Human Rights Department
                             </span>
                             <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
                         </a>
                         <a href="https://women.sindh.gov.pk" target="_blank" class="modern-link-card">
                             <span class="link-text">
-                                <i data-lucide="users-round" class="w-4 h-4 mr-2 text-green-400"></i>
+                                <img src="${getIconUrl('women.sindh.gov.pk')}" alt="Women Dev Icon" class="link-icon">
                                 30. Women Development
                             </span>
                             <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
                         </a>
                         <a href="https://minorityaffairs.sindh.gov.pk" target="_blank" class="modern-link-card">
                             <span class="link-text">
-                                <i data-lucide="users-round" class="w-4 h-4 mr-2 text-green-400"></i>
+                                <img src="${getIconUrl('minorityaffairs.sindh.gov.pk')}" alt="Minority Affairs Icon" class="link-icon">
                                 31. Minority Affairs
                             </span>
                             <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
@@ -983,14 +992,14 @@
                         </h3>
                         <a href="https://labour.sindh.gov.pk" target="_blank" class="modern-link-card">
                             <span class="link-text">
-                                <i data-lucide="factory" class="w-4 h-4 mr-2 text-violet-500"></i>
+                                <img src="${getIconUrl('labour.sindh.gov.pk')}" alt="Labour Dept Icon" class="link-icon">
                                 32. Labour & Human Resources
                             </span>
                             <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
                         </a>
                         <a href="https://wwb.sindh.gov.pk" target="_blank" class="modern-link-card">
                             <span class="link-text">
-                                <i data-lucide="factory" class="w-4 h-4 mr-2 text-violet-500"></i>
+                                <img src="${getIconUrl('wwb.sindh.gov.pk')}" alt="WWB Icon" class="link-icon">
                                 33. Workers Welfare Board (WWB)
                             </span>
                             <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
@@ -1003,21 +1012,21 @@
                         </h3>
                         <a href="https://lgd.sindh.gov.pk" target="_blank" class="modern-link-card">
                             <span class="link-text">
-                                <i data-lucide="building-2" class="w-4 h-4 mr-2 text-amber-900"></i>
+                                <img src="${getIconUrl('lgd.sindh.gov.pk')}" alt="LGD Icon" class="link-icon">
                                 34. Local Government Department (LGD)
                             </span>
                             <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
                         </a>
                         <a href="https://kmc.gos.pk" target="_blank" class="modern-link-card">
                             <span class="link-text">
-                                <i data-lucide="building-2" class="w-4 h-4 mr-2 text-amber-900"></i>
+                                <img src="${getIconUrl('kmc.gos.pk')}" alt="KMC Icon" class="link-icon">
                                 35. KMC Karachi (Metropolitan Corporation)
                             </span>
                             <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
                         </a>
                         <a href="https://sbca.gos.pk" target="_blank" class="modern-link-card">
                             <span class="link-text">
-                                <i data-lucide="building-2" class="w-4 h-4 mr-2 text-amber-900"></i>
+                                <img src="${getIconUrl('sbca.gos.pk')}" alt="SBCA Icon" class="link-icon">
                                 36. SBCA (Sindh Building Control Authority)
                             </span>
                             <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
@@ -1030,14 +1039,14 @@
                         </h3>
                         <a href="https://lpd.sindh.gov.pk" target="_blank" class="modern-link-card">
                             <span class="link-text">
-                                <i data-lucide="bone" class="w-4 h-4 mr-2 text-orange-400"></i>
+                                <img src="${getIconUrl('lpd.sindh.gov.pk')}" alt="LPD Icon" class="link-icon">
                                 37. Livestock & Fisheries (LPD)
                             </span>
                             <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
                         </a>
                         <a href="https://sprc.sindh.gov.pk" target="_blank" class="modern-link-card">
                             <span class="link-text">
-                                <i data-lucide="bone" class="w-4 h-4 mr-2 text-orange-400"></i>
+                                <img src="${getIconUrl('sprc.sindh.gov.pk')}" alt="SPRC Icon" class="link-icon">
                                 38. Sindh Poultry Research (SPRC)
                             </span>
                             <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
@@ -1050,21 +1059,21 @@
                         </h3>
                         <a href="https://ccms.sindh.gov.pk" target="_blank" class="modern-link-card">
                             <span class="link-text">
-                                <i data-lucide="gavel" class="w-4 h-4 mr-2 text-gray-400"></i>
+                                <img src="${getIconUrl('ccms.sindh.gov.pk')}" alt="CCMS Icon" class="link-icon">
                                 39. CM Complaint Cell (CCMS)
                             </span>
                             <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
                         </a>
                         <a href="https://mohtasibsindh.gov.pk" target="_blank" class="modern-link-card">
                             <span class="link-text">
-                                <i data-lucide="gavel" class="w-4 h-4 mr-2 text-gray-400"></i>
+                                <img src="${getIconUrl('mohtasibsindh.gov.pk')}" alt="Ombudsman Icon" class="link-icon">
                                 40. Ombudsman Sindh (Mohtasib)
                             </span>
                             <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
                         </a>
                         <a href="https://anticorruption.sindh.gov.pk" target="_blank" class="modern-link-card">
                             <span class="link-text">
-                                <i data-lucide="gavel" class="w-4 h-4 mr-2 text-gray-400"></i>
+                                <img src="${getIconUrl('anticorruption.sindh.gov.pk')}" alt="Anti-Corruption Icon" class="link-icon">
                                 41. Anti-Corruption Sindh
                             </span>
                             <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
@@ -1077,21 +1086,21 @@
                         </h3>
                         <a href="https://sitb.sindh.gov.pk" target="_blank" class="modern-link-card">
                             <span class="link-text">
-                                <i data-lucide="laptop" class="w-4 h-4 mr-2 text-cyan-400"></i>
+                                <img src="${getIconUrl('sitb.sindh.gov.pk')}" alt="SITB Icon" class="link-icon">
                                 42. Sindh IT Board (SITB)
                             </span>
                             <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
                         </a>
                         <a href="https://services.sindh.gov.pk" target="_blank" class="modern-link-card">
                             <span class="link-text">
-                                <i data-lucide="laptop" class="w-4 h-4 mr-2 text-cyan-400"></i>
+                                <img src="${getIconUrl('services.sindh.gov.pk')}" alt="e-Services Icon" class="link-icon">
                                 43. Sindh e-Services Portal
                             </span>
                             <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
                         </a>
                         <a href="https://etender.sindh.gov.pk" target="_blank" class="modern-link-card">
                             <span class="link-text">
-                                <i data-lucide="laptop" class="w-4 h-4 mr-2 text-cyan-400"></i>
+                                <img src="${getIconUrl('etender.sindh.gov.pk')}" alt="e-Tenders Icon" class="link-icon">
                                 44. e-Tenders Sindh
                             </span>
                             <i data-lucide="arrow-right" class="w-4 h-4 text-dynamic-accent/50 ml-2"></i>
