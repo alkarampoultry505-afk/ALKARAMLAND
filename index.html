@@ -1,621 +1,348 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PORTFOLIO PROJECT: Digital Revenue & Land Records Portal (Roman Modern Edition)</title>
-    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Al Karam Revenue Record's Management Portal</title>
+    <!-- Load Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&family=Cinzel:wght@400;700;900&display=swap" rel="stylesheet" />
-
+    <!-- Use Inter font family -->
     <style>
-        /* --- NEW DESIGN VARIABLES (Roman Modern Aesthetic) --- */
-        :root {
-            --primary-accent: #ffd700; /* Rich Gold */
-            --secondary-accent: #a8a29e; /* Muted Stone/Silver */
-            --dark-bg-color: #0c0c1e; /* Deep Navy Blue/Black */
-            --card-bg-color: rgba(212, 175, 55, 0.05); /* Very subtle Gold tint for cards */
-            --text-color: #f0f0f0; /* Off-White */
-            --header-font: 'Cinzel', serif; /* Roman-style font */
-        }
-        
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
         body {
             font-family: 'Inter', sans-serif;
-            scroll-behavior: smooth;
-            background-color: var(--dark-bg-color);
-            color: var(--text-color);
-            background-image: 
-                linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><defs><pattern id="g" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M5 0V10M10 5H0" stroke="%23374151" stroke-width="0.5" stroke-opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23g)"/></svg>');
-            background-size: cover, 50px 50px;
+            background-color: #f4f7f9;
         }
-
-        /* --- Roman Card Style (Clean, Bordered, Gold Accent) --- */
-        .roman-card {
-            background-color: var(--dark-bg-color);
-            border: 1px solid var(--primary-accent); /* Thin Gold Border */
-            border-radius: 4px; 
-            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.1), 0 0 5px rgba(255, 215, 0, 0.2); 
-            transition: all 0.3s ease;
+        /* Custom scrollbar for aesthetic */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
         }
-        .roman-card:hover {
-            border-color: var(--secondary-accent);
-            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.4);
-            transform: translateY(-2px);
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1; /* slate-300 */
+            border-radius: 4px;
         }
-
-        /* --- Header: Clean Structured Bar --- */
-        .header-bg {
-            background-color: rgba(12, 12, 30, 0.95);
-            backdrop-filter: blur(5px);
-            border-bottom: 2px solid var(--primary-accent);
-        }
-        
-        .header-title {
-            font-family: var(--header-font);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--primary-accent);
-            text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
-        }
-        
-        /* --- DIGITAL LINK CARD STYLE (Clean Panel) --- */
-        .digital-link-card {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 15px;
-            background-color: rgba(255, 255, 255, 0.05);
-            border-radius: 2px;
-            transition: all 0.25s ease-in-out;
-            border-left: 3px solid var(--secondary-accent); /* Silver/Stone line */
-        }
-
-        .digital-link-card:hover {
-            background-color: var(--card-bg-color);
-            border-left: 3px solid var(--primary-accent); /* Gold line on hover */
-            box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
-            transform: scale(1.02);
-            z-index: 10;
-        }
-        
-        /* --- Custom Headings (Roman Style) --- */
-        .roman-heading {
-            font-family: var(--header-font);
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            font-size: 2.5rem; 
-            line-height: 1.1;
-            color: var(--primary-accent); 
-            text-shadow: 0 0 1px var(--primary-accent); 
-        }
-        
-        .section-title {
-            font-family: var(--header-font);
-            color: var(--secondary-accent);
-            font-weight: 700;
-            text-shadow: none;
-        }
-
-        .category-heading {
-            text-transform: uppercase;
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background-color: #f8fafc; /* slate-50 */
         }
     </style>
-
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        roman: ['Cinzel', 'serif'],
-                    },
-                    colors: {
-                        'primary-gold': 'var(--primary-accent)',
-                        'secondary-stone': 'var(--secondary-accent)',
-                        'dark-bg-main': 'var(--dark-bg-color)',
-                    },
-                }
-            }
-        }
-    </script>
 </head>
-<body class="overflow-x-hidden">
+<body class="min-h-screen flex flex-col">
 
-    <script>
-        window.onload = function() {
-            lucide.createIcons();
-        };
-
-        function checkPassword() {
-            const correctPassword = "ALKARAM786";
-            const inputElement = document.getElementById('quick-links-password');
-            const password = inputElement.value;
-            const quickLinksSection = document.getElementById('quick-links-access');
-            const passwordPrompt = document.getElementById('password-prompt');
-            const errorMessage = document.getElementById('error-message');
-
-            if (password === correctPassword) {
-                // Sahi Password: Links section dikhao aur password prompt chupa do
-                quickLinksSection.style.display = 'block';
-                passwordPrompt.style.display = 'none';
-                errorMessage.textContent = 'ACCESS GRANTED. WELCOME, ADMINISTRATOR.'; 
-                errorMessage.classList.remove('text-primary-gold');
-                errorMessage.classList.add('text-secondary-stone', 'font-bold');
-            } else {
-                // Galat Password: Error message dikhao
-                errorMessage.textContent = "Incorrect Access Code. Authentication Failed.";
-                errorMessage.classList.add('text-primary-gold', 'font-bold'); 
-                errorMessage.classList.remove('text-secondary-stone');
-                inputElement.value = ''; // Input field clear karo
+    <!-- 1. SPLASH SCREEN (Initial state) -->
+    <div id="splashScreen" class="fixed inset-0 bg-white z-50 flex flex-col items-center justify-center transition-opacity duration-1000 ease-out">
+        <img src="https://i.ibb.co/jkPp27Nx/1000193384.png" alt="Al Karam Logo" class="w-2/3 max-w-lg h-auto rounded-xl shadow-2xl animate-pulse" onerror="this.onerror=null; this.src='https://placehold.co/600x400/0F766E/ffffff?text=Al+Karam+Feeds+Logo'">
+        <div class="mt-8 text-xl font-semibold text-teal-700">Loading Management Portal...</div>
+        <div class="w-64 bg-gray-200 rounded-full h-2.5 mt-4 overflow-hidden">
+            <div class="bg-teal-600 h-2.5 rounded-full animate-grow-width"></div>
+        </div>
+        <style>
+            @keyframes grow-width {
+                0% { width: 0%; }
+                100% { width: 100%; }
             }
-        }
-        
-        // --- Helper function to generate icon URL (Updated to fit the new aesthetic) ---
-        function getIconUrl(domain) {
-            // Using subtle dark icons for the Roman Modern aesthetic
-            if (domain.includes('google')) return 'https://img.icons8.com/ios-filled/20/ffd700/google-logo.png';
-            if (domain.includes('youtube')) return 'https://img.icons8.com/ios-filled/20/ffd700/youtube-play.png';
-            if (domain.includes('nadra')) return 'https://img.icons8.com/ios-filled/20/ffd700/passport-id.png';
-            if (domain.includes('fbr')) return 'https://img.icons8.com/ios-filled/20/ffd700/tax.png';
-            if (domain.includes('quran')) return 'https://img.icons8.com/ios-filled/20/ffd700/quran.png';
-            if (domain.includes('rekhta') || domain.includes('poetry')) return 'https://img.icons8.com/ios-filled/20/ffd700/quill-pen.png';
-            if (domain.includes('drive')) return 'https://img.icons8.com/ios-filled/20/ffd700/google-drive.png';
-            if (domain.includes('property') || domain.includes('zoopla') || domain.includes('emaar')) return 'https://img.icons8.com/ios-filled/20/ffd700/home-page.png';
-            if (domain.includes('travel') || domain.includes('booking') || domain.includes('expedia')) return 'https://img.icons8.com/ios-filled/20/ffd700/airport.png';
-            if (domain.includes('tourism')) return 'https://img.icons8.com/ios-filled/20/ffd700/compass.png';
-            if (domain.includes('wiki')) return 'https://img.icons8.com/ios-filled/20/ffd700/wikipedia.png';
-            return 'https://img.icons8.com/ios-filled/20/ffd700/internet.png'; // Default
-        }
-    </script>
-    
-    <header class="header-bg fixed top-0 left-0 w-full z-20 shadow-lg">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-            <div class="flex items-center space-x-3">
-                <i data-lucide="scan-line" class="w-7 h-7 text-primary-gold animate-pulse"></i>
-                <h1 class="text-xl font-bold tracking-widest header-title">
-                    <span class="text-secondary-stone">PORTAL</span>: REVENUE RECORDS SYSTEM
-                </h1>
-            </div>
-            <div class="flex items-center space-x-4 text-sm">
-                <div class="flex items-center text-gray-400">
-                    <div class="w-3 h-3 rounded-full bg-primary-gold mr-2 shadow-md shadow-primary-gold/50" title="Auth Status"></div>
-                    <span class="hidden sm:block">Status: <span class="text-primary-gold font-semibold">ONLINE / ACCESS TAYYAR HAI</span></span>
-                </div>
-            </div>
-        </div>
-    </header>
+            .animate-grow-width {
+                animation: grow-width 5s linear forwards;
+            }
+        </style>
+    </div>
 
-    <main class="pt-24 pb-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <div class="roman-card p-8 mb-12">
-            <div class="flex flex-col md:flex-row items-start md:items-center justify-between mb-6">
-                <div class="space-y-2">
-                    <h1 class="roman-heading text-4xl">Digital Revenue & Land Records Interface</h1>
-                    <p class="text-lg font-roman text-secondary-stone">Administratio Propositum II.I (Admin's Project 2.1)</p>
-                </div>
-                <div class="mt-4 md:mt-0">
-                    <img src="https://i.ibb.co/YTyLHmky/Whats-App-Image-2025-11-19-at-11-06-27-AM.jpg" alt="Developer Profile" 
-                        class="w-24 h-24 object-cover rounded-full border-4 border-primary-gold shadow-xl shadow-primary-gold/50">
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4 border-t border-gray-700/50">
-                
-                <div class="md:col-span-3">
-                    <h3 class="text-base font-semibold text-primary-gold mb-2 flex items-center category-heading section-title">
-                        <i data-lucide="scan-line" class="w-4 h-4 mr-2 text-primary-gold"></i> Mission Ka Maqsad
-                    </h3>
-                    <p class="text-sm text-gray-300 border-l-4 border-primary-gold/50 pl-4 italic mb-4 bg-primary-gold/5 p-2">
-                        **AL KARAM REVENUE DOCUMENTS** agricultural land records ko **mehfooz (secure) aur munazzam (organized)** tareeqay se manage karne ke liye design kiya gaya hai. Sab rights iske owner, **Mr. Shahid Ikram Malik** ke paas hain.
-                    </p>
-                    
-                    <h3 class="text-base font-semibold text-primary-gold mb-2 mt-4 flex items-center category-heading section-title">
-                        <i data-lucide="cpu" class="w-4 h-4 mr-2 text-primary-gold"></i> System Administrator Ka Profile
-                    </h3>
-                    <p class="text-sm text-gray-300">
-                        Mr. Shahid Ikram Malik ek visionary professional hain jinhone land record digitization ke liye modern aur secure system introduce kiya. Yeh portal is baat ki zamanat deta hai ki records **protected, transparent, aur digital** hon.
-                    </p>
-                </div>
-                <div class="md:col-span-3"> 
-                    <h3 class="text-base font-semibold text-gray-400 mb-2">Istemal Hone Wali Technology (Frontend)</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-secondary-stone/30 text-white text-xs rounded-full font-sans border border-secondary-stone shadow-sm">HTML5 / JavaScript (Pure Static)</span>
-                        <span class="px-3 py-1 bg-secondary-stone/30 text-white text-xs rounded-full font-sans border border-secondary-stone shadow-sm">Tailwind CSS (CDN)</span>
-                        <span class="px-3 py-1 bg-secondary-stone/30 text-white text-xs rounded-full font-sans border border-secondary-stone shadow-sm">GitHub Pages Ready</span>
-                        <span class="px-3 py-1 bg-secondary-stone/30 text-white text-xs rounded-full font-sans border border-secondary-stone shadow-sm">Roman Modern Design</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <!-- 2. MAIN APPLICATION CONTENT (Hidden initially, shown after splash) -->
+    <main id="mainContent" class="hidden flex-grow p-4 md:p-8">
+        <div class="max-w-6xl mx-auto bg-white rounded-3xl shadow-2xl p-6 md:p-10 border border-gray-100">
             
-            <div class="lg:col-span-2 space-y-8">
-                
-                <div id="password-prompt" class="roman-card p-6">
-                    <h3 class="text-xl font-bold mb-4 category-heading section-title flex items-center">
-                        <i data-lucide="lock" class="w-5 h-5 mr-2 text-primary-gold"></i>
-                        ACCESS DENIED: Quick Links Encrypted Hain
-                    </h3>
-                    <p class="text-sm text-gray-300 mb-4">Internal links aur documents dekhne ke liye 8-digit security access code daalein.</p>
-                    
-                    <div class="flex flex-col space-y-3">
-                        <input type="password" id="quick-links-password" placeholder="Access Code Enter Karein (ALKARAM786)" 
-                               class="w-full px-4 py-3 rounded-sm bg-dark-bg-main border-2 border-secondary-stone/50 text-white focus:border-primary-gold focus:outline-none placeholder-gray-600 font-sans"
-                               onkeypress="if(event.keyCode == 13) checkPassword()">
-                        <button onclick="checkPassword()"
-                                class="flex items-center justify-center px-6 py-3 rounded-sm bg-primary-gold hover:bg-primary-gold/80 text-dark-bg-main font-bold transition duration-300 shadow-lg shadow-primary-gold/40 category-heading">
-                            <i data-lucide="key" class="w-4 h-4 mr-2"></i>
-                            DECRYPT AUR ACCESS KAREIN
-                        </button>
-                    </div>
-                    <p id="error-message" class="mt-3 text-center text-sm font-sans"></p>
+            <header class="text-center mb-10">
+                <h1 class="text-4xl font-extrabold text-teal-800 tracking-tight">Al Karam Revenue Record's Management Portal</h1>
+                <p class="text-xl text-gray-500 mt-2">Dedicated to Justice, Welfare, and Growth</p>
+            </header>
+
+            <!-- Tabbed Interface for Login/About -->
+            <div id="tabsContainer" class="mb-8">
+                <div class="flex border-b border-gray-200">
+                    <button id="tabAbout" class="tab-button py-3 px-6 text-lg font-medium transition-colors duration-200 border-b-2 border-transparent text-gray-600 hover:text-teal-700 hover:border-teal-300" onclick="showTab('about')">About Me</button>
+                    <button id="tabLogin" class="tab-button py-3 px-6 text-lg font-medium transition-colors duration-200 border-b-2 border-transparent text-gray-600 hover:text-teal-700 hover:border-teal-300" onclick="showTab('login')">Secure Access</button>
                 </div>
                 
-                <div id="quick-links-access" class="roman-card p-6" style="display: none;">
-                    <h3 class="text-xl font-bold mb-4 category-heading section-title flex items-center">
-                        <i data-lucide="folder-open" class="w-5 h-5 mr-2 text-secondary-stone"></i>
-                        INTERNAL DATA MATRIX (SECURED DOCUMENTS)
-                    </h3>
-                    
-                    <div class="space-y-3" id="internal-links-list">
-                        
-                        <a href="https://al-karamfeedsmill.vercel.app/" target="_blank" class="digital-link-card">
-                            <span class="flex items-center font-bold text-lg text-primary-gold">
-                                <i data-lucide="building-2" class="w-5 h-5 mr-2 text-primary-gold"></i>
-                                Al Karam Feeds Mill (LIVE DOMAIN)
-                            </span>
-                            <span class="icon-placeholder text-secondary-stone font-sans text-sm">
-                                LINK ACTIVE <i data-lucide="external-link" class="w-4 h-4 inline ml-1"></i>
-                            </span>
-                        </a>
-
-                        <a href="https://drive.google.com/drive/folders/1orezy0DFRBFQ7xBkDiJXvRKkkgBB7DKI" target="_blank" class="digital-link-card">
-                            <span class="flex items-center text-gray-300">
-                                <i data-lucide="folder-open" class="w-4 h-4 mr-2 text-secondary-stone"></i>
-                                Revenue Record Data Folder (Google Drive)
-                            </span>
-                            <span class="icon-placeholder text-secondary-stone text-sm">
-                                VIEW <i data-lucide="arrow-right" class="w-4 h-4 inline ml-1"></i>
-                            </span>
-                        </a>
-
-                        <a href="https://drive.google.com/drive/folders/1L3EpqCTI2dJd-bOvzU1NwQt7nOYi1iTz" target="_blank" class="digital-link-card">
-                            <span class="flex items-center text-gray-300">
-                                <i data-lucide="file-check-2" class="w-4 h-4 mr-2 text-secondary-stone"></i>
-                                Legal Agreements & Contracts (Drive)
-                            </span>
-                            <span class="icon-placeholder text-secondary-stone text-sm">
-                                VIEW <i data-lucide="arrow-right" class="w-4 h-4 inline ml-1"></i>
-                            </span>
-                        </a>
-                        
-                        <div class="pt-2">
-                             <h3 class="text-xs font-semibold text-gray-400 mb-1 flex items-center category-heading">
-                                <i data-lucide="eye-off" class="w-3 h-3 mr-1 text-red-500"></i> Placeholder Services (Offline Modules)
-                            </h3>
-                        </div>
-
-                        <div class="digital-link-card opacity-50 cursor-not-allowed">
-                            <span class="flex items-center text-gray-500">
-                                <i data-lucide="credit-card" class="w-4 h-4 mr-2 text-gray-500"></i>
-                                Online Fee Payment Module (SIMULATED)
-                            </span>
-                            <span class="icon-placeholder text-gray-500 text-sm">
-                                LOCK <i data-lucide="lock" class="w-4 h-4 inline ml-1"></i>
-                            </span>
+                <!-- Tab Content: About Me -->
+                <div id="contentAbout" class="tab-content mt-6">
+                    <div class="space-y-6 text-gray-700 leading-relaxed custom-scrollbar max-h-[60vh] overflow-y-auto pr-2">
+                        <div class="flex flex-col md:flex-row items-start md:space-x-8">
+                            <div class="w-full md:w-3/4">
+                                <h2 class="text-3xl font-semibold text-teal-700 mb-4 border-b pb-2">Shahid Ikram Malik - Profile</h2>
+                                <p>My name is **Shahid Ikram Malik**. I am an advocate by profession, dedicated to justice, public service, and the protection of community rights. Along with my legal career, I am a landlord, politician, and a proud representative of the **Pakistan People’s Party (PPP)**. I currently serve as the **UC Chairman**, where I work with commitment for development, welfare, and strengthening grassroots governance.</p>
+                                <p>I am also a businessman with diverse ventures across multiple sectors. I run an **APC medicine factory**, supply fish, trade in poultry, and operate as a feeds supplier. I am the owner of **Al Karam Khairpur Feeds Mill**, located in the KSEZ Zone, Khairpur, which is known for quality, reliability, and modern feed production.</p>
+                                <p>With integrity, leadership, and dedication, I aim to create opportunities, support local farmers, and contribute to economic growth while continuing to serve my people with passion and responsibility.</p>
+                            </div>
+                            <!-- Placeholder for a personal image/avatar -->
+                            <div class="w-full md:w-1/4 mt-6 md:mt-0 flex justify-center">
+                                <img src="https://placehold.co/200x200/B2F5EA/042F2E?text=Advocate+S.I.M." alt="Shahid Ikram Malik Placeholder" class="rounded-full shadow-lg border-4 border-teal-200 object-cover">
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="lg:col-span-1">
-                 <div class="roman-card p-6 h-full">
-                    <h2 class="text-xl font-bold mb-4 category-heading section-title flex items-center">
-                        <i data-lucide="network" class="w-5 h-5 mr-2 text-primary-gold"></i>
-                        EXTERNAL DATA LINKS & E-GOV
-                    </h2>
-                    
-                    <div class="space-y-3 custom-scroll max-h-[850px] overflow-y-auto pr-3">
+                <!-- Tab Content: Login -->
+                <div id="contentLogin" class="tab-content mt-6 hidden">
+                    <div class="max-w-md mx-auto p-8 bg-teal-50 rounded-xl shadow-lg border border-teal-200">
+                        <h2 class="text-2xl font-bold text-teal-800 mb-6 text-center">Login to Access Records</h2>
                         
-                        <h3 class="text-base font-semibold text-primary-gold pt-2 pb-2 border-t border-gray-700/50 flex items-center category-heading">
-                            <i data-lucide="gavel" class="w-4 h-4 mr-1 text-secondary-stone"></i> 🟣 E-Governance / Legal
-                        </h3>
-                        <a href="https://id.nadra.gov.pk" target="_blank" class="digital-link-card">
-                            <span class="flex items-center text-gray-300">
-                                <img src="${getIconUrl('nadra')}" alt="NADRA Icon" class="w-5 h-5 mr-2">
-                                NADRA Portal
-                            </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold ml-2"></i>
+                        <!-- Client-Side Security Warning -->
+                        <div class="mb-6 p-3 bg-red-100 border border-red-400 text-red-700 rounded-lg text-sm font-medium">
+                            ⚠️ **Security Alert:** This login is for **demonstration purposes only** (client-side check) and is **not truly secure**. Do not use it for highly sensitive data in a production environment.
+                        </div>
+
+                        <form id="loginForm" onsubmit="event.preventDefault(); handleLogin();" class="space-y-4">
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
+                                <input type="email" id="email" name="email" required placeholder="alkarampoultry505@gmail.com" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500 transition duration-150 ease-in-out">
+                            </div>
+                            <div>
+                                <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                                <!-- UPDATED: Placeholder changed to a generic prompt -->
+                                <input type="password" id="password" name="password" required placeholder="Enter your secret password" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500 transition duration-150 ease-in-out">
+                            </div>
+                            <button type="submit" id="loginButton" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-lg shadow-md text-white font-semibold bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 transition duration-300 ease-in-out transform hover:scale-[1.01] active:scale-[0.99]">
+                                Login
+                            </button>
+                        </form>
+                        <div id="messageBox" class="mt-4 text-center text-sm font-medium hidden"></div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- 3. PROTECTED DASHBOARD (Hidden until successful login) -->
+            <div id="dashboard" class="hidden">
+                <div class="p-6 md:p-10 bg-white rounded-xl">
+                    <h2 class="text-3xl font-bold text-teal-800 mb-8 border-b-4 border-teal-500 pb-2">Revenue & Document Registry Access</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Link Card Template -->
+                        <!-- NOTE: The links are direct Google Drive folder links, which will open in a new tab -->
+                        <a href="https://drive.google.com/drive/folders/1orezy0DFRBFQ7xBkDiJXvRKkkgBB7DKI" target="_blank" class="block group p-6 bg-teal-50 rounded-xl shadow-md hover:shadow-xl transition duration-300 transform hover:translate-y-[-2px] border-2 border-transparent hover:border-teal-400">
+                            <div class="flex items-center space-x-4">
+                                <svg class="w-8 h-8 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                                <div>
+                                    <h3 class="text-xl font-semibold text-teal-700 group-hover:text-teal-800">Revenue Registry</h3>
+                                    <p class="text-sm text-gray-500">Financial records and revenue documents.</p>
+                                </div>
+                            </div>
                         </a>
-                        <a href="https://citizenportal.gov.pk" target="_blank" class="digital-link-card">
-                            <span class="flex items-center text-gray-300">
-                                <i data-lucide="user-plus" class="w-5 h-5 mr-2 text-secondary-stone"></i>
-                                Pakistan Citizen Portal
-                            </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold ml-2"></i>
+
+                        <a href="https://drive.google.com/drive/folders/1L3EpqCTI2dJd-bOvzU1NwQt7nOYi1iTz" target="_blank" class="block group p-6 bg-teal-50 rounded-xl shadow-md hover:shadow-xl transition duration-300 transform hover:translate-y-[-2px] border-2 border-transparent hover:border-teal-400">
+                            <div class="flex items-center space-x-4">
+                                <svg class="w-8 h-8 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2V9a2 2 0 012-2h2zM7 21a2 2 0 012-2h10a2 2 0 012 2m-10-8v2m4-2v2"></path></svg>
+                                <div>
+                                    <h3 class="text-xl font-semibold text-teal-700 group-hover:text-teal-800">Agreements</h3>
+                                    <p class="text-sm text-gray-500">Legal and business contracts.</p>
+                                </div>
+                            </div>
                         </a>
-                        <a href="https://bor.sindh.gov.pk" target="_blank" class="digital-link-card">
-                            <span class="flex items-center text-gray-300">
-                                <i data-lucide="stamp" class="w-5 h-5 mr-2 text-secondary-stone"></i>
-                                Sindh Board of Revenue (BoR)
-                            </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold ml-2"></i>
+
+                        <a href="https://drive.google.com/drive/folders/1eZVVq9p8ENA7btPLbrvg0R0JliCyfS4K" target="_blank" class="block group p-6 bg-teal-50 rounded-xl shadow-md hover:shadow-xl transition duration-300 transform hover:translate-y-[-2px] border-2 border-transparent hover:border-teal-400">
+                            <div class="flex items-center space-x-4">
+                                <svg class="w-8 h-8 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                                <div>
+                                    <h3 class="text-xl font-semibold text-teal-700 group-hover:text-teal-800">Sale Certificate</h3>
+                                    <p class="text-sm text-gray-500">Ownership and transfer documents.</p>
+                                </div>
+                            </div>
                         </a>
-                        <a href="https://www.fbr.gov.pk" target="_blank" class="digital-link-card">
-                            <span class="flex items-center text-gray-300">
-                                <img src="${getIconUrl('fbr')}" alt="FBR Icon" class="w-5 h-5 mr-2">
-                                FBR (Tax)
-                            </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold ml-2"></i>
+
+                        <a href="https://drive.google.com/drive/folders/1Yzd5ODoeUfcg7TtROrpLA9RDymgU3hBD" target="_blank" class="block group p-6 bg-teal-50 rounded-xl shadow-md hover:shadow-xl transition duration-300 transform hover:translate-y-[-2px] border-2 border-transparent hover:border-teal-400">
+                            <div class="flex items-center space-x-4">
+                                <svg class="w-8 h-8 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h10m-10 4h10m-9-4h.01M3 6l4-2 4 2 4-2 4 2 0-16 0 16-4-2-4 2-4-2-4 2"></path></svg>
+                                <div>
+                                    <h3 class="text-xl font-semibold text-teal-700 group-hover:text-teal-800">My Vehicle</h3>
+                                    <p class="text-sm text-gray-500">Vehicle registration and ownership papers.</p>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="https://drive.google.com/drive/folders/1w6i4v-wIrANuXZ85iX4UpGHJprwJWGZF" target="_blank" class="block group p-6 bg-teal-50 rounded-xl shadow-md hover:shadow-xl transition duration-300 transform hover:translate-y-[-2px] border-2 border-transparent hover:border-teal-400">
+                            <div class="flex items-center space-x-4">
+                                <svg class="w-8 h-8 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4m-4-4H4"></path></svg>
+                                <div>
+                                    <h3 class="text-xl font-semibold text-teal-700 group-hover:text-teal-800">My Cases</h3>
+                                    <p class="text-sm text-gray-500">Legal case files and documentation.</p>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="https://drive.google.com/drive/folders/1cYBKNNTNAgj7WHfbSbBoir9vZCUWQld8" target="_blank" class="block group p-6 bg-teal-50 rounded-xl shadow-md hover:shadow-xl transition duration-300 transform hover:translate-y-[-2px] border-2 border-transparent hover:border-teal-400">
+                            <div class="flex items-center space-x-4">
+                                <svg class="w-8 h-8 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-12 11V6a2 2 0 012-2h10a2 2 0 012 2v10a2 2 0 01-2 2H6a2 2 0 01-2-2z"></path></svg>
+                                <div>
+                                    <h3 class="text-xl font-semibold text-teal-700 group-hover:text-teal-800">My Gallery</h3>
+                                    <p class="text-sm text-gray-500">Photo and media collection.</p>
+                                </div>
+                            </div>
                         </a>
                         
-                        <h3 class="text-base font-semibold text-primary-gold pt-4 pb-2 border-t border-gray-700/50 flex items-center category-heading">
-                            <i data-lucide="search" class="w-4 h-4 mr-1 text-secondary-stone"></i> 🌐 Daily Services
-                        </h3>
-                        <a href="https://mail.google.com" target="_blank" class="digital-link-card">
-                            <span class="flex items-center text-gray-300">
-                                <i data-lucide="mail" class="w-5 h-5 mr-2 text-secondary-stone"></i>
-                                Gmail Access
-                            </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold ml-2"></i>
+                        <a href="https://drive.google.com/drive/folders/1i-9S-n35qPTCNXhSGWv8PFPHE8aV0SIQ" target="_blank" class="block group p-6 bg-teal-50 rounded-xl shadow-md hover:shadow-xl transition duration-300 transform hover:translate-y-[-2px] border-2 border-transparent hover:border-teal-400">
+                            <div class="flex items-center space-x-4">
+                                <svg class="w-8 h-8 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 12h14M5 16h14M8 12h8m-4 0v4m0-4V8"></path></svg>
+                                <div>
+                                    <h3 class="text-xl font-semibold text-teal-700 group-hover:text-teal-800">CNIC App</h3>
+                                    <p class="text-sm text-gray-500">Related National ID Card data/applications.</p>
+                                </div>
+                            </div>
                         </a>
-                        <a href="https://drive.google.com" target="_blank" class="digital-link-card">
-                            <span class="flex items-center text-gray-300">
-                                <img src="${getIconUrl('drive')}" alt="Google Drive Icon" class="w-5 h-5 mr-2">
-                                Google Drive
-                            </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold ml-2"></i>
-                        </a>
-                        <a href="https://translate.google.com" target="_blank" class="digital-link-card">
-                            <span class="flex items-center text-gray-300">
-                                <i data-lucide="languages" class="w-5 h-5 mr-2 text-secondary-stone"></i>
-                                Google Translate
-                            </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold ml-2"></i>
-                        </a>
-                        <a href="https://web.whatsapp.com" target="_blank" class="digital-link-card">
-                            <span class="flex items-center text-gray-300">
-                                <i data-lucide="message-square" class="w-5 h-5 mr-2 text-secondary-stone"></i>
-                                WhatsApp Web
-                            </span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 text-primary-gold ml-2"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="mt-12">
-            <h2 class="roman-heading text-2xl mb-6 border-b-2 border-primary-gold/50 pb-2 flex items-center">
-                <i data-lucide="database" class="w-6 h-6 inline-block mr-2 text-primary-gold"></i> 
-                ADVANCED DATA STACKS (Hinglish Links)
-            </h2>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                
-                <div class="roman-card p-6 border-l-4 border-primary-gold">
-                    <h3 class="text-lg font-bold mb-4 flex items-center section-title category-heading">
-                        <i data-lucide="home" class="w-5 h-5 mr-2 text-primary-gold"></i> GLOBAL PROPERTY & SALES
-                    </h3>
-                    <ul class="space-y-3 text-sm text-gray-300">
-                        <li><a href="https://properties.emaar.com/en/" target="_blank" class="digital-link-card hover:text-primary-gold"><img src="${getIconUrl('emaar')}" class="w-5 h-5 mr-2 inline-block"> Emaar Properties (Dubai Developer)</a></li>
-                        <li><a href="https://www.zoopla.co.uk/overseas/property/united-arab-emirates/dubai/" target="_blank" class="digital-link-card hover:text-primary-gold"><img src="${getIconUrl('property')}" class="w-5 h-5 mr-2 inline-block"> Zoopla Overseas (Dubai Property)</a></li>
-                        <li><a href="https://www.rightmove.co.uk/overseas-property/in-europe.html" target="_blank" class="digital-link-card hover:text-primary-gold"><i data-lucide="landmark" class="w-5 h-5 mr-2 inline-block text-secondary-stone"></i> Rightmove (Europe Property)</a></li>
-                        <li><a href="https://www.savills.com/residential/world-map.aspx" target="_blank" class="digital-link-card hover:text-primary-gold"><i data-lucide="map-pin" class="w-5 h-5 mr-2 inline-block text-secondary-stone"></i> Savills (Worldwide Luxury Property)</a></li>
-                        <li><a href="https://www.realestate.com.au/international/" target="_blank" class="digital-link-card hover:text-primary-gold"><i data-lucide="globe" class="w-5 h-5 mr-2 inline-block text-secondary-stone"></i> Global Residential Sales Portals</a></li>
-                    </ul>
-                </div>
-                
-                <div class="roman-card p-6 border-l-4 border-secondary-stone">
-                    <h3 class="text-lg font-bold mb-4 flex items-center section-title category-heading">
-                        <i data-lucide="plane" class="w-5 h-5 mr-2 text-secondary-stone"></i> GLOBAL TOUR & TRAVEL BOOKINGS
-                    </h3>
-                    <ul class="space-y-3 text-sm text-gray-300">
-                        <li><a href="https://www.booking.com" target="_blank" class="digital-link-card hover:text-primary-gold"><img src="${getIconUrl('booking')}" class="w-5 h-5 mr-2 inline-block"> Booking.com (Hotels & Flights)</a></li>
-                        <li><a href="https://www.expedia.com" target="_blank" class="digital-link-card hover:text-primary-gold"><img src="${getIconUrl('expedia')}" class="w-5 h-5 mr-2 inline-block"> Expedia (Packages & Deals)</a></li>
-                        <li><a href="https://www.kayak.com" target="_blank" class="digital-link-card hover:text-primary-gold"><i data-lucide="ticket" class="w-5 h-5 mr-2 inline-block text-primary-gold"></i> Kayak (Flight Comparison)</a></li>
-                        <li><a href="https://www.viator.com" target="_blank" class="digital-link-card hover:text-primary-gold"><i data-lucide="route" class="w-5 h-5 mr-2 inline-block text-primary-gold"></i> Viator (Activities & Tours)</a></li>
-                        <li><a href="https://flights.google.com" target="_blank" class="digital-link-card hover:text-primary-gold"><i data-lucide="rocket" class="w-5 h-5 mr-2 inline-block text-primary-gold"></i> Google Flights (Price Tracker)</a></li>
-                    </ul>
-                </div>
-                
-                <div class="roman-card p-6 border-l-4 border-primary-gold">
-                    <h3 class="text-lg font-bold mb-4 flex items-center section-title category-heading">
-                        <i data-lucide="map" class="w-5 h-5 mr-2 text-primary-gold"></i> FAMOUS PLACES & TOURISM
-                    </h3>
-                    <ul class="space-y-3 text-sm text-gray-300">
-                        <li><a href="https://salampakistan.gov.pk/" target="_blank" class="digital-link-card hover:text-secondary-stone"><img src="${getIconUrl('tourism')}" class="w-5 h-5 mr-2 inline-block"> Pakistan Official Tourism Portal</a></li>
-                        <li><a href="https://www.lonelyplanet.com/pakistan" target="_blank" class="digital-link-card hover:text-secondary-stone"><i data-lucide="mountain" class="w-5 h-5 mr-2 inline-block text-secondary-stone"></i> Gilgit-Baltistan (Northern Areas Guide)</a></li>
-                        <li><a href="https://www.lonelyplanet.com/dubai" target="_blank" class="digital-link-card hover:text-secondary-stone"><i data-lucide="sun" class="w-5 h-5 mr-2 inline-block text-secondary-stone"></i> Dubai (Travel Guide)</a></li>
-                        <li><a href="https://www.lonelyplanet.com/italy/rome" target="_blank" class="digital-link-card hover:text-secondary-stone"><i data-lucide="shield-half" class="w-5 h-5 mr-2 inline-block text-secondary-stone"></i> Rome, Italy (History & Sites)</a></li>
-                        <li><a href="https://www.lonelyplanet.com/france/paris" target="_blank" class="digital-link-card hover:text-secondary-stone"><i data-lucide="gem" class="w-5 h-5 mr-2 inline-block text-secondary-stone"></i> Paris, France (The City of Light)</a></li>
-                        <li><a href="https://www.lonelyplanet.com/united-kingdom/london" target="_blank" class="digital-link-card hover:text-secondary-stone"><i data-lucide="briefcase" class="w-5 h-5 mr-2 inline-block text-secondary-stone"></i> London, UK (Global Hub)</a></li>
-                    </ul>
-                </div>
-                
-                <div class="roman-card p-6 border-l-4 border-secondary-stone">
-                    <h3 class="text-lg font-bold mb-4 flex items-center section-title category-heading">
-                        <i data-lucide="book-open" class="w-5 h-5 mr-2 text-secondary-stone"></i> ISLAMIC AUR DEENI RESOURCES
-                    </h3>
-                    <ul class="space-y-3 text-sm text-gray-300">
-                        <li><a href="https://quran.com" target="_blank" class="digital-link-card hover:text-primary-gold"><img src="${getIconUrl('quran')}" class="w-5 h-5 mr-2 inline-block"> Quran.com (Tarjuma ke Saath)</a></li>
-                        <li><a href="https://sunnah.com" target="_blank" class="digital-link-card hover:text-primary-gold"><i data-lucide="hand-metal" class="w-5 h-5 mr-2 inline-block text-primary-gold"></i> Sunnah.com (Hadees Collections)</a></li>
-                        <li><a href="https://www.islamicfinder.org/prayer-times/" target="_blank" class="digital-link-card hover:text-primary-gold"><i data-lucide="sunrise" class="w-5 h-5 mr-2 inline-block text-primary-gold"></i> Namaz Ke Auqat (Prayer Times)</a></li>
-                        <li><a href="https://dar-us-salam.com/" target="_blank" class="digital-link-card hover:text-primary-gold"><i data-lucide="book-open-check" class="w-5 h-5 mr-2 inline-block text-primary-gold"></i> Darussalam (Islamic Books)</a></li>
-                    </ul>
-                </div>
-
-                <div class="roman-card p-6 border-l-4 border-primary-gold">
-                    <h3 class="text-lg font-bold mb-4 flex items-center section-title category-heading">
-                        <i data-lucide="feather" class="w-5 h-5 mr-2 text-primary-gold"></i> SHAYARI AUR ADABI RESOURCES
-                    </h3>
-                    <ul class="space-y-3 text-sm text-gray-300">
-                        <li><a href="https://rekhta.org" target="_blank" class="digital-link-card hover:text-secondary-stone"><img src="${getIconUrl('rekhta')}" class="w-5 h-5 mr-2 inline-block"> Rekhta (Urdu Shayari Ka Khazana)</a></li>
-                        <li><a href="https://www.urdusukhan.com/" target="_blank" class="digital-link-card hover:text-secondary-stone"><i data-lucide="clipboard-pen" class="w-5 h-5 mr-2 inline-block text-secondary-stone"></i> Urdu Sukhan (Modern Poetry)</a></li>
-                        <li><a href="https://www.allamaiqbal.com/" target="_blank" class="digital-link-card hover:text-secondary-stone"><i data-lucide="crown" class="w-5 h-5 mr-2 inline-block text-secondary-stone"></i> Allama Iqbal Poetry</a></li>
-                        <li><a href="https://www.poets.org/" target="_blank" class="digital-link-card hover:text-secondary-stone"><i data-lucide="users-round" class="w-5 h-5 mr-2 inline-block text-secondary-stone"></i> Poets.org (Global English Poetry)</a></li>
-                    </ul>
-                </div>
-                
-                <div class="roman-card p-6 border-l-4 border-secondary-stone">
-                    <h3 class="text-lg font-bold mb-4 flex items-center section-title category-heading">
-                        <i data-lucide="radio" class="w-5 h-5 mr-2 text-secondary-stone"></i> NEWS CHANNELS & MEDIA
-                    </h3>
-                    <ul class="space-y-3 text-sm text-gray-300">
-                        <li><a href="https://arynews.tv" target="_blank" class="digital-link-card hover:text-primary-gold"><i data-lucide="newspaper" class="w-5 h-5 mr-2 inline-block text-primary-gold"></i> ARY News (Live/Urdu)</a></li>
-                        <li><a href="https://www.geo.tv" target="_blank" class="digital-link-card hover:text-primary-gold"><i data-lucide="newspaper" class="w-5 h-5 mr-2 inline-block text-primary-gold"></i> Geo News (Live/Urdu)</a></li>
-                        <li><a href="https://www.dawn.com" target="_blank" class="digital-link-card hover:text-primary-gold"><i data-lucide="book-text" class="w-5 h-5 mr-2 inline-block text-primary-gold"></i> Dawn Newspaper (English)</a></li>
-                        <li><a href="https://www.bbc.com/urdu" target="_blank" class="digital-link-card hover:text-primary-gold"><i data-lucide="globe" class="w-5 h-5 mr-2 inline-block text-primary-gold"></i> BBC Urdu</a></li>
-                    </ul>
-                </div>
-
-                
-            </div>
-            
-            <div class="mt-12 space-y-4">
-                <h2 class="roman-heading text-xl border-b border-secondary-stone/50 pb-2 flex items-center category-heading">
-                    <i data-lucide="square-dot" class="w-5 h-5 inline-block mr-2 text-secondary-stone"></i> 
-                    INTERNAL UTILITY LINKS (OFFLINE/PLACEHOLDERS)
-                </h2>
-                <p class="text-sm text-gray-400 italic">Yeh links internal data ya offline modules ke liye hain. Inka maqsad sirf page ka layout banana hai.</p>
-                
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div class="roman-card p-4 space-y-2 text-sm opacity-60">
-                        <h4 class="font-bold text-primary-gold category-heading border-b border-gray-800 pb-1">Archive Links Group A (1-5)</h4>
-                        <a href="javascript:void(0)" class="digital-link-card text-xs cursor-not-allowed">File 404-A-1 (Revenue Backup) <i data-lucide="file-archive" class="w-3 h-3 text-secondary-stone"></i></a>
-                        <a href="javascript:void(0)" class="digital-link-card text-xs cursor-not-allowed">File 404-A-2 (Legal Drafts) <i data-lucide="file-archive" class="w-3 h-3 text-secondary-stone"></i></a>
-                        <a href="javascript:void(0)" class="digital-link-card text-xs cursor-not-allowed">File 404-A-3 (Accounts Data) <i data-lucide="file-archive" class="w-3 h-3 text-secondary-stone"></i></a>
-                        <a href="javascript:void(0)" class="digital-link-card text-xs cursor-not-allowed">File 404-A-4 (Personnel Roster) <i data-lucide="file-archive" class="w-3 h-3 text-secondary-stone"></i></a>
-                        <a href="javascript:void(0)" class="digital-link-card text-xs cursor-not-allowed">File 404-A-5 (Audit Reports) <i data-lucide="file-archive" class="w-3 h-3 text-secondary-stone"></i></a>
                     </div>
                     
-                    <div class="roman-card p-4 space-y-2 text-sm opacity-60">
-                        <h4 class="font-bold text-primary-gold category-heading border-b border-gray-800 pb-1">Archive Links Group B (6-10)</h4>
-                        <a href="javascript:void(0)" class="digital-link-card text-xs cursor-not-allowed">File 404-B-6 (Land Maps) <i data-lucide="file-archive" class="w-3 h-3 text-secondary-stone"></i></a>
-                        <a href="javascript:void(0)" class="digital-link-card text-xs cursor-not-allowed">File 404-B-7 (Mutation Docs) <i data-lucide="file-archive" class="w-3 h-3 text-secondary-stone"></i></a>
-                        <a href="javascript:void(0)" class="digital-link-card text-xs cursor-not-allowed">File 404-B-8 (Sale Deeds) <i data-lucide="file-archive" class="w-3 h-3 text-secondary-stone"></i></a>
-                        <a href="javascript:void(0)" class="digital-link-card text-xs cursor-not-allowed">File 404-B-9 (Court Orders) <i data-lucide="file-archive" class="w-3 h-3 text-secondary-stone"></i></a>
-                        <a href="javascript:void(0)" class="digital-link-card text-xs cursor-not-allowed">File 404-B-10 (Property Tax) <i data-lucide="file-archive" class="w-3 h-3 text-secondary-stone"></i></a>
-                    </div>
-                    
-                    <div class="roman-card p-4 space-y-2 text-sm opacity-60">
-                        <h4 class="font-bold text-primary-gold category-heading border-b border-gray-800 pb-1">Archive Links Group C (11-15)</h4>
-                        <a href="javascript:void(0)" class="digital-link-card text-xs cursor-not-allowed">File 404-C-11 (Bank Records) <i data-lucide="file-archive" class="w-3 h-3 text-secondary-stone"></i></a>
-                        <a href="javascript:void(0)" class="digital-link-card text-xs cursor-not-allowed">File 404-C-12 (Utility Bills) <i data-lucide="file-archive" class="w-3 h-3 text-secondary-stone"></i></a>
-                        <a href="javascript:void(0)" class="digital-link-card text-xs cursor-not-allowed">File 404-C-13 (Vehicle Log) <i data-lucide="file-archive" class="w-3 h-3 text-secondary-stone"></i></a>
-                        <a href="javascript:void(0)" class="digital-link-card text-xs cursor-not-allowed">File 404-C-14 (Staff IDs) <i data-lucide="file-archive" class="w-3 h-3 text-secondary-stone"></i></a>
-                        <a href="javascript:void(0)" class="digital-link-card text-xs cursor-not-allowed">File 404-C-15 (Pending Cases) <i data-lucide="file-archive" class="w-3 h-3 text-secondary-stone"></i></a>
-                    </div>
+                    <button onclick="logout()" class="mt-10 mx-auto block py-2 px-6 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-gray-500 hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 transition duration-150">
+                        Logout
+                    </button>
                 </div>
             </div>
+
         </div>
     </main>
-<div class="fancy-links">
-
-🔵🌐 **SINDH REVENUE (PROVINCIAL TAXES)**  
-━━━━━━━━━━━━━━━━━━  
-🟦 💠 *Sindh Revenue Board (SRB)*  
-👉 https://www.srb.gos.pk  
-
-🟦 💠 *SRB e-Services / e-Filing*  
-👉 https://e.srb.gos.pk  
-
-🟦 💠 *SRB Agricultural Income Tax (AIT)*  
-👉 https://aitapp.srb.gos.pk  
-
-
-🟩🚗 **EXCISE, TAXATION & NARCOTICS – SINDH**  
-━━━━━━━━━━━━━━━━━━  
-🟩 🚘 *Excise Sindh Official*  
-👉 https://excise.gos.pk  
-
-🟩 🚘 *Online Tax Payment / Vehicle Verification*  
-👉 https://taxportal.excise.gos.pk  
-
-
-🟧🌍 **SINDH LAND RECORD & LAND REVENUE**  
-━━━━━━━━━━━━━━━━━━  
-🟧 🏡 *Sindh Zameen – Land Record Portal*  
-👉 https://sindhzameen.gos.pk  
-
-🟧 📝 *Sindh e-Registration (Registry System)*  
-👉 https://e-registration.gos.pk  
-
-🟧 🧾 *Sindh e-Stamping Portal*  
-👉 https://estamps.gos.pk  
-
-
-🟪💼 **FEDERAL BOARD OF REVENUE (FBR)**  
-━━━━━━━━━━━━━━━━━━  
-🟪 🏛 *FBR Official Website*  
-👉 https://www.fbr.gov.pk  
-
-🟪 🧾 *IRIS – Online Income Tax Return*  
-👉 https://iris.fbr.gov.pk/infosys/public/txplogin.xhtml  
-
-🟪 🔍 *NTN / Taxpayer Verification*  
-👉 https://e.fbr.gov.pk  
-
-
-🟫🏛 **GENERAL SINDH GOVERNMENT PORTALS**  
-━━━━━━━━━━━━━━━━━━  
-🟫 🏢 *Government of Sindh Official*  
-👉 https://www.sindh.gov.pk  
-
-🟫 💼 *Sindh Finance Department*  
-👉 https://finance.gos.pk  
-
-🟫 🏙 *Sindh Local Government Department*  
-👉 https://lgs.gos.pk  
-
-🟫 👮 *Sindh Police*  
-👉 https://sindhpolice.gov.pk  
-
-</div>
-<h3>🇵🇰 پاکستان کی عدالتیں (Courts)</h3>
-<ul>
-  <li><a href="https://www.supremecourt.gov.pk/" target="_blank">سپریم کورٹ آف پاکستان (Supreme Court of Pakistan)</a></li>
-  <li><a href="https://lhc.gov.pk/" target="_blank">لاہور ہائی کورٹ (Lahore High Court - LHC)</a></li>
-  <li><a href="https://shc.gov.pk/" target="_blank">سندھ ہائی کورٹ (Sindh High Court - SHC)</a></li>
-  <li><a href="https://www.phc.gov.pk/" target="_blank">پشاور ہائی کورٹ (Peshawar High Court - PHC)</a></li>
-  <li><a href="https://ihc.gov.pk/" target="_blank">اسلام آباد ہائی کورٹ (Islamabad High Court - IHC)</a></li>
-  <li><a href="https://bhc.gov.pk/" target="_blank">بلوچستان ہائی کورٹ (Balochistan High Court - BHC)</a></li>
-</ul>
-
-<h3>⚡ بجلی کے بل چیک کرنے کے لنکس (Electricity Bill)</h3>
-<p>یہاں آپ مختلف تقسیم کار کمپنیوں کے لیے آن لائن بل چیکنگ پورٹلز کے لنکس تلاش کر سکتے ہیں:</p>
-<ul>
-  <li><a href="https://lesco.gov.pk/ViewBill.html" target="_blank">لیسکو (LESCO) - لاہور</a></li>
-  <li><a href="https://iesco.com.pk/index.php/customer-services/bill-check" target="_blank">یسکو (IESCO) - اسلام آباد/راولپنڈی</a></li>
-  <li><a href="https://www.fesco.com.pk/bill-status.aspx" target="_blank">فیسکو (FESCO) - فیصل آباد</a></li>
-  <li><a href="https://gepco.com.pk/bill" target="_blank">گیپکو (GEPCO) - گوجرانوالہ</a></li>
-  <li><a href="https://mepco.com.pk/online-bill" target="_blank">میپکو (MEPCO) - ملتان</a></li>
-  <li><a href="https://pesco.com.pk/bill.php" target="_blank">پیسکو (PESCO) - پشاور</a></li>
-  <li><a href="https://sepco.com.pk/SEPCO%20Online%20Bill.aspx" target="_blank">سیپکو (SEPCO) - سکھر</a></li>
-  <li><a href="https://hesco.gov.pk/online-bill/" target="_blank">حیسکو (HESCO) - حیدرآباد</a></li>
-  <li><a href="https://qesco.com.pk/QESCOONLINEBILL.aspx" target="_blank">کیسکو (QESCO) - کوئٹہ</a></li>
-  <li><a href="https://k-electric.com/bill-check" target="_blank">کے-الیکٹرک (K-Electric) - کراچی</a></li>
-</ul>
-
-<h3>🔥 گیس بل چیک کرنے کے لنکس (Gas Bill)</h3>
-<ul>
-  <li><a href="https://ssgcl.com/web/bill-inquiry-html/" target="_blank">سوئی سدرن گیس کمپنی لمیٹڈ (SSGC) - سندھ اور بلوچستان</a></li>
-  <li><a href="https://sngpl.com.pk/bill-portal.php" target="_blank">سوئی ناردرن گیس پائپ لائنز لمیٹڈ (SNGPL) - پنجاب اور خیبر پختونخوا</a></li>
-</ul>
-    <footer class="bg-dark-bg-main border-t-2 border-primary-gold mt-12 py-6 shadow-2xl shadow-primary-gold/10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm text-gray-500">
-            Digital Revenue Portal - Portfolio Project | Demonstrating Technical & Design Skills
-            <p class="mt-1 text-xs text-primary-gold font-roman category-heading">
-                <i data-lucide="zap" class="w-3 h-3 inline-block mr-1"></i> 
-                SYSTEM ENGINEERED BY HASSAN JATOI : 03083500829 WHATSAPP
-            </p>
+    
+    <!-- 4. FOOTER SECTION -->
+    <footer class="bg-gray-800 text-white p-4 md:p-6 mt-10 rounded-t-xl shadow-inner border-t-4 border-teal-500">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
+            <!-- Developer Info -->
+            <div class="text-sm text-gray-400 text-center md:text-left">
+                Website developed by: 
+                <span class="font-semibold text-teal-400">Engnieer Hassan Jatoi</span> | 
+                <span class="font-mono">03083500829</span>
+            </div>
+            
+            <!-- WhatsApp Button -->
+            <!-- The URL uses the international format (+92) for Pakistan mobile numbers, linked to the provided number 03083500829 -->
+            <a href="https://wa.me/923083500829" target="_blank" 
+               class="inline-flex items-center space-x-2 px-4 py-2 bg-green-500 text-white font-bold rounded-full shadow-lg hover:bg-green-600 transition duration-300 ease-in-out transform hover:scale-105 active:scale-95 group">
+                <!-- WhatsApp Icon (Inline SVG for reliability) -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                    <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-2.071 18.067c-.201.074-1.127.42-1.39.431-.264.01-.476.02-.952-.271-.477-.291-1.611-.531-2.915-1.782-1.305-1.252-2.188-2.613-2.451-3.078-.263-.466-.027-.721.21-.955.21-.21.474-.531.676-.795.201-.264.268-.21.431-.531.163-.321.082-.604-.041-.859-.123-.255-.951-2.285-1.305-3.125-.341-.826-.719-.676-.983-.676-.239 0-.518-.03-.797-.03-2.001 0-3.376.657-3.376 2.451 0 1.986 1.157 3.992 2.652 5.565 1.503 1.579 2.977 2.602 4.416 3.056.883.284 1.766.45 2.378.431.614-.02 1.956-.8 2.219-1.579.263-.781.263-.676.182-.826-.081-.151-.239-.24-.5-.38z"/>
+                </svg>
+                <span class="group-hover:text-yellow-200">Contact on WhatsApp</span>
+            </a>
         </div>
     </footer>
 
+    <script>
+        // --- CONSTANTS ---
+        const CORRECT_EMAIL = "alkarampoultry505@gmail.com";
+        // The password remains correct here, but is hidden from the input placeholder
+        const CORRECT_PASSWORD = "alkaram505@786"; 
+        const SPLASH_DURATION_MS = 5000;
+
+        // --- DOM ELEMENTS ---
+        const splashScreen = document.getElementById('splashScreen');
+        const mainContent = document.getElementById('mainContent');
+        const loginForm = document.getElementById('loginForm');
+        const dashboard = document.getElementById('dashboard');
+        const messageBox = document.getElementById('messageBox');
+        const tabAbout = document.getElementById('tabAbout');
+        const tabLogin = document.getElementById('tabLogin');
+        const contentAbout = document.getElementById('contentAbout');
+        const contentLogin = document.getElementById('contentLogin');
+        const tabsContainer = document.getElementById('tabsContainer');
+
+        // --- STATE & INITIALIZATION ---
+
+        /**
+         * Toggles the visibility of the main content areas.
+         * @param {string} screen - 'login' or 'dashboard'
+         */
+        function showScreen(screen) {
+            if (screen === 'dashboard') {
+                contentLogin.classList.add('hidden');
+                contentAbout.classList.add('hidden');
+                tabsContainer.classList.add('hidden'); // Hide tabs once logged in
+                dashboard.classList.remove('hidden');
+            } else { // 'login' (or initial state)
+                dashboard.classList.add('hidden');
+                tabsContainer.classList.remove('hidden');
+                showTab('about'); // Default to showing 'About Me' tab
+                mainContent.classList.remove('hidden');
+            }
+        }
+
+        /**
+         * Manages the tab interface (About Me vs. Login)
+         * @param {string} tabId - 'about' or 'login'
+         */
+        function showTab(tabId) {
+            // Reset styles
+            tabAbout.classList.remove('border-teal-600', 'text-teal-800');
+            tabLogin.classList.remove('border-teal-600', 'text-teal-800');
+            contentAbout.classList.add('hidden');
+            contentLogin.classList.add('hidden');
+
+            // Set active tab
+            if (tabId === 'about') {
+                tabAbout.classList.add('border-teal-600', 'text-teal-800');
+                contentAbout.classList.remove('hidden');
+            } else if (tabId === 'login') {
+                tabLogin.classList.add('border-teal-600', 'text-teal-800');
+                contentLogin.classList.remove('hidden');
+            }
+        }
+
+        /**
+         * Handles the client-side login attempt.
+         */
+        function handleLogin() {
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+            
+            messageBox.classList.add('hidden');
+            messageBox.classList.remove('bg-red-100', 'text-red-700', 'bg-green-100', 'text-green-700', 'p-3', 'rounded-lg');
+
+            if (email === CORRECT_EMAIL && password === CORRECT_PASSWORD) {
+                // Success
+                messageBox.textContent = "Login successful! Redirecting...";
+                messageBox.classList.remove('hidden');
+                messageBox.classList.add('bg-green-100', 'text-green-700', 'p-3', 'rounded-lg');
+                
+                // Simulate delay before showing dashboard
+                setTimeout(() => {
+                    showScreen('dashboard');
+                }, 500);
+            } else {
+                // Failure
+                messageBox.textContent = "Invalid email or password. Please try again.";
+                messageBox.classList.remove('hidden');
+                messageBox.classList.add('bg-red-100', 'text-red-700', 'p-3', 'rounded-lg');
+            }
+        }
+        
+        /**
+         * Resets the application state to the login screen.
+         */
+        function logout() {
+            showScreen('login');
+            // Clear message box
+            messageBox.classList.add('hidden');
+            messageBox.textContent = ''; 
+            // Reset form fields
+            loginForm.reset();
+        }
+
+        /**
+         * Initializes the application flow by showing the splash screen.
+         */
+        function initApp() {
+            // Start the timer to hide the splash screen
+            setTimeout(() => {
+                splashScreen.style.opacity = '0';
+                // Wait for transition to finish before hiding display
+                setTimeout(() => {
+                    splashScreen.classList.add('hidden');
+                    showScreen('login'); // Show the main content (Login/About screen)
+                }, 1000); // Matches the CSS transition duration
+            }, SPLASH_DURATION_MS);
+        }
+
+        // Start the application when the window loads
+        window.onload = initApp;
+
+        // Ensure the initial tab is correctly set in case of fast loading/development environment
+        document.addEventListener('DOMContentLoaded', () => {
+            showTab('about');
+        });
+    </script>
 </body>
 </html>
