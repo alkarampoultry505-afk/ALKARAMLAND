@@ -3,457 +3,405 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Al Karam Revenue Record's Management Portal</title>
-    <!-- Load Tailwind CSS -->
+    <title>Shahid Ikram Malik Revenue Portal</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Use Inter font family -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f4f7f9;
+            background-color: #f0f4f8; /* Light blue-gray background */
         }
-        /* Custom scrollbar for aesthetic */
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 8px;
+        .link-card {
+            transition: transform 0.2s, box-shadow 0.2s;
         }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background-color: #cbd5e1; /* slate-300 */
-            border-radius: 4px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background-color: #f8fafc; /* slate-50 */
-        }
-        /* Style for link buttons */
-        .link-button {
-            @apply flex items-center justify-between p-3 rounded-lg font-medium text-sm transition duration-200 transform hover:scale-[1.02] shadow-md;
+        .link-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col">
+<body>
 
-    <!-- 1. SPLASH SCREEN (Initial state) -->
-    <div id="splashScreen" class="fixed inset-0 bg-white z-50 flex flex-col items-center justify-center transition-opacity duration-1000 ease-out">
-        <img src="https://i.ibb.co/jkPp27Nx/1000193384.png" alt="Al Karam Logo" class="w-2/3 max-w-lg h-auto rounded-xl shadow-2xl animate-pulse" onerror="this.onerror=null; this.src='https://placehold.co/600x400/0F766E/ffffff?text=Al+Karam+Feeds+Logo'">
-        <div class="mt-8 text-xl font-semibold text-teal-700">Loading Management Portal...</div>
-        <div class="w-64 bg-gray-200 rounded-full h-2.5 mt-4 overflow-hidden">
-            <div class="bg-teal-600 h-2.5 rounded-full animate-grow-width"></div>
-        </div>
-        <style>
-            @keyframes grow-width {
-                0% { width: 0%; }
-                100% { width: 100%; }
-            }
-            .animate-grow-width {
-                animation: grow-width 5s linear forwards;
-            }
-        </style>
+<!-- Global Constants for Login -->
+<script>
+    // Keep credentials safe and unlogged
+    const CORRECT_EMAIL = "alkarampoultry505@gmail.com";
+    const CORRECT_PASSWORD = "alkaram505@786";
+</script>
+
+<!-- 7-Second Splash Screen (Visible Initially) -->
+<div id="splashScreen" class="fixed inset-0 bg-white z-50 flex flex-col items-center justify-center p-4">
+    <img src="https://i.ibb.co/jkPp27Nx/1000193384.png" 
+         alt="Al Karam Poultry Image" 
+         class="max-w-full h-auto rounded-xl shadow-2xl mb-8 object-contain max-h-96"
+         onerror="this.onerror=null;this.src='https://placehold.co/400x200/4F46E5/FFFFFF?text=Portal+Loading...';"
+    />
+    <div class="text-center">
+        <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600 mx-auto mb-3"></div>
+        <p class="text-xl font-semibold text-indigo-600">Loading Revenue Portal...</p>
+        <p class="text-gray-500 text-sm mt-1">Please wait for security checks.</p>
     </div>
+</div>
 
-    <!-- 2. MAIN APPLICATION CONTENT (Hidden initially, shown after splash) -->
-    <main id="mainContent" class="hidden flex-grow p-4 md:p-8">
-        <div class="max-w-6xl mx-auto bg-white rounded-3xl shadow-2xl p-6 md:p-10 border border-gray-100">
-            
-            <header class="text-center mb-10">
-                <h1 class="text-4xl font-extrabold text-teal-800 tracking-tight">Al Karam Revenue Record's Management Portal</h1>
-                <p class="text-xl text-gray-500 mt-2">Dedicated to Justice, Welfare, and Growth</p>
-            </header>
-
-            <!-- Tabbed Interface for Login/About -->
-            <div id="tabsContainer" class="mb-8">
-                <div class="flex border-b border-gray-200">
-                    <button id="tabAbout" class="tab-button py-3 px-6 text-lg font-medium transition-colors duration-200 border-b-2 border-transparent text-gray-600 hover:text-teal-700 hover:border-teal-300" onclick="showTab('about')">About Me</button>
-                    <button id="tabLogin" class="tab-button py-3 px-6 text-lg font-medium transition-colors duration-200 border-b-2 border-transparent text-gray-600 hover:text-teal-700 hover:border-teal-300" onclick="showTab('login')">Secure Access</button>
-                </div>
-                
-                <!-- Tab Content: About Me -->
-                <div id="contentAbout" class="tab-content mt-6">
-                    <div class="space-y-8 text-gray-700 leading-relaxed custom-scrollbar max-h-[80vh] overflow-y-auto pr-2">
-                        
-                        <!-- PROFILE SECTION -->
-                        <div class="p-4 rounded-xl bg-white">
-                            <div class="flex flex-col md:flex-row items-start md:space-x-8">
-                                <div class="w-full md:w-3/4">
-                                    <h2 class="text-3xl font-semibold text-teal-700 mb-4 border-b pb-2">Shahid Ikram Malik - Profile</h2>
-                                    <p>My name is **Shahid Ikram Malik**. I am an advocate by profession, dedicated to justice, public service, and the protection of community rights. Along with my legal career, I am a landlord, politician, and a proud representative of the **Pakistan People’s Party (PPP)**. I currently serve as the **UC Chairman**, where I work with commitment for development, welfare, and strengthening grassroots governance.</p>
-                                    <p>I am also a businessman with diverse ventures across multiple sectors. I run an **APC medicine factory**, supply fish, trade in poultry, and operate as a feeds supplier. I am the owner of **Al Karam Khairpur Feeds Mill**, located in the KSEZ Zone, Khairpur, which is known for quality, reliability, and modern feed production.</p>
-                                    <p>With integrity, leadership, and dedication, I aim to create opportunities, support local farmers, and contribute to economic growth while continuing to serve my people with passion and responsibility.</p>
-                                </div>
-                                <!-- Placeholder for a personal image/avatar -->
-                                <div class="w-full md:w-1/4 mt-6 md:mt-0 flex justify-center">
-                                    <img src="https://placehold.co/200x200/B2F5EA/042F2E?text=Advocate+S.I.M." alt="Shahid Ikram Malik Placeholder" class="rounded-full shadow-lg border-4 border-teal-200 object-cover">
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- QUICK LINKS SECTION - NEW ADDITION -->
-                        <div class="mt-8 p-4 rounded-xl bg-gray-50 border border-gray-200">
-                            <h2 class="text-3xl font-semibold text-teal-700 mb-6 border-b-2 border-teal-500 pb-2">Quick Links</h2>
-                            
-                            <div class="space-y-8">
-                                
-                                <!-- 1. Search Engines -->
-                                <div class="bg-white p-4 rounded-xl shadow-lg border-l-4 border-blue-500">
-                                    <h3 class="text-xl font-bold text-blue-800 mb-3 flex items-center">
-                                        <svg class="w-6 h-6 mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-                                        Search Engines
-                                    </h3>
-                                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                                        <a href="https://www.google.com/" target="_blank" class="link-button bg-blue-100 text-blue-700 hover:bg-blue-200">
-                                            <span>Google</span>
-                                            <!-- Generic Search Icon for Google -->
-                                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
-                                        </a>
-                                        <a href="https://www.google.com/chrome/" target="_blank" class="link-button bg-green-100 text-green-700 hover:bg-green-200">
-                                            <span>Chrome</span>
-                                            <!-- Generic Browser Icon for Chrome -->
-                                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
-                                        </a>
-                                        <a href="https://www.bing.com/" target="_blank" class="link-button bg-gray-100 text-gray-700 hover:bg-gray-200">
-                                            <span>Bing</span>
-                                            <!-- Generic Search Icon for Bing -->
-                                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M13 18.5V23h-2v-4.5H5.8c-.83 0-1.5-.67-1.5-1.5V6c0-.83.67-1.5 1.5-1.5H11V0h2v4.5h5.2c.83 0 1.5.67 1.5 1.5v11c0 .83-.67 1.5-1.5 1.5H13zm0-13.5V6h5.2v11H13V16.5H5.8V6h7.2z"/></svg>
-                                        </a>
-                                    </div>
-                                </div>
-
-                                <!-- 2. Social Media - Updated with Real Logos -->
-                                <div class="bg-white p-4 rounded-xl shadow-lg border-l-4 border-pink-500">
-                                    <h3 class="text-xl font-bold text-pink-800 mb-3 flex items-center">
-                                        <svg class="w-6 h-6 mr-2 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-3m-5 3v-3m-5 3h5m-11 0h5m-5 0v-3m-5 3h5m0 0v-3"></path></svg>
-                                        Social Media
-                                    </h3>
-                                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-                                        
-                                        <!-- TikTok -->
-                                        <a href="https://www.tiktok.com/" target="_blank" class="link-button bg-black text-white hover:bg-gray-700">
-                                            <span>TikTok</span>
-                                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.001 0c.307.356.613.712.92 1.069C13.235.918 13.987 1 14.733 1c.746 0 1.492.082 2.238.246V4h3.5c.342 0 .62.278.62.62v2.5c0 .342-.278.62-.62.62h-3.5v7.5c0 3.86-3.14 7-7 7s-7-3.14-7-7 3.14-7 7-7c1.378 0 2.656.402 3.733 1.069V0z"/></svg>
-                                        </a>
-                                        
-                                        <!-- YouTube -->
-                                        <a href="https://www.youtube.com/" target="_blank" class="link-button bg-red-600 text-white hover:bg-red-700">
-                                            <span>YouTube</span>
-                                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21.583 7.165c-.23-.86-1.005-1.546-1.87-.27-1.127.304-2.585.498-4.382.502h-9.664c-1.797-.004-3.255-.198-4.382-.502-.865-.27-1.64.41-1.87.27-1.127.304-2.585.498-4.382.502v9.5c.003 1.79.197 3.245.502 4.372.23.86 1.005 1.546 1.87.27 1.127-.304 2.585-.498 4.382-.502h9.664c1.797.004 3.255.198 4.382.502.865.27 1.64-.41 1.87-.27 1.127-.304 2.585-.498 4.382-.502v-9.5c-.003-1.79-.197-3.245-.502-4.372zM9 15.5v-7l6 3.5-6 3.5z"/></svg>
-                                        </a>
-                                        
-                                        <!-- Facebook -->
-                                        <a href="https://www.facebook.com/" target="_blank" class="link-button bg-blue-600 text-white hover:bg-blue-700">
-                                            <span>Facebook</span>
-                                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.351C0 23.407.593 24 1.325 24h11.458V14.77h-3.042v-3.513h3.042V8.414c0-3.004 1.79-4.66 4.532-4.66 1.309 0 2.433.097 2.756.14v3.136h-1.854c-1.472 0-1.76.7-1.76 1.722v2.246h3.492l-.454 3.513h-3.038V24h6.082C23.407 24 24 23.407 24 22.675V1.325C24 .593 23.407 0 22.675 0z"/></svg>
-                                        </a>
-                                        
-                                        <!-- X (Twitter) -->
-                                        <a href="https://twitter.com/" target="_blank" class="link-button bg-gray-800 text-white hover:bg-gray-900">
-                                            <span>X</span>
-                                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.901 1.153h3.763L14.77 10.6l8.895 12.247h-7.31L10.957 13.91l-6.721 8.937H1.54l8.36-11.758L1.153 1.153h7.33L12 6.708l4.901-5.555h2.099zm-2.099 19.388h2.099L6.151 3.541H4.051l12.751 17.001z"/></svg>
-                                        </a>
-                                        
-                                        <!-- Instagram -->
-                                        <a href="https://www.instagram.com/" target="_blank" class="link-button bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 text-white hover:opacity-90">
-                                            <span>Instagram</span>
-                                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.25.148 4.77 1.674 4.918 4.918.058 1.266.07 1.646.07 4.85v.001c0 3.204-.012 3.584-.07 4.85-0.148 3.25-1.674 4.77-4.918 4.918-1.266.058-1.646.07-4.85.07h-.001c-3.204 0-3.584-.012-4.85-.07-3.25-0.148-4.77-1.674-4.918-4.918-0.058-1.266-0.07-1.646-0.07-4.85v-.001c0-3.204.012-3.584.07-4.85 0.148-3.25 1.674-4.77 4.918-4.918 1.266-0.058 1.646-0.07 4.85-0.07zm0 1.831h-.001c-3.151 0-3.52 0.01-4.757 0.067-2.618 0.12-3.69 1.192-3.81 3.81-0.057 1.237-0.067 1.606-0.067 4.757v.001c0 3.151 0.01 3.52 0.067 4.757 0.12 2.618 1.192 3.69 3.81 3.81 1.237 0.057 1.606 0.067 4.757 0.067h.001c3.151 0 3.52-0.01 4.757-0.067 2.618-0.12 3.69-1.192 3.81-3.81 0.057-1.237 0.067-1.606 0.067-4.757v-.001c0-3.151-0.01-3.52-0.067-4.757-0.12-2.618-1.192-3.69-3.81-3.81-1.237-0.057-1.606-0.067-4.757-0.067zm0 2.871a5.19 5.19 0 100 10.38 5.19 5.19 0 000-10.38zM12 9.076a3.075 3.075 0 110 6.15 3.075 3.075 0 010-6.15zm6.545-2.071a1.2 1.2 0 100 2.4 1.2 1.2 0 000-2.4z"/></svg>
-                                        </a>
-                                        
-                                        <!-- LinkedIn -->
-                                        <a href="https://www.linkedin.com/" target="_blank" class="link-button bg-blue-700 text-white hover:bg-blue-800">
-                                            <span>Linkidn</span>
-                                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.23 0H1.77C.794 0 0 .774 0 1.72v20.56C0 23.226.794 24 1.77 24h20.46c.976 0 1.77-.774 1.77-1.72V1.72C24 .774 23.206 0 22.23 0zM7.27 20.45h-3.41V9.41h3.41v11.04zM5.56 7.78A2.22 2.22 0 1 1 5.56 3.33a2.22 2.22 0 0 1 0 4.45zm15.17 12.67h-3.41v-5.61c0-1.348-.024-3.085-1.879-3.085-1.88 0-2.167 1.467-2.167 2.992v5.703h-3.41V9.41h3.27v1.51h.047c.453-.86 1.558-1.76 3.27-1.76 3.518 0 4.167 2.302 4.167 5.303v6.07z"/></svg>
-                                        </a>
-
-                                    </div>
-                                </div>
-
-                                <!-- 3. Al Karam Khairpur Feeds Mill -->
-                                <div class="bg-white p-4 rounded-xl shadow-lg border-l-4 border-teal-500">
-                                    <h3 class="text-xl font-bold text-teal-800 mb-3 flex items-center">
-                                        <svg class="w-6 h-6 mr-2 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 3v-5h5v5H9z"></path></svg>
-                                        Al Karam Khairpur Feeds Mill
-                                    </h3>
-                                    <a href="https://al-karamfeedsmill.vercel.app/" target="_blank" class="link-button bg-teal-100 text-teal-700 hover:bg-teal-200 w-full">
-                                        <span>Visit Website</span>
-                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-                                    </a>
-                                </div>
-
-                                <!-- 4. Brain Of Computer -->
-                                <div class="bg-white p-4 rounded-xl shadow-lg border-l-4 border-red-500">
-                                    <h3 class="text-xl font-bold text-red-800 mb-3 flex items-center">
-                                        <svg class="w-6 h-6 mr-2 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path></svg>
-                                        Brain Of Computer
-                                    </h3>
-                                    <a href="https://search-engine-g89cspsdz-shahid-ikram-maliks-projects.vercel.app/" target="_blank" class="link-button bg-red-100 text-red-700 hover:bg-red-200 w-full">
-                                        <span>Visit Website</span>
-                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Tab Content: Login -->
-                <div id="contentLogin" class="tab-content mt-6 hidden">
-                    <div class="max-w-md mx-auto p-8 bg-teal-50 rounded-xl shadow-lg border border-teal-200">
-                        <h2 class="text-2xl font-bold text-teal-800 mb-6 text-center">Login to Access Records</h2>
-                        
-                        <!-- Client-Side Security Warning -->
-                        <div class="mb-6 p-3 bg-red-100 border border-red-400 text-red-700 rounded-lg text-sm font-medium">
-                            ⚠️ **Security Alert:** This login is for **demonstration purposes only** (client-side check) and is **not truly secure**. Do not use it for highly sensitive data in a production environment.
-                        </div>
-
-                        <form id="loginForm" onsubmit="event.preventDefault(); handleLogin();" class="space-y-4">
-                            <div>
-                                <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
-                                <input type="email" id="email" name="email" required placeholder="alkarampoultry505@gmail.com" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500 transition duration-150 ease-in-out">
-                            </div>
-                            <div>
-                                <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-                                <input type="password" id="password" name="password" required placeholder="Enter your secret password" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500 transition duration-150 ease-in-out">
-                            </div>
-                            <button type="submit" id="loginButton" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-lg shadow-md text-white font-semibold bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 transition duration-300 ease-in-out transform hover:scale-[1.01] active:scale-[0.99]">
-                                Login
-                            </button>
-                        </form>
-                        <div id="messageBox" class="mt-4 text-center text-sm font-medium hidden"></div>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- 3. PROTECTED DASHBOARD (Hidden until successful login) -->
-            <div id="dashboard" class="hidden">
-                <div class="p-6 md:p-10 bg-white rounded-xl">
-                    <h2 class="text-3xl font-bold text-teal-800 mb-8 border-b-4 border-teal-500 pb-2">Revenue & Document Registry Access</h2>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <!-- Link Card Template -->
-                        <!-- NOTE: The links are direct Google Drive folder links, which will open in a new tab -->
-                        <a href="https://drive.google.com/drive/folders/1orezy0DFRBFQ7xBkDiJXvRKkkgBB7DKI" target="_blank" class="block group p-6 bg-teal-50 rounded-xl shadow-md hover:shadow-xl transition duration-300 transform hover:translate-y-[-2px] border-2 border-transparent hover:border-teal-400">
-                            <div class="flex items-center space-x-4">
-                                <svg class="w-8 h-8 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
-                                <div>
-                                    <h3 class="text-xl font-semibold text-teal-700 group-hover:text-teal-800">Revenue Registry</h3>
-                                    <p class="text-sm text-gray-500">Financial records and revenue documents.</p>
-                                </div>
-                            </div>
-                        </a>
-
-                        <a href="https://drive.google.com/drive/folders/1L3EpqCTI2dJd-bOvzU1NwQt7nOYi1iTz" target="_blank" class="block group p-6 bg-teal-50 rounded-xl shadow-md hover:shadow-xl transition duration-300 transform hover:translate-y-[-2px] border-2 border-transparent hover:border-teal-400">
-                            <div class="flex items-center space-x-4">
-                                <svg class="w-8 h-8 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2V9a2 2 0 012-2h2zM7 21a2 2 0 012-2h10a2 2 0 012 2m-10-8v2m4-2v2"></path></svg>
-                                <div>
-                                    <h3 class="text-xl font-semibold text-teal-700 group-hover:text-teal-800">Agreements</h3>
-                                    <p class="text-sm text-gray-500">Legal and business contracts.</p>
-                                </div>
-                            </div>
-                        </a>
-
-                        <a href="https://drive.google.com/drive/folders/1eZVVq9p8ENA7btPLbrvg0R0JliCyfS4K" target="_blank" class="block group p-6 bg-teal-50 rounded-xl shadow-md hover:shadow-xl transition duration-300 transform hover:translate-y-[-2px] border-2 border-transparent hover:border-teal-400">
-                            <div class="flex items-center space-x-4">
-                                <svg class="w-8 h-8 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-                                <div>
-                                    <h3 class="text-xl font-semibold text-teal-700 group-hover:text-teal-800">Sale Certificate</h3>
-                                    <p class="text-sm text-gray-500">Ownership and transfer documents.</p>
-                                </div>
-                            </div>
-                        </a>
-
-                        <a href="https://drive.google.com/drive/folders/1Yzd5ODoeUfcg7TtROrpLA9RDymgU3hBD" target="_blank" class="block group p-6 bg-teal-50 rounded-xl shadow-md hover:shadow-xl transition duration-300 transform hover:translate-y-[-2px] border-2 border-transparent hover:border-teal-400">
-                            <div class="flex items-center space-x-4">
-                                <svg class="w-8 h-8 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h10m-10 4h10m-9-4h.01M3 6l4-2 4 2 4-2 4 2 0-16 0 16-4-2-4 2-4-2-4 2"></path></svg>
-                                <div>
-                                    <h3 class="text-xl font-semibold text-teal-700 group-hover:text-teal-800">My Vehicle</h3>
-                                    <p class="text-sm text-gray-500">Vehicle registration and ownership papers.</p>
-                                </div>
-                            </div>
-                        </a>
-
-                        <a href="https://drive.google.com/drive/folders/1w6i4v-wIrANuXZ85iX4UpGHJprwJWGZF" target="_blank" class="block group p-6 bg-teal-50 rounded-xl shadow-md hover:shadow-xl transition duration-300 transform hover:translate-y-[-2px] border-2 border-transparent hover:border-teal-400">
-                            <div class="flex items-center space-x-4">
-                                <svg class="w-8 h-8 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4m-4-4H4"></path></svg>
-                                <div>
-                                    <h3 class="text-xl font-semibold text-teal-700 group-hover:text-teal-800">My Cases</h3>
-                                    <p class="text-sm text-gray-500">Legal case files and documentation.</p>
-                                </div>
-                            </div>
-                        </a>
-
-                        <a href="https://drive.google.com/drive/folders/1cYBKNNTNAgj7WHfbSbBoir9vZCUWQld8" target="_blank" class="block group p-6 bg-teal-50 rounded-xl shadow-md hover:shadow-xl transition duration-300 transform hover:translate-y-[-2px] border-2 border-transparent hover:border-teal-400">
-                            <div class="flex items-center space-x-4">
-                                <svg class="w-8 h-8 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-12 11V6a2 2 0 012-2h10a2 2 0 012 2v10a2 2 0 01-2 2H6a2 2 0 01-2-2z"></path></svg>
-                                <div>
-                                    <h3 class="text-xl font-semibold text-teal-700 group-hover:text-teal-800">My Gallery</h3>
-                                    <p class="text-sm text-gray-500">Photo and media collection.</p>
-                                </div>
-                            </div>
-                        </a>
-                        
-                        <a href="https://drive.google.com/drive/folders/1i-9S-n35qPTCNXhSGWv8PFPHE8aV0SIQ" target="_blank" class="block group p-6 bg-teal-50 rounded-xl shadow-md hover:shadow-xl transition duration-300 transform hover:translate-y-[-2px] border-2 border-transparent hover:border-teal-400">
-                            <div class="flex items-center space-x-4">
-                                <svg class="w-8 h-8 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 12h14M5 16h14M8 12h8m-4 0v4m0-4V8"></path></svg>
-                                <div>
-                                    <h3 class="text-xl font-semibold text-teal-700 group-hover:text-teal-800">CNIC App</h3>
-                                    <p class="text-sm text-gray-500">Related National ID Card data/applications.</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    
-                    <button onclick="logout()" class="mt-10 mx-auto block py-2 px-6 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-gray-500 hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 transition duration-150">
-                        Logout
-                    </button>
-                </div>
-            </div>
-
+<!-- Login Container (Hidden Initially) -->
+<div id="loginContainer" class="min-h-screen flex items-center justify-center p-4 hidden">
+    <div class="w-full max-w-md bg-white shadow-2xl rounded-xl overflow-hidden p-8 transition-all duration-300">
+        <div class="text-center mb-6">
+            <h1 class="text-3xl font-bold text-gray-800 mb-2">Revenue Portal Login</h1>
+            <p class="text-gray-500">Access the private dashboard.</p>
         </div>
-    </main>
-    
-    <!-- 4. FOOTER SECTION -->
-    <footer class="bg-gray-800 text-white p-4 md:p-6 mt-10 rounded-t-xl shadow-inner border-t-4 border-teal-500">
-        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
-            <!-- Developer Info -->
-            <div class="text-sm text-gray-400 text-center md:text-left">
-                Website developed by: 
-                <span class="font-semibold text-teal-400">Engnieer Hassan Jatoi</span> | 
-                <span class="font-mono">03083500829</span>
-            </div>
-            
-            <!-- WhatsApp Button -->
-            <!-- The URL uses the international format (+92) for Pakistan mobile numbers, linked to the provided number 03083500829 -->
-            <a href="https://wa.me/923083500829" target="_blank" 
-               class="inline-flex items-center space-x-2 px-4 py-2 bg-green-500 text-white font-bold rounded-full shadow-lg hover:bg-green-600 transition duration-300 ease-in-out transform hover:scale-105 active:scale-95 group">
-                <!-- WhatsApp Icon (Inline SVG for reliability) -->
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
-                    <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-2.071 18.067c-.201.074-1.127.42-1.39.431-.264.01-.476.02-.952-.271-.477-.291-1.611-.531-2.915-1.782-1.305-1.252-2.188-2.613-2.451-3.078-.263-.466-.027-.721.21-.955.21-.21.474-.531.676-.795.201-.264.268-.21.431-.531.163-.321.082-.604-.041-.859-.123-.255-.951-2.285-1.305-3.125-.341-.826-.719-.676-.983-.676-.239 0-.518-.03-.797-.03-2.001 0-3.376.657-3.376 2.451 0 1.986 1.157 3.992 2.652 5.565 1.503 1.579 2.977 2.602 4.416 3.056.883.284 1.766.45 2.378.431.614-.02 1.956-.8 2.219-1.579.263-.781.263-.676.182-.826-.081-.151-.239-.24-.5-.38z"/>
-                </svg>
-                <span class="group-hover:text-yellow-200">Contact on WhatsApp</span>
-            </a>
-        </div>
-    </footer>
 
-    <script>
-        // --- CONSTANTS ---
-        const CORRECT_EMAIL = "alkarampoultry505@gmail.com";
-        // The required password remains correct here.
-        const CORRECT_PASSWORD = "alkaram505@786"; 
-        const SPLASH_DURATION_MS = 5000;
-
-        // --- DOM ELEMENTS ---
-        const splashScreen = document.getElementById('splashScreen');
-        const mainContent = document.getElementById('mainContent');
-        const loginForm = document.getElementById('loginForm');
-        const dashboard = document.getElementById('dashboard');
-        const messageBox = document.getElementById('messageBox');
-        const tabAbout = document.getElementById('tabAbout');
-        const tabLogin = document.getElementById('tabLogin');
-        const contentAbout = document.getElementById('contentAbout');
-        const contentLogin = document.getElementById('contentLogin');
-        const tabsContainer = document.getElementById('tabsContainer');
-
-        // --- STATE & INITIALIZATION ---
-
-        /**
-         * Toggles the visibility of the main content areas.
-         * @param {string} screen - 'login' or 'dashboard'
-         */
-        function showScreen(screen) {
-            if (screen === 'dashboard') {
-                contentLogin.classList.add('hidden');
-                contentAbout.classList.add('hidden');
-                tabsContainer.classList.add('hidden'); // Hide tabs once logged in
-                dashboard.classList.remove('hidden');
-            } else { // 'login' (or initial state)
-                dashboard.classList.add('hidden');
-                tabsContainer.classList.remove('hidden');
-                showTab('about'); // Default to showing 'About Me' tab
-                mainContent.classList.remove('hidden');
-            }
-        }
-
-        /**
-         * Manages the tab interface (About Me vs. Login)
-         * @param {string} tabId - 'about' or 'login'
-         */
-        function showTab(tabId) {
-            // Reset styles
-            tabAbout.classList.remove('border-teal-600', 'text-teal-800');
-            tabLogin.classList.remove('border-teal-600', 'text-teal-800');
-            contentAbout.classList.add('hidden');
-            contentLogin.classList.add('hidden');
-
-            // Set active tab
-            if (tabId === 'about') {
-                tabAbout.classList.add('border-teal-600', 'text-teal-800');
-                contentAbout.classList.remove('hidden');
-            } else if (tabId === 'login') {
-                tabLogin.classList.add('border-teal-600', 'text-teal-800');
-                contentLogin.classList.remove('hidden');
-            }
-        }
-
-        /**
-         * Handles the client-side login attempt.
-         */
-        function handleLogin() {
-            const email = document.getElementById('email').value.trim();
-            const password = document.getElementById('password').value.trim();
-            
-            messageBox.classList.add('hidden');
-            messageBox.classList.remove('bg-red-100', 'text-red-700', 'bg-green-100', 'text-green-700', 'p-3', 'rounded-lg');
-
-            if (email === CORRECT_EMAIL && password === CORRECT_PASSWORD) {
-                // Success
-                messageBox.textContent = "Login successful! Redirecting...";
-                messageBox.classList.remove('hidden');
-                messageBox.classList.add('bg-green-100', 'text-green-700', 'p-3', 'rounded-lg');
-                
-                // Simulate delay before showing dashboard
-                setTimeout(() => {
-                    showScreen('dashboard');
-                }, 500);
-            } else {
-                // Failure
-                messageBox.textContent = "Invalid email or password. Please try again.";
-                messageBox.classList.remove('hidden');
-                messageBox.classList.add('bg-red-100', 'text-red-700', 'p-3', 'rounded-lg');
-            }
-        }
+        <!-- Placeholder for the provided image -->
+        <img src="https://placehold.co/400x200/4F46E5/FFFFFF?text=Shahid+Ikram+Malik" 
+             alt="Professional Placeholder" 
+             class="w-full h-32 object-cover rounded-lg mb-6 shadow-md"/>
         
-        /**
-         * Resets the application state to the login screen.
-         */
-        function logout() {
-            showScreen('login');
-            // Clear message box
-            messageBox.classList.add('hidden');
-            messageBox.textContent = ''; 
-            // Reset form fields
-            loginForm.reset();
-        }
+        <form id="loginForm">
+            <div class="mb-4">
+                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                <input type="email" id="email" name="email" required placeholder="alkarampoultry505@gmail.com"
+                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 transition duration-150">
+            </div>
+            <div class="mb-6">
+                <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                <!-- NOTE: The password field should never show the password, as requested. -->
+                <input type="password" id="password" name="password" required
+                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 transition duration-150">
+            </div>
+            
+            <p id="errorMessage" class="text-red-600 text-sm text-center mb-4 hidden font-medium"></p>
+            
+            <button type="submit"
+                    class="w-full bg-indigo-600 text-white py-2.5 rounded-lg font-semibold hover:bg-indigo-700 transition duration-200 shadow-md hover:shadow-lg">
+                Login
+            </button>
+        </form>
+    </div>
+</div>
 
-        /**
-         * Initializes the application flow by showing the splash screen.
-         */
-        function initApp() {
-            // Start the timer to hide the splash screen
+<!-- Main Portal Container (Hidden until successful login) -->
+<div id="portalContainer" class="hidden min-h-screen p-4 md:p-8">
+    <div class="max-w-6xl mx-auto">
+        <!-- Header -->
+        <header class="bg-white shadow-lg rounded-xl p-6 mb-8 border-t-4 border-indigo-600">
+            <h1 class="text-3xl font-extrabold text-gray-900">Welcome to Revenue Portal</h1>
+            <p class="text-indigo-600 font-medium mt-1">Shahid Ikram Malik Dashboard</p>
+        </header>
+
+        <!-- About Me Section -->
+        <section class="bg-white p-6 rounded-xl shadow-lg mb-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4 border-b pb-2">About Me</h2>
+            <div class="space-y-4 text-gray-700">
+                <p>My name is <strong class="text-indigo-700">Shahid Ikram Malik</strong>. By profession, I am an advocate, a landlord, and an active political leader. I serve as the UC Chairman, proudly representing the Pakistan People’s Party (PPP). My journey combines public service, legal expertise, and community development—each shaping my identity and purpose.</p>
+                
+                <h3 class="text-xl font-semibold mt-6 mb-2">Business Ventures:</h3>
+                <ul class="list-disc list-inside ml-4 space-y-1">
+                    <li>APC Factory (Medicine Production)</li>
+                    <li>Fish Supply Business</li>
+                    <li>Poultry Trading</li>
+                    <li>Feeds Supply Business</li>
+                    <li>Owner of Al Karam Khairpur Feeds Mill – KSEZ Zone Khairpur</li>
+                </ul>
+                
+                <p class="mt-4">My vision is to uplift my community through leadership, legal support, and business development. I believe in hard work, transparency, and service to people. My commitment to progress and welfare inspires me every day to work with dedication and responsibility.</p>
+            </div>
+        </section>
+
+        <!-- Links Section -->
+        <section class="space-y-8">
+            
+            <!-- My Links -->
+            <div class="bg-white p-6 rounded-xl shadow-lg">
+                <h2 class="text-2xl font-bold text-indigo-700 mb-4">My Resources & Documents</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <a href="https://drive.google.com/drive/folders/1orezy0DFRBFQ7xBkDiJXvRKkkgBB7DKI" target="_blank" class="link-card p-4 bg-indigo-50 hover:bg-indigo-100 rounded-lg shadow-md flex items-center space-x-3">
+                        <span class="text-indigo-600 text-xl">📁</span>
+                        <span class="font-medium text-gray-800">My Revenue</span>
+                    </a>
+                    <a href="https://drive.google.com/drive/folders/1L3EpqCTI2dJd-bOvzU1NwQt7nOYi1iTz" target="_blank" class="link-card p-4 bg-indigo-50 hover:bg-indigo-100 rounded-lg shadow-md flex items-center space-x-3">
+                        <span class="text-indigo-600 text-xl">📜</span>
+                        <span class="font-medium text-gray-800">My Agreement</span>
+                    </a>
+                    <a href="https://drive.google.com/drive/folders/1C0nO4910FfmLqll6YgXktcPJGzraq7Dq" target="_blank" class="link-card p-4 bg-indigo-50 hover:bg-indigo-100 rounded-lg shadow-md flex items-center space-x-3">
+                        <span class="text-indigo-600 text-xl">📄</span>
+                        <span class="font-medium text-gray-800">Sale Certificate</span>
+                    </a>
+                    <a href="https://drive.google.com/file/d/14cuy6P-lnsHWhoFDXvZ3X3WdTNMD1UYp/view?usp=drivesdk" target="_blank" class="link-card p-4 bg-indigo-50 hover:bg-indigo-100 rounded-lg shadow-md flex items-center space-x-3">
+                        <span class="text-indigo-600 text-xl">🚗</span>
+                        <span class="font-medium text-gray-800">My Vehicle</span>
+                    </a>
+                    <a href="https://drive.google.com/file/d/1B2Y0DygnEZG5NnbzEFUgY2aeJ15r_tlD/view?usp=drivesdk" target="_blank" class="link-card p-4 bg-indigo-50 hover:bg-indigo-100 rounded-lg shadow-md flex items-center space-x-3">
+                        <span class="text-indigo-600 text-xl">⚖️</span>
+                        <span class="font-medium text-gray-800">My Case's</span>
+                    </a>
+                    <a href="https://drive.google.com/drive/folders/1cYBKNNTNAgj7WHfbSbBoir9vZCUWQld8" target="_blank" class="link-card p-4 bg-indigo-50 hover:bg-indigo-100 rounded-lg shadow-md flex items-center space-x-3">
+                        <span class="text-indigo-600 text-xl">📸</span>
+                        <span class="font-medium text-gray-800">My Gallery</span>
+                    </a>
+                    <a href="https://drive.google.com/drive/folders/1i-9S-n35qPTCNXhSGWv8PFPHE8aV0SIQ" target="_blank" class="link-card p-4 bg-indigo-50 hover:bg-indigo-100 rounded-lg shadow-md flex items-center space-x-3">
+                        <span class="text-indigo-600 text-xl">🆔</span>
+                        <span class="font-medium text-gray-800">CNIC App</span>
+                    </a>
+                    <a href="https://al-karamfeedsmill.vercel.app/" target="_blank" class="link-card p-4 bg-indigo-50 hover:bg-indigo-100 rounded-lg shadow-md flex items-center space-x-3">
+                        <span class="text-indigo-600 text-xl">🏭</span>
+                        <span class="font-medium text-gray-800">Khairpur Feeds Mill Pvt Ltd (Vercel)</span>
+                    </a>
+                    <a href="https://share.google/0ILZaPeB2Zx4Fj02i" target="_blank" class="link-card p-4 bg-indigo-50 hover:bg-indigo-100 rounded-lg shadow-md flex items-center space-x-3">
+                        <span class="text-indigo-600 text-xl">🌾</span>
+                        <span class="font-medium text-gray-800">Khairpur Feeds Pvt Ltd (Share)</span>
+                    </a>
+                    <a href="https://search-engine-g89cspsdz-shahid-ikram-maliks-projects.vercel.app/" target="_blank" class="link-card p-4 bg-indigo-50 hover:bg-indigo-100 rounded-lg shadow-md flex items-center space-x-3">
+                        <span class="text-indigo-600 text-xl">🔍</span>
+                        <span class="font-medium text-gray-800">Sindh Land Revenue Help</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Tax & Revenue Links -->
+            <div class="bg-white p-6 rounded-xl shadow-lg">
+                <h2 class="text-2xl font-bold text-green-700 mb-4">Tax & Revenue Portals</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <h3 class="col-span-full text-lg font-semibold text-gray-600 mt-2">SRB / Sindh-related links</h3>
+                    <!-- SRB Links -->
+                    <a href="https://www.srb.gos.pk/" target="_blank" class="link-card p-4 bg-green-50 hover:bg-green-100 rounded-lg shadow-md flex items-center space-x-3">
+                        <span class="text-green-600 text-xl">🌐</span>
+                        <span class="font-medium text-gray-800">SRB — Official Homepage</span>
+                    </a>
+                    <a href="https://www.srb.gos.pk/srb/sindh-agricultural-income-tax/" target="_blank" class="link-card p-4 bg-green-50 hover:bg-green-100 rounded-lg shadow-md flex items-center space-x-3">
+                        <span class="text-green-600 text-xl">🌾</span>
+                        <span class="font-medium text-gray-800">SRB AIT Main Page</span>
+                    </a>
+                    <a href="https://aitapp.srb.gos.pk/#/session/signin" target="_blank" class="link-card p-4 bg-green-50 hover:bg-green-100 rounded-lg shadow-md flex items-center space-x-3">
+                        <span class="text-green-600 text-xl">🔑</span>
+                        <span class="font-medium text-gray-800">SRB AIT Portal (Login)</span>
+                    </a>
+                    <a href="https://www.srb.gos.pk/srb/laws-rules/" target="_blank" class="link-card p-4 bg-green-50 hover:bg-green-100 rounded-lg shadow-md flex items-center space-x-3">
+                        <span class="text-green-600 text-xl">📜</span>
+                        <span class="font-medium text-gray-800">SRB AIT — Laws & Rules</span>
+                    </a>
+                    <a href="https://www.srb.gos.pk/srb/faqs-ait/" target="_blank" class="link-card p-4 bg-green-50 hover:bg-green-100 rounded-lg shadow-md flex items-center space-x-3">
+                        <span class="text-green-600 text-xl">❓</span>
+                        <span class="font-medium text-gray-800">SRB AIT — FAQ page</span>
+                    </a>
+                    <a href="https://www.srb.gos.pk/srb/wp-content/uploads/2025/09/Registration-User-Manual.pdf" target="_blank" class="link-card p-4 bg-green-50 hover:bg-green-100 rounded-lg shadow-md flex items-center space-x-3">
+                        <span class="text-green-600 text-xl">📖</span>
+                        <span class="font-medium text-gray-800">SRB AIT — User Manual (PDF)</span>
+                    </a>
+
+                    <h3 class="col-span-full text-lg font-semibold text-gray-600 mt-4">FBR / Federal Tax links</h3>
+                    <!-- FBR Links -->
+                    <a href="https://fbr.gov.pk/" target="_blank" class="link-card p-4 bg-green-50 hover:bg-green-100 rounded-lg shadow-md flex items-center space-x-3">
+                        <span class="text-green-600 text-xl">🏛️</span>
+                        <span class="font-medium text-gray-800">FBR — Official Homepage</span>
+                    </a>
+                    <a href="https://e.fbr.gov.pk/AuthLogin.aspx" target="_blank" class="link-card p-4 bg-green-50 hover:bg-green-100 rounded-lg shadow-md flex items-center space-x-3">
+                        <span class="text-green-600 text-xl">💻</span>
+                        <span class="font-medium text-gray-800">FBR e-filing Portal</span>
+                    </a>
+                    <a href="https://iris.fbr.gov.pk/infosys/public/txplogin.xhtml" target="_blank" class="link-card p-4 bg-green-50 hover:bg-green-100 rounded-lg shadow-md flex items-center space-x-3">
+                        <span class="text-green-600 text-xl">🔍</span>
+                        <span class="font-medium text-gray-800">FBR Alternate Login (IRIS)</span>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Financial Links -->
+            <div class="bg-white p-6 rounded-xl shadow-lg">
+                <h2 class="text-2xl font-bold text-yellow-700 mb-4">Major Bank Websites</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <!-- Bank Links -->
+                    <a href="https://www.abl.com/" target="_blank" class="link-card p-4 bg-yellow-50 hover:bg-yellow-100 rounded-lg shadow-md flex items-center space-x-3">
+                        <span class="text-yellow-600 text-xl">🏦</span>
+                        <span class="font-medium text-gray-800">Allied Bank Limited (ABL)</span>
+                    </a>
+                    <a href="https://www.ubl.com.pk" target="_blank" class="link-card p-4 bg-yellow-50 hover:bg-yellow-100 rounded-lg shadow-md flex items-center space-x-3">
+                        <span class="text-yellow-600 text-xl">🏦</span>
+                        <span class="font-medium text-gray-800">United Bank Limited (UBL)</span>
+                    </a>
+                    <a href="https://www.bankalhabib.com/" target="_blank" class="link-card p-4 bg-yellow-50 hover:bg-yellow-100 rounded-lg shadow-md flex items-center space-x-3">
+                        <span class="text-yellow-600 text-xl">🏦</span>
+                        <span class="font-medium text-gray-800">Bank Al Habib</span>
+                    </a>
+                    <a href="https://www.bankalfalah.com/" target="_blank" class="link-card p-4 bg-yellow-50 hover:bg-yellow-100 rounded-lg shadow-md flex items-center space-x-3">
+                        <span class="text-yellow-600 text-xl">🏦</span>
+                        <span class="font-medium text-gray-800">Bank Alfalah</span>
+                    </a>
+                    <a href="https://www.hbl.com/" target="_blank" class="link-card p-4 bg-yellow-50 hover:bg-yellow-100 rounded-lg shadow-md flex items-center space-x-3">
+                        <span class="text-yellow-600 text-xl">🏦</span>
+                        <span class="font-medium text-gray-800">Habib Bank Limited (HBL)</span>
+                    </a>
+                    <a href="https://www.mcb.com.pk/" target="_blank" class="link-card p-4 bg-yellow-50 hover:bg-yellow-100 rounded-lg shadow-md flex items-center space-x-3">
+                        <span class="text-yellow-600 text-xl">🏦</span>
+                        <span class="font-medium text-gray-800">MCB Bank Limited</span>
+                    </a>
+                    <a href="https://www.soneri.com/" target="_blank" class="link-card p-4 bg-yellow-50 hover:bg-yellow-100 rounded-lg shadow-md flex items-center space-x-3">
+                        <span class="text-yellow-600 text-xl">🏦</span>
+                        <span class="font-medium text-gray-800">Soneri Bank Limited</span>
+                    </a>
+                    <a href="https://www.sc.com/pk/" target="_blank" class="link-card p-4 bg-yellow-50 hover:bg-yellow-100 rounded-lg shadow-md flex items-center space-x-3">
+                        <span class="text-yellow-600 text-xl">🏦</span>
+                        <span class="font-medium text-gray-800">Standard Chartered Bank Pakistan</span>
+                    </a>
+                    <a href="https://www.jazzcash.com.pk/" target="_blank" class="link-card p-4 bg-yellow-50 hover:bg-yellow-100 rounded-lg shadow-md flex items-center space-x-3">
+                        <span class="text-yellow-600 text-xl">💳</span>
+                        <span class="font-medium text-gray-800">JazzCash</span>
+                    </a>
+                    <a href="https://easypaisa.com.pk/" target="_blank" class="link-card p-4 bg-yellow-50 hover:bg-yellow-100 rounded-lg shadow-md flex items-center space-x-3">
+                        <span class="text-yellow-600 text-xl">💳</span>
+                        <span class="font-medium text-gray-800">Easypaisa</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Search, Media, and Poetry Links -->
+            <div class="bg-white p-6 rounded-xl shadow-lg">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">General & Media Links</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    
+                    <h3 class="col-span-full text-lg font-semibold text-gray-600 mt-2">Search Engines</h3>
+                    <a href="https://www.google.com" target="_blank" class="link-card p-4 bg-blue-50 hover:bg-blue-100 rounded-lg shadow-md flex items-center space-x-3">
+                        <span class="text-blue-600 text-xl">🔍</span>
+                        <span class="font-medium text-gray-800">Google Search</span>
+                    </a>
+                    <a href="https://www.bing.com" target="_blank" class="link-card p-4 bg-blue-50 hover:bg-blue-100 rounded-lg shadow-md flex items-center space-x-3">
+                        <span class="text-blue-600 text-xl">🔍</span>
+                        <span class="font-medium text-gray-800">Bing Search</span>
+                    </a>
+                    <a href="https://search.yahoo.com" target="_blank" class="link-card p-4 bg-blue-50 hover:bg-blue-100 rounded-lg shadow-md flex items-center space-x-3">
+                        <span class="text-blue-600 text-xl">🔍</span>
+                        <span class="font-medium text-gray-800">Yahoo Search</span>
+                    </a>
+
+                    <h3 class="col-span-full text-lg font-semibold text-gray-600 mt-4">Poetry & News</h3>
+                    <a href="https://www.urdupoint.com/poetry/" target="_blank" class="link-card p-4 bg-purple-50 hover:bg-purple-100 rounded-lg shadow-md flex items-center space-x-3">
+                        <span class="text-purple-600 text-xl">📜</span>
+                        <span class="font-medium text-gray-800">Urdu Poetry</span>
+                    </a>
+                    <a href="https://www.rekhta.org" target="_blank" class="link-card p-4 bg-purple-50 hover:bg-purple-100 rounded-lg shadow-md flex items-center space-x-3">
+                        <span class="text-purple-600 text-xl">📚</span>
+                        <span class="font-medium text-gray-800">Rekhta</span>
+                    </a>
+                    <a href="https://www.urdupoint.com" target="_blank" class="link-card p-4 bg-purple-50 hover:bg-purple-100 rounded-lg shadow-md flex items-center space-x-3">
+                        <span class="text-purple-600 text-xl">📰</span>
+                        <span class="font-medium text-gray-800">Urdu Point News Article</span>
+                    </a>
+                    
+                    <h3 class="col-span-full text-lg font-semibold text-gray-600 mt-4">Social Media & Video</h3>
+                    <a href="https://www.youtube.com" target="_blank" class="link-card p-4 bg-red-50 hover:bg-red-100 rounded-lg shadow-md flex items-center space-x-3">
+                        <span class="text-red-600 text-xl">▶️</span>
+                        <span class="font-medium text-gray-800">YouTube</span>
+                    </a>
+                    <a href="https://www.facebook.com" target="_blank" class="link-card p-4 bg-red-50 hover:bg-red-100 rounded-lg shadow-md flex items-center space-x-3">
+                        <span class="text-red-600 text-xl">📘</span>
+                        <span class="font-medium text-gray-800">Facebook</span>
+                    </a>
+                    <a href="https://www.tiktok.com" target="_blank" class="link-card p-4 bg-red-50 hover:bg-red-100 rounded-lg shadow-md flex items-center space-x-3">
+                        <span class="text-red-600 text-xl">🎵</span>
+                        <span class="font-medium text-gray-800">TikTok</span>
+                    </a>
+                    <a href="https://www.x.com" target="_blank" class="link-card p-4 bg-red-50 hover:bg-red-100 rounded-lg shadow-md flex items-center space-x-3">
+                        <span class="text-red-600 text-xl">❌</span>
+                        <span class="font-medium text-gray-800">X (Twitter)</span>
+                    </a>
+                    <a href="https://www.linkedin.com" target="_blank" class="link-card p-4 bg-red-50 hover:bg-red-100 rounded-lg shadow-md flex items-center space-x-3">
+                        <span class="text-red-600 text-xl">💼</span>
+                        <span class="font-medium text-gray-800">LinkedIn</span>
+                    </a>
+                    <a href="https://web.whatsapp.com" target="_blank" class="link-card p-4 bg-red-50 hover:bg-red-100 rounded-lg shadow-md flex items-center space-x-3">
+                        <span class="text-red-600 text-xl">💬</span>
+                        <span class="font-medium text-gray-800">WhatsApp Web</span>
+                    </a>
+                    <a href="https://web.telegram.org" target="_blank" class="link-card p-4 bg-red-50 hover:bg-red-100 rounded-lg shadow-md flex items-center space-x-3">
+                        <span class="text-red-600 text-xl">✈️</span>
+                        <span class="font-medium text-gray-800">Telegram Web</span>
+                    </a>
+                    <a href="https://www.instagram.com" target="_blank" class="link-card p-4 bg-red-50 hover:bg-red-100 rounded-lg shadow-md flex items-center space-x-3">
+                        <span class="text-red-600 text-xl">📸</span>
+                        <span class="font-medium text-gray-800">Instagram</span>
+                    </a>
+                    <a href="https://www.threads.net" target="_blank" class="link-card p-4 bg-red-50 hover:bg-red-100 rounded-lg shadow-md flex items-center space-x-3">
+                        <span class="text-red-600 text-xl">🧵</span>
+                        <span class="font-medium text-gray-800">Threads</span>
+                    </a>
+                    <a href="https://www.vimeo.com" target="_blank" class="link-card p-4 bg-red-50 hover:bg-red-100 rounded-lg shadow-md flex items-center space-x-3">
+                        <span class="text-red-600 text-xl">🎬</span>
+                        <span class="font-medium text-gray-800">Vimeo</span>
+                    </a>
+                    <a href="https://www.likee.video" target="_blank" class="link-card p-4 bg-red-50 hover:bg-red-100 rounded-lg shadow-md flex items-center space-x-3">
+                        <span class="text-red-600 text-xl">✨</span>
+                        <span class="font-medium text-gray-800">Likee</span>
+                    </a>
+                </div>
+            </div>
+
+        </section>
+        
+        <!-- Footer - Redesigned with developer credit -->
+        <footer class="text-center mt-10 p-4 bg-gray-800 text-white rounded-xl shadow-2xl">
+            <div class="max-w-xl mx-auto">
+                <p class="text-xs sm:text-sm text-gray-400">&copy; 2025 Shahid Ikram Malik Revenue Portal. All rights reserved.</p>
+                <div class="mt-2 pt-2 border-t border-gray-700">
+                    <p class="font-light text-sm">
+                        Software Developed By <strong class="text-indigo-400 font-semibold">Engineer Hassan Jatoi</strong>
+                    </p>
+                    <a href="tel:03083500829" class="text-sm text-indigo-300 hover:text-indigo-200 transition duration-150">
+                        Contact: 03083500829
+                    </a>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
+
+<script>
+    // --- Authentication Logic ---
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const errorMessage = document.getElementById('errorMessage');
+        
+        const email = emailInput.value.trim();
+        const password = passwordInput.value;
+        
+        if (email === CORRECT_EMAIL && password === CORRECT_PASSWORD) {
+            document.getElementById('loginContainer').classList.add('hidden');
+            document.getElementById('loginContainer').classList.remove('flex'); // Remove flex
+            document.getElementById('portalContainer').classList.remove('hidden');
+            document.body.style.backgroundColor = '#f0f4f8'; 
+        } else {
+            errorMessage.textContent = 'Invalid email or password. Please try again.';
+            errorMessage.classList.remove('hidden');
+            passwordInput.value = ''; // Clear password field for security
+        }
+    });
+    
+    // --- Splash Screen and Initial Load Logic ---
+    document.addEventListener('DOMContentLoaded', () => {
+        // 1. Set timeout for 7 seconds (7000 milliseconds)
+        setTimeout(() => {
+            // Hide splash screen
+            const splash = document.getElementById('splashScreen');
+            splash.style.transition = 'opacity 0.5s ease-out';
+            splash.style.opacity = '0';
+            
+            // Wait for fade-out, then hide entirely and show login
             setTimeout(() => {
-                splashScreen.style.opacity = '0';
-                // Wait for transition to finish before hiding display
-                setTimeout(() => {
-                    splashScreen.classList.add('hidden');
-                    showScreen('login'); // Show the main content (Login/About screen)
-                }, 1000); // Matches the CSS transition duration
-            }, SPLASH_DURATION_MS);
-        }
+                splash.classList.add('hidden');
+                
+                const loginContainer = document.getElementById('loginContainer');
+                loginContainer.classList.remove('hidden');
+                loginContainer.classList.add('flex'); // Add flex back for centering
+            }, 500); // 500ms for fade out
 
-        // Start the application when the window loads
-        window.onload = initApp;
+        }, 7000); // Total 7 seconds wait time
+        
+        // 2. Autofill the email input with the correct email for convenience
+        document.getElementById('email').value = CORRECT_EMAIL;
+    });
 
-        // Ensure the initial tab is correctly set in case of fast loading/development environment
-        document.addEventListener('DOMContentLoaded', () => {
-            showTab('about');
-        });
-    </script>
+</script>
+
 </body>
 </html>
